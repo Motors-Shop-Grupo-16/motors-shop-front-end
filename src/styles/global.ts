@@ -41,6 +41,5 @@ export const GlobalStyle = createGlobalStyle`
     --color-random10: #6100FF;
     --color-random11: #5700E3;
     --color-random12: #30007D;
-
   } 
 `;
