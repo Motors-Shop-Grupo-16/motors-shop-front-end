@@ -16,6 +16,10 @@ const Container = styled.li`
     background-color: var(--color-grey7);
     padding: 0 16px;
     border: 1px solid transparent;
+
+    img {
+      max-width: 100%;
+    }
   }
 
   .productTitleContainer {

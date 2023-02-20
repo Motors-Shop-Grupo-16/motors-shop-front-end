@@ -1,6 +1,6 @@
 import UserImage from "../../UserImage/userImage";
 
-import { IProducts } from "./interface";
+import { IProducts } from "./interfaces";
 
 import Container from "./style";
 
