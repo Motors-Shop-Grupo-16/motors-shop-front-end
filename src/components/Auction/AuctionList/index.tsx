@@ -1,14 +1,14 @@
 import { AuctionCard } from "../AuctionCard";
-import { StyledAuctionList } from "./styles";
+import Container from "./style";
 
 import { tempDataAuction } from "./tempData";
 
 export const AuctionList = () => {
   return (
-    <StyledAuctionList>
+    <Container>
       {tempDataAuction.map((auction) => (
-        <AuctionCard key={auction.title} auction={auction} />
+        <AuctionCard key={auction.id} auction={auction} />
       ))}
-    </StyledAuctionList>
+    </Container>
   );
 };

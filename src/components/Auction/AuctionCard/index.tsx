@@ -1,30 +1,16 @@
 import { BsArrowRight } from "react-icons/bs";
 import { FiClock } from "react-icons/fi";
 import { BodyText, Heading } from "../../../styles/typography";
-import { StyledAuctionCard } from "./styles";
+import { IAuction } from "./interfaces";
+import Container from "./style";
+import UserImage from "../../UserImage/userImage";
 
-// Alterar interfaces para o local apropriado depois
-interface IAuction {
-  time: string;
-  title: string;
-  imageUrl: string;
-  description: string;
-  owner: string;
-  year: string;
-  mileage: string;
-  price: string;
-}
-
-interface IAuctionObj {
-  auction: IAuction;
-}
-
-export const AuctionCard = ({ auction }: IAuctionObj) => {
+export const AuctionCard = ({ auction }: { auction: IAuction }) => {
   function handleClick() {
     console.log("Ir Para pagina action");
   }
   return (
-    <StyledAuctionCard imageUrl={auction.imageUrl}>
+    <Container imageUrl={auction.imageUrl}>
       <div className="auction-content">
         <div className="auction-time">
           <FiClock color="var(--color-brand1)" size={20} />
@@ -61,15 +47,7 @@ export const AuctionCard = ({ auction }: IAuctionObj) => {
 
         <div className="auction-author">
           <div className="auction-author-icon">
-            <BodyText
-              className=""
-              tag="p"
-              style="body-2"
-              weight="500"
-              color="--color-whiteFixed"
-            >
-              {auction.owner[0]}
-            </BodyText>
+            <UserImage classname="productUserImage" name={auction.owner} />
           </div>
           <BodyText
             className=""
@@ -100,7 +78,7 @@ export const AuctionCard = ({ auction }: IAuctionObj) => {
               weight="500"
               color="--color-brand1"
             >
-              {auction.mileage}
+              {auction.mileage} KM
             </BodyText>
           </div>
           <Heading
@@ -110,7 +88,10 @@ export const AuctionCard = ({ auction }: IAuctionObj) => {
             weight="500"
             color="--color-whiteFixed"
           >
-            {auction.price}
+            {Number(auction.price).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
           </Heading>
         </div>
       </div>
@@ -127,6 +108,6 @@ export const AuctionCard = ({ auction }: IAuctionObj) => {
         </BodyText>
         <BsArrowRight color="var(--color-whiteFixed)" size={24} />
       </div>
-    </StyledAuctionCard>
+    </Container>
   );
 };

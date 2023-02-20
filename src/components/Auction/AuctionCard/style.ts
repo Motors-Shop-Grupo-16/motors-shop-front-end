@@ -4,7 +4,7 @@ interface IAuctionCardProps {
   imageUrl: string;
 }
 
-export const StyledAuctionCard = styled.div<IAuctionCardProps>`
+const Container = styled.div<IAuctionCardProps>`
   display: flex;
   min-width: 735px;
   flex-direction: column;
@@ -42,8 +42,8 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
       -webkit-box-orient: vertical;
     }
 
@@ -51,15 +51,6 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
       display: flex;
       align-items: center;
       gap: 8px;
-      .auction-author-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 150px;
-        background: var(--color-brand1);
-      }
     }
 
     .auction-info {
@@ -90,7 +81,12 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
       }
 
       .auction-time {
-        margin-bottom: 35px;
+        margin-bottom: 25px;
+      }
+
+      .auction-description {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
       }
     }
   }
@@ -129,3 +125,5 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
     min-width: 300px;
   }
 `;
+
+export default Container;
