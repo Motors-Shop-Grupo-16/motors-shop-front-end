@@ -5,6 +5,10 @@ const Container = styled.ul`
   overflow-x: scroll;
   align-items: center;
   gap: 12px;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default Container;

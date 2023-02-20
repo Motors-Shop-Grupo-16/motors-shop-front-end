@@ -1,5 +1,7 @@
 import UserImage from "../../UserImage/userImage";
 
+import { BodyText, Heading } from "../../../styles/typography";
+
 import { IProducts } from "./interfaces";
 
 import Container from "./style";
@@ -12,30 +14,59 @@ const ProductCard = ({ product }: { product: IProducts }) => {
       </div>
 
       <div className="productTitleContainer">
-        <strong className="productTitle">{product.title}</strong>
+        <Heading
+          style="heading-7"
+          className="productTitle"
+          tag="p"
+          weight="600"
+        >
+          {product.title}
+        </Heading>
       </div>
 
-      <p className="productDescription">{product.description}</p>
+      <div className="productDescriptionContainer">
+        <BodyText style="body-2" className="productDescription" tag="p">
+          {product.description}
+        </BodyText>
+      </div>
 
       <div className="productUserImageContainer">
         <UserImage classname="productUserImage" name={product.user.name} />
 
-        <p className="productUserName">{product.user.name}</p>
+        <BodyText style="body-2" tag="p" weight="500">
+          {product.user.name}
+        </BodyText>
       </div>
 
-      <div className="productVehicleInfoContainer">
+      <div className="productInfoContainer">
         <div className="productVehicleInfo">
-          <span className="productMileage">{product.mileage} KM</span>
+          <BodyText
+            className="productInfo"
+            style="body-2"
+            tag="p"
+            weight="500"
+            color="--color-brand1"
+          >
+            {product.mileage} KM
+          </BodyText>
 
-          <span className="productYear">{product.year}</span>
+          <BodyText
+            className="productInfo"
+            style="body-2"
+            tag="p"
+            weight="500"
+            color="--color-brand1"
+          >
+            {product.year}
+          </BodyText>
         </div>
 
-        <b className="productPrice">
+        <Heading style="heading-7" className="productPrice" tag="p">
           {Number(product.price).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
           })}
-        </b>
+        </Heading>
       </div>
     </Container>
   );

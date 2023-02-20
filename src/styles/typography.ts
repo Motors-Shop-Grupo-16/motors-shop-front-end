@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 
 import { BaseTitle } from "../components/BaseTitle/BaseTitle";
 
-import { IHeadingProps } from "./interfaces";
+import { ITypographyProps } from "./interfaces";
 
-export const Heading = styled(BaseTitle)<IHeadingProps>`
+export const Heading = styled(BaseTitle)<ITypographyProps>`
   font-family: "Lexend", sans-serif;
   font-style: normal;
   font-weight: ${(props) => (props.weight ? props.weight : "500")};
@@ -53,17 +53,11 @@ export const Heading = styled(BaseTitle)<IHeadingProps>`
   }}
 `;
 
-interface IBodyTextProps {
-  style: string;
-  weight: string;
-  color: string;
-}
-
-export const BodyText = styled.p<IBodyTextProps>`
+export const BodyText = styled(BaseTitle)<ITypographyProps>`
   font-family: "Inter", sans-serif;
   font-style: normal;
-  font-weight: ${(props) => props.weight};
-  color: var(${(props) => props.color});
+  font-weight: ${(props) => (props.weight ? props.weight : "400")};
+  color: var(${(props) => (props.color ? props.color : "--color-grey2")});
 
   ${(props) => {
     switch (props.style) {

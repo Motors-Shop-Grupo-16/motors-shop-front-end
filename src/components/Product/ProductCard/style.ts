@@ -3,33 +3,82 @@ import styled from "styled-components";
 const Container = styled.li`
   display: flex;
   flex-direction: column;
-  max-width: 312px;
+  min-width: 290px;
   gap: 16px;
 
-  :hover {
-    .productImageContainer {
-      border-color: var(--color-brand1);
+  .productImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-grey7);
+    border: 1px solid transparent;
+    transition: 0.5s;
+    height: 152px;
+    max-width: 100%;
+
+    img {
+      width: 180px;
+      transition: 0.5s;
     }
   }
 
-  .productImageContainer {
-    background-color: var(--color-grey7);
-    padding: 0 16px;
-    border: 1px solid transparent;
+  :hover {
+    cursor: pointer;
 
-    img {
-      max-width: 100%;
+    .productImageContainer {
+      border-color: var(--color-brand1);
+      transition: 0.5s;
+
+      img {
+        transform: scale(1.2);
+        transition: 0.5s;
+      }
     }
   }
 
   .productTitleContainer {
-    overflow: hidden;
-    width: 30ch;
+    width: 33ch;
 
     .productTitle {
-      font-weight: bold;
-      text-overflow: clip;
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
+    }
+  }
+
+  .productDescriptionContainer {
+    width: 90%;
+
+    .productDescription {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .productUserImageContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .productInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .productVehicleInfo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .productInfo {
+        padding: 4px 8px;
+        background-color: var(--color-brand4);
+        border-radius: 4px;
+      }
     }
   }
 `;

@@ -1,5 +1,3 @@
-import ProductList from "./components/Product/ProductList";
-
 import { GlobalStyle } from "./styles/global";
 import { ResetStyle } from "./styles/reset";
 
@@ -8,7 +6,6 @@ function App() {
     <>
       <GlobalStyle />
       <ResetStyle />
-      <ProductList />
     </>
   );
 }

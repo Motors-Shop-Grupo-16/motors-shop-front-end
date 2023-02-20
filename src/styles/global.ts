@@ -30,16 +30,19 @@ export const GlobalStyle = createGlobalStyle`
     --color-sucess3: #DDF3E4;
 
     --color-random1: #E34D8C;
-    --color-random2: #C04277;
-    --color-random3: #7D2A4D;
-    --color-random4: #7000FF;
-    --color-random5: #6200E3;
-    --color-random6: #36007D;
-    --color-random7: #349974;
-    --color-random8: #2A7D5F;
-    --color-random9: #153D2E;
-    --color-random10: #6100FF;
-    --color-random11: #5700E3;
+    --color-random2: #7000FF;
+    --color-random3: #349974;
+    --color-random4: #6100FF;
+    --color-random5: #C04277;
+    --color-random6: #6200E3;
+    --color-random7: #2A7D5F;
+    --color-random8: #5700E3;
+    --color-random9: #7D2A4D;
+    --color-random10: #36007D;
+    --color-random11: #153D2E;
     --color-random12: #30007D;
+
+    --font-family1: "Lexend", sans-serif;
+    --font-family2: "Inter", sans-serif;
   } 
 `;
