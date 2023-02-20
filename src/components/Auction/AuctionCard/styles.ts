@@ -19,9 +19,11 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
         #000000 100%
       ),
       url(${(props) => props.imageUrl});
+    background-size: 100% auto;
+    background-position: center;
     background-repeat: no-repeat;
 
-    padding: 36px 36px;
+    padding: 24px 36px;
     border-radius: 4px 4px 0px 0px;
     gap: 1rem;
 
@@ -30,7 +32,7 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
       max-width: 123px;
       align-items: center;
       border-radius: 32px;
-      padding: 8px 16px;
+      padding: 8px 8px;
       gap: 14px;
       margin-bottom: 50px;
       background: var(--color-whiteFixed);
@@ -79,12 +81,16 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
       }
     }
 
-    @media (max-width: 540px) {
-      padding: 22px 22px;
+    @media (max-width: 755px) {
+      padding: 33px 22px;
 
       .auction-info {
         flex-direction: column;
         align-items: start;
+      }
+
+      .auction-time {
+        margin-bottom: 35px;
       }
     }
   }
@@ -99,7 +105,7 @@ export const StyledAuctionCard = styled.div<IAuctionCardProps>`
     padding: 0px 36px;
     cursor: pointer;
 
-    @media (max-width: 540px) {
+    @media (max-width: 755px) {
       padding: 0px 22px;
     }
   }

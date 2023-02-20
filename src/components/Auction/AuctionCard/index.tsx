@@ -1,6 +1,6 @@
 import { BsArrowRight } from "react-icons/bs";
 import { FiClock } from "react-icons/fi";
-import { BodyText, Heading } from "../../../../styles/typography";
+import { BodyText, Heading } from "../../../styles/typography";
 import { StyledAuctionCard } from "./styles";
 
 // Alterar interfaces para o local apropriado depois
@@ -27,10 +27,10 @@ export const AuctionCard = ({ auction }: IAuctionObj) => {
     <StyledAuctionCard imageUrl={auction.imageUrl}>
       <div className="auction-content">
         <div className="auction-time">
-          <FiClock color="var(--color-brand1)" size={24} />
+          <FiClock color="var(--color-brand1)" size={20} />
           <Heading
             className=""
-            tag="h6"
+            tag="p"
             style="heading-7"
             weight="500"
             color="--color-grey1"

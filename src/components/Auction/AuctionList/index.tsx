@@ -1,4 +1,4 @@
-import { AuctionCard } from "./AuctionCard";
+import { AuctionCard } from "../AuctionCard";
 import { StyledAuctionList } from "./styles";
 
 import { tempDataAuction } from "./tempData";
