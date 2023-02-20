@@ -1,10 +1,4 @@
-import { ReactNode } from "react";
-
-interface IBaseTitleProps {
-  tag: string;
-  className: string;
-  children: ReactNode;
-}
+import { IBaseTitleProps } from "./interfaces";
 
 export const BaseTitle = ({ tag, className, children }: IBaseTitleProps) => (
   <>
