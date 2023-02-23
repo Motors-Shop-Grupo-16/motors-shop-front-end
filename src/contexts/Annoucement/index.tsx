@@ -48,15 +48,15 @@ export const AnnouncementProvider = ({
 
   useEffect(() => {
     async function listAnnouncements() {
-      const responseRegisterContact = await api.get("/announcements");
+      const responseAnnouncements = await api.get("/announcements");
 
       setCars(
-        responseRegisterContact.data.filter(
+        responseAnnouncements.data.filter(
           (car: IAnnouncement) => car.typeVehicle === "car"
         )
       );
       setMotorcycles(
-        responseRegisterContact.data.filter(
+        responseAnnouncements.data.filter(
           (car: IAnnouncement) => car.typeVehicle === "motorcycle"
         )
       );
@@ -73,7 +73,7 @@ export const AnnouncementProvider = ({
       motorcycles,
       setMotorcycles,
     }),
-    [announcements]
+    [cars]
   );
 
   return (

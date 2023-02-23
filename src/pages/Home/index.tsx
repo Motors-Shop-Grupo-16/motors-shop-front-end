@@ -5,13 +5,13 @@ import ProductList from "../../components/Product/ProductList";
 import { AnnouncementContext } from "../../contexts/Annoucement";
 import { Heading } from "../../styles/typography";
 import { Container } from "./styles";
+import Footer from "../../components/Footer";
 
 export const Home = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
   return (
     <>
       <Container>
-        <div className="banner-content"></div>
         <PageContainer>
           <Heading
             id="auction"
@@ -54,6 +54,7 @@ export const Home = () => {
           <ProductList products={motorcycles} />
         </PageContainer>
       </Container>
+      <Footer />
     </>
   );
 };
