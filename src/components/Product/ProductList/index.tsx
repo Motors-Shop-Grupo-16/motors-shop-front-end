@@ -1,15 +1,17 @@
+import { IAnnouncement } from "../../../contexts/Annoucement";
 import ProductCard from "../ProductCard";
+import { IProducts } from "../ProductCard/interfaces";
 
 import Container from "./style";
 
 import { arrExample } from "./tempData";
 
-const ProductList = () => {
+const ProductList = ({ products }: { products: IAnnouncement[] }) => {
   return (
     <>
-      {arrExample.length && (
+      {products.length && (
         <Container>
-          {arrExample.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </Container>

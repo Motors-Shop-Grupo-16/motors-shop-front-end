@@ -10,7 +10,7 @@ export interface IProducts {
   coverImage: string;
   isActive: boolean;
   images: IImages[];
-  user: IUser;
+  User: IUser;
 }
 
 interface IImages {
