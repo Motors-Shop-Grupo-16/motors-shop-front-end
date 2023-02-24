@@ -1,11 +1,13 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
-export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    IButtonConfig {
   children: ReactNode;
 }
 
 export interface IButtonConfig {
-  width?: number;
+  width?: string;
   backgroundColor?: string;
   borderLength?: string;
   borderColor?: string;

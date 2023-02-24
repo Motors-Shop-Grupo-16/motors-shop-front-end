@@ -12,7 +12,7 @@ const Container = styled.button<IButtonConfig>`
 
   font-family: var(--font-family1);
   font-weight: 600;
-  color: var(--color-grey2);
+  color: var(${({ color }) => (color ? color : "--color-grey2")});
 
   ${({ buttonText }) =>
     buttonText === "Big"

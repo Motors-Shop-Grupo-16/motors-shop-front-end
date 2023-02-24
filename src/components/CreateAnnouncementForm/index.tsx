@@ -8,6 +8,7 @@ import { useState } from "react";
 import { BodyText } from "../../styles/typography";
 import { Select } from "../Select/style";
 import Modal from "../Modal";
+import Button from "../Button";
 
 const CreateAnnouncementForm = () => {
   const [imagesFields, setImagesFields] = useState([1]);
@@ -19,6 +20,11 @@ const CreateAnnouncementForm = () => {
   } = useForm({
     resolver: yupResolver(createAnnouncementFormSchema),
   });
+
+  const addImageField = () => {
+    imagesFields.push(imagesFields.length + 1);
+    setImagesFields([...imagesFields]);
+  };
 
   return (
     <Modal title="Criar anúncio">
@@ -115,6 +121,18 @@ const CreateAnnouncementForm = () => {
             error={errors.images?.message as string}
           />
         ))}
+
+        <Button
+          type="button"
+          width="fit-content"
+          backgroundColor="--color-brand4"
+          color="--color-brand1"
+          borderLength="0"
+          borderColor="transparent"
+          onClick={addImageField}
+        >
+          Adicionar campo para imagem da galeria
+        </Button>
       </Container>
     </Modal>
   );
