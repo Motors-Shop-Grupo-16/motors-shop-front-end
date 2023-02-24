@@ -1,6 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  *::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-brand3);
+  border-radius: 20px; 
+}
+
   :root {
     --color-brand1: #4529E6;
     --color-brand2: #5126EA;
