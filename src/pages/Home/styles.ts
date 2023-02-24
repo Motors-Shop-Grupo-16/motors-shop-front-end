@@ -12,5 +12,6 @@ export const Container = styled.div`
   @media (max-width: 755px) {
     margin: auto 12px;
     gap: 67px;
+    margin-bottom: 120px;
   }
 `;

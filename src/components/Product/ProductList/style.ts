@@ -7,7 +7,7 @@ const Container = styled.ul`
   gap: 12px;
 
   ::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
   }
 `;
 

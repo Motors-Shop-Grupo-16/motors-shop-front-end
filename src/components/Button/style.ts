@@ -12,7 +12,7 @@ const Container = styled.button<IButtonConfig>`
 
   font-family: var(--font-family1);
   font-weight: 600;
-  color: var(${({ color }) => (color ? color : "--color-grey2")});
+  color: var(${(props) => (props.color ? props.color : "--color-grey2")});
 
   ${({ buttonText }) =>
     buttonText === "Big"
@@ -33,7 +33,7 @@ const Container = styled.button<IButtonConfig>`
   ${({ borderColor, borderLength }) =>
     borderColor && borderLength
       ? css`
-          border: ${borderLength} solid ${borderColor};
+          border: ${borderLength} solid var(${borderColor});
         `
       : css`
           border: 1.5px solid var(--color-grey2);

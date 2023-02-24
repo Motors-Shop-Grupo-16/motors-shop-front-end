@@ -20,7 +20,8 @@ time, mark, audio, video, input, textarea, select, option, button {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-  box-sizing: border-box;
+  	box-sizing: border-box;
+	text-decoration: none;
 }
 
 article, aside, details, figcaption, figure, 

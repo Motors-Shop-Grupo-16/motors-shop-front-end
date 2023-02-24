@@ -12,4 +12,5 @@ export interface IButtonConfig {
   borderLength?: string;
   borderColor?: string;
   buttonText?: string;
+  color?: string;
 }
