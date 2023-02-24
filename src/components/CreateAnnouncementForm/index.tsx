@@ -119,6 +119,7 @@ const CreateAnnouncementForm = () => {
             type="text"
             {...register("images")}
             error={errors.images?.message as string}
+            key={number}
           />
         ))}
 
@@ -133,6 +134,33 @@ const CreateAnnouncementForm = () => {
         >
           Adicionar campo para imagem da galeria
         </Button>
+
+        <div className="submitButtonContainer">
+          <Button
+            type="button"
+            width="fit-content"
+            buttonText="Big"
+            backgroundColor="--color-grey6"
+            color="--color-grey2"
+            borderColor="transparent"
+            borderLength="0"
+          >
+            Cancelar
+          </Button>
+
+          <Button
+            type="submit"
+            width="fit-content"
+            buttonText="Big"
+            backgroundColor="--color-brand1"
+            color="--color-whiteFixed"
+            borderLength="0"
+            borderColor="transparent"
+            onClick={addImageField}
+          >
+            Criar anúncio
+          </Button>
+        </div>
       </Container>
     </Modal>
   );

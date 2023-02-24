@@ -16,4 +16,10 @@ export const Container = styled.form`
     align-items: flex-start;
     gap: 16px;
   }
+
+  .submitButtonContainer {
+    display: flex;
+    align-self: flex-end;
+    gap: 8px;
+  }
 `;
