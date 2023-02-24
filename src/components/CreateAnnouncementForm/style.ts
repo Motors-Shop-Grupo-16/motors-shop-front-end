@@ -20,6 +20,7 @@ export const Container = styled.form`
   .submitButtonContainer {
     display: flex;
     align-self: flex-end;
+    margin-top: 16px;
     gap: 8px;
   }
 `;
