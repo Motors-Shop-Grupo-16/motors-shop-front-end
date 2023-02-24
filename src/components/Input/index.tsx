@@ -4,7 +4,7 @@ import { Container } from "./style";
 
 const Input = forwardRef(
   (
-    { label, id, placeholder, type, ...rest }: IInputProps,
+    { label, id, placeholder, type, error, ...rest }: IInputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     return (
@@ -17,6 +17,7 @@ const Input = forwardRef(
           ref={ref}
           {...rest}
         />
+        {error && <span>{error}</span>}
       </Container>
     );
   }
