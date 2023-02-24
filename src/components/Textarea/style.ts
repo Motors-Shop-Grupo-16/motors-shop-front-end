@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  width: 100%;
   gap: 8px;
 
   textarea {
