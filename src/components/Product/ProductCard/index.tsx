@@ -2,11 +2,11 @@ import UserImage from "../../UserImage/userImage";
 
 import { BodyText, Heading } from "../../../styles/typography";
 
-import { IProducts } from "./interfaces";
 
+import { IAnnouncement } from "../../../contexts/AnnouncementContext";
 import Container from "./style";
 
-const ProductCard = ({ product }: { product: IProducts }) => {
+const ProductCard = ({ product }: { product: IAnnouncement }) => {
   return (
     <Container>
       <div className="productImageContainer">
@@ -31,10 +31,10 @@ const ProductCard = ({ product }: { product: IProducts }) => {
       </div>
 
       <div className="productUserImageContainer">
-        <UserImage classname="productUserImage" name={product.user.name} />
+        <UserImage classname="productUserImage" name={product.User.name} />
 
         <BodyText style="body-2" tag="p" weight="500">
-          {product.user.name}
+          {product.User.name}
         </BodyText>
       </div>
 
