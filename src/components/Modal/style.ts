@@ -6,12 +6,8 @@ export const Container = styled.div`
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 100%;
-  overflow-x: scroll;
+  min-height: 100vh;
   padding: 16px;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
   z-index: 1;
 
   .modal {

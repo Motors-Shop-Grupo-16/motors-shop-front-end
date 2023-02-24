@@ -8,6 +8,7 @@ import { useState } from "react";
 import { BodyText } from "../../styles/typography";
 import { Select } from "../Select/style";
 import Modal from "../Modal";
+import Button from "../Button";
 
 const CreateAnnouncementForm = () => {
   const [imagesFields, setImagesFields] = useState([1]);
@@ -19,6 +20,11 @@ const CreateAnnouncementForm = () => {
   } = useForm({
     resolver: yupResolver(createAnnouncementFormSchema),
   });
+
+  const addImageField = () => {
+    imagesFields.push(imagesFields.length + 1);
+    setImagesFields([...imagesFields]);
+  };
 
   return (
     <Modal title="Criar anúncio">
@@ -113,8 +119,48 @@ const CreateAnnouncementForm = () => {
             type="text"
             {...register("images")}
             error={errors.images?.message as string}
+            key={number}
           />
         ))}
+
+        <Button
+          type="button"
+          width="fit-content"
+          backgroundColor="--color-brand4"
+          color="--color-brand1"
+          borderLength="0"
+          borderColor="transparent"
+          onClick={addImageField}
+        >
+          Adicionar campo para imagem da galeria
+        </Button>
+
+        <div className="submitButtonContainer">
+          <Button
+            type="button"
+            width="fit-content"
+            buttonText="Big"
+            backgroundColor="--color-grey6"
+            color="--color-grey2"
+            borderColor="transparent"
+            borderLength="0"
+          >
+            Cancelar
+          </Button>
+
+          <Button
+            type="submit"
+            width="fit-content"
+            buttonText="Big"
+            backgroundColor="--color-brand1"
+            color="--color-whiteFixed"
+            borderLength="0"
+            borderColor="transparent"
+            onClick={addImageField}
+          >
+            Criar anúncio
+          </Button>
+        </div>
       </Container>
     </Modal>
   );
