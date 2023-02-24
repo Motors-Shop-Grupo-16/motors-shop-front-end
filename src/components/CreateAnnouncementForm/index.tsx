@@ -48,6 +48,33 @@ const CreateAnnouncementForm = () => {
           error={errors.title?.message as string}
         />
 
+        <Input
+          label="Ano"
+          id="yaer"
+          placeholder="Digitar ano"
+          type="text"
+          {...register("year")}
+          error={errors.year?.message as string}
+        />
+
+        <Input
+          label="Quilometragem"
+          id="mileage"
+          placeholder="0"
+          type="text"
+          {...register("mileage")}
+          error={errors.mileage?.message as string}
+        />
+
+        <Input
+          label="Preço"
+          id="price"
+          placeholder="Digitar preço"
+          type="text"
+          {...register("price")}
+          error={errors.price?.message as string}
+        />
+
         <Textarea
           label="Descrição"
           id="description"
@@ -55,6 +82,19 @@ const CreateAnnouncementForm = () => {
           {...register("description")}
           error={errors.description?.message as string}
         />
+
+        <div className="selectContainer">
+          <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
+            Tipo de veículo
+          </BodyText>
+          <Select id="typeVehicle" multiple {...register("typeVehicle")}>
+            <option value="car" selected>
+              Carro
+            </option>
+            <option value="motorcycle">Moto</option>
+          </Select>
+          <span>{errors.typeVehicle?.message as string}</span>
+        </div>
 
         <Input
           label="Imagem da capa"
