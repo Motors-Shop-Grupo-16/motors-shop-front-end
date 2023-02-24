@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuctionList } from "../../components/Auction/AuctionList";
 import { PageContainer } from "../../components/PageContainer";
 import ProductList from "../../components/Product/ProductList";
-import { AnnouncementContext } from "../../contexts/Annoucement";
+import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { Heading } from "../../styles/typography";
 import { Container } from "./styles";
 import Footer from "../../components/Footer";

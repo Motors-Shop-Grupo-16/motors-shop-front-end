@@ -1,4 +1,4 @@
-import { IAnnouncement } from "../../../contexts/Annoucement";
+import { IAnnouncement } from "../../../contexts/AnnouncementContext";
 import ProductCard from "../ProductCard";
 import { IProducts } from "../ProductCard/interfaces";
 

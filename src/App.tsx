@@ -1,4 +1,4 @@
-import { AnnouncementProvider } from "./contexts/Annoucement";
+import { AnnouncementProvider } from "./contexts/AnnouncementContext";
 import { RoutesMain } from "./routes";
 import { GlobalStyle } from "./styles/global";
 import { ResetStyle } from "./styles/reset";

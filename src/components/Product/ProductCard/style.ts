@@ -8,12 +8,7 @@ const Container = styled.li`
 
   .productImageContainer {
     display: flex;
-
-    overflow: auto;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-
+    overflow: hidden;
     justify-content: center;
     align-items: center;
     background-color: var(--color-grey7);

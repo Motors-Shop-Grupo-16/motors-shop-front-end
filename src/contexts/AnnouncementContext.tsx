@@ -7,7 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { api } from "../../services/api";
+import { api } from "../services/api";
 
 export interface IAnnouncement {
   id: string;
@@ -55,11 +55,13 @@ export const AnnouncementProvider = ({
           (car: IAnnouncement) => car.typeVehicle === "car"
         )
       );
+
       setMotorcycles(
         responseAnnouncements.data.filter(
           (car: IAnnouncement) => car.typeVehicle === "motorcycle"
         )
       );
+      
     }
     listAnnouncements();
   }, []);
