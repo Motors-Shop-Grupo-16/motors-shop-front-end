@@ -2,8 +2,8 @@ import { IButtonProps } from "./interfaces";
 
 import Container from "./style";
 
-const Button = ({ children }: IButtonProps) => {
-  return <Container>{children}</Container>;
+const Button = ({ children, ...rest }: IButtonProps) => {
+  return <Container {...rest}>{children}</Container>;
 };
 
 export default Button;
