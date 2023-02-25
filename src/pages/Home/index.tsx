@@ -6,11 +6,13 @@ import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { Heading } from "../../styles/typography";
 import { Container } from "./styles";
 import Footer from "../../components/Footer";
+import { Slogan } from "../../components/Slogan";
 
 export const Home = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
   return (
     <>
+      <Slogan />
       <Container>
         <PageContainer>
           <Heading

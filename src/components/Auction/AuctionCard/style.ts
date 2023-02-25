@@ -38,6 +38,15 @@ const Container = styled.div<IAuctionCardProps>`
       background: var(--color-whiteFixed);
     }
 
+    .auction-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+
     .auction-description {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -74,7 +83,8 @@ const Container = styled.div<IAuctionCardProps>`
 
     @media (max-width: 755px) {
       padding: 33px 22px;
-
+      height: 470px;
+      
       .auction-info {
         flex-direction: column;
         align-items: start;

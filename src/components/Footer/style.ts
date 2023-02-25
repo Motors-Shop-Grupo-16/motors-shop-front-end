@@ -2,18 +2,33 @@ import styled from "styled-components";
 
 export const Container = styled.footer`
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: center;
   align-items: center;
   background-color: var(--color-grey0);
   padding: 45px 60px;
 
-  a {
+  .footer-content {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    max-width: 1600px;
+    justify-content: space-between;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    background-color: var(--color-grey1);
-    border-radius: 4px;
+    text-align: center;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-grey1);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 755px) {
+      flex-direction: column;
+      gap: 60px;
+    }
   }
 `;
