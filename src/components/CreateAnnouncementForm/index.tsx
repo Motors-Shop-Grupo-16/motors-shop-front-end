@@ -1,17 +1,20 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Container } from "./style";
 import { createAnnouncementFormSchema } from "../../validators/createAnnouncementFormSchema";
 import Input from "../Input";
 import Textarea from "../Textarea";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BodyText } from "../../styles/typography";
 import { Select } from "../Select/style";
 import Modal from "../Modal";
 import Button from "../Button";
+import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 
 const CreateAnnouncementForm = () => {
   const [imagesFields, setImagesFields] = useState([1]);
+  const { createAnnouncement, setIsCreateAnnouncementFormVisible } =
+    useContext(AnnouncementContext);
 
   const {
     register,
@@ -27,8 +30,11 @@ const CreateAnnouncementForm = () => {
   };
 
   return (
-    <Modal title="Criar anúncio">
-      <Container>
+    <Modal
+      title="Criar anúncio"
+      closeModal={setIsCreateAnnouncementFormVisible}
+    >
+      <Container onSubmit={handleSubmit(createAnnouncement)}>
         <div className="selectContainer">
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Tipo de anúncio
@@ -114,10 +120,10 @@ const CreateAnnouncementForm = () => {
         {imagesFields.map((number) => (
           <Input
             label={`${number}ª imagem da galeria`}
-            id="images"
+            id={`image${number}`}
             placeholder="Inserir URL da imagem"
             type="text"
-            {...register("images")}
+            {...register(`image${number}`)}
             error={errors.images?.message as string}
             key={number}
           />
@@ -144,6 +150,7 @@ const CreateAnnouncementForm = () => {
             color="--color-grey2"
             borderColor="transparent"
             borderLength="0"
+            onClick={() => setIsCreateAnnouncementFormVisible(false)}
           >
             Cancelar
           </Button>
@@ -156,7 +163,6 @@ const CreateAnnouncementForm = () => {
             color="--color-whiteFixed"
             borderLength="0"
             borderColor="transparent"
-            onClick={addImageField}
           >
             Criar anúncio
           </Button>

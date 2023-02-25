@@ -14,7 +14,13 @@ export const Container = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 16px;
+
+    span {
+      font-size: 12px;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      color: var(--color-alert1);
+    }
   }
 
   .submitButtonContainer {

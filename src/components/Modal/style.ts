@@ -8,7 +8,10 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 16px;
-  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
 
   .modal {
     display: flex;

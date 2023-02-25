@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 import { Container } from "./style";
 import { Heading } from "../../styles/typography";
 
-const Modal = ({ children, title }: IModalProps) => {
+const Modal = ({ children, title, closeModal }: IModalProps) => {
   const handleClick = () => {
     console.log("clicado");
   };
@@ -15,7 +15,7 @@ const Modal = ({ children, title }: IModalProps) => {
           <Heading tag="h3" style="heading-7">
             {title}
           </Heading>
-          <div className="modalCloseButton" onClick={handleClick}>
+          <div className="modalCloseButton" onClick={() => closeModal(false)}>
             <MdClose />
           </div>
         </div>
