@@ -1,7 +1,6 @@
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Container } from "./style";
-import { createAnnouncementFormSchema } from "../../validators/createAnnouncementFormSchema";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import { useContext, useState } from "react";
@@ -10,18 +9,27 @@ import { Select } from "../Select/style";
 import Modal from "../Modal";
 import Button from "../Button";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
+import { IImage, IUpdateAnnouncementFormProps } from "./interfaces";
+import { updateAnnouncementFormSchema } from "../../validators/updateAnnouncementFormSchema";
 
-const CreateAnnouncementForm = () => {
-  const [imagesFields, setImagesFields] = useState([1]);
-  const { createAnnouncement, setIsCreateAnnouncementFormVisible } =
-    useContext(AnnouncementContext);
+const UpdateAnnouncementForm = ({
+  announcement,
+}: IUpdateAnnouncementFormProps) => {
+  const [imagesFields, setImagesFields] = useState<Array<number | IImage>>(
+    announcement.images
+  );
+  const {
+    updateAnnouncement,
+    setIsUpdateAnnouncementFormVisible,
+    deleteAnnouncement,
+  } = useContext(AnnouncementContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(createAnnouncementFormSchema),
+    resolver: yupResolver(updateAnnouncementFormSchema),
   });
 
   const addImageField = () => {
@@ -31,19 +39,31 @@ const CreateAnnouncementForm = () => {
 
   return (
     <Modal
-      title="Criar anúncio"
-      closeModal={setIsCreateAnnouncementFormVisible}
+      title="Editar anúncio"
+      closeModal={setIsUpdateAnnouncementFormVisible}
     >
-      <Container onSubmit={handleSubmit(createAnnouncement)}>
+      <Container
+        onSubmit={handleSubmit((data) =>
+          updateAnnouncement(data, announcement.id)
+        )}
+      >
         <div className="selectContainer">
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Tipo de anúncio
           </BodyText>
           <Select id="typeSale" multiple {...register("typeSale")}>
-            <option value="sale" selected>
+            <option
+              value="sale"
+              selected={announcement.typeSale == "sale" ? true : false}
+            >
               Venda
             </option>
-            <option value="auction">Leilão</option>
+            <option
+              value="auction"
+              selected={announcement.typeSale == "auction" ? true : false}
+            >
+              Leilão
+            </option>
           </Select>
           <span>{errors.typeSale?.message as string}</span>
         </div>
@@ -55,6 +75,7 @@ const CreateAnnouncementForm = () => {
           label="Título"
           id="title"
           placeholder="Digitar título"
+          defaultValue={announcement.title}
           type="text"
           {...register("title")}
           error={errors.title?.message as string}
@@ -64,6 +85,7 @@ const CreateAnnouncementForm = () => {
           label="Ano"
           id="year"
           placeholder="Digitar ano"
+          defaultValue={announcement.year}
           type="text"
           {...register("year")}
           error={errors.year?.message as string}
@@ -73,6 +95,7 @@ const CreateAnnouncementForm = () => {
           label="Quilometragem"
           id="mileage"
           placeholder="0"
+          defaultValue={announcement.mileage}
           type="text"
           {...register("mileage")}
           error={errors.mileage?.message as string}
@@ -82,6 +105,7 @@ const CreateAnnouncementForm = () => {
           label="Preço"
           id="price"
           placeholder="Digitar preço"
+          defaultValue={announcement.price}
           type="text"
           {...register("price")}
           error={errors.price?.message as string}
@@ -91,6 +115,7 @@ const CreateAnnouncementForm = () => {
           label="Descrição"
           id="description"
           placeholder="Digitar descrição"
+          defaultValue={announcement.description}
           {...register("description")}
           error={errors.description?.message as string}
         />
@@ -100,32 +125,57 @@ const CreateAnnouncementForm = () => {
             Tipo de veículo
           </BodyText>
           <Select id="typeVehicle" multiple {...register("typeVehicle")}>
-            <option value="car" selected>
+            <option
+              value="car"
+              selected={announcement.typeVehicle == "car" ? true : false}
+            >
               Carro
             </option>
-            <option value="motorcycle">Moto</option>
+            <option
+              value="motorcycle"
+              selected={announcement.typeVehicle == "motorcycle" ? true : false}
+            >
+              Moto
+            </option>
           </Select>
           <span>{errors.typeVehicle?.message as string}</span>
+        </div>
+
+        <div className="selectContainer">
+          <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
+            Publicado
+          </BodyText>
+          <Select id="isActive" multiple {...register("isActive")}>
+            <option value="true" selected={announcement.isActive}>
+              Sim
+            </option>
+            <option value="false" selected={!announcement.isActive}>
+              Não
+            </option>
+          </Select>
+          <span>{errors.isActive?.message as string}</span>
         </div>
 
         <Input
           label="Imagem da capa"
           id="coverImage"
           placeholder="Inserir URL da imagem"
+          defaultValue={announcement.coverImage}
           type="text"
           {...register("coverImage")}
           error={errors.coverImage?.message as string}
         />
 
-        {imagesFields.map((number) => (
+        {imagesFields.map((image, index) => (
           <Input
-            label={`${number}ª imagem da galeria`}
-            id={`image${number}`}
+            label={`${index + 1}ª imagem da galeria`}
+            id={`image${index + 1}`}
             placeholder="Inserir URL da imagem"
+            defaultValue={typeof image == "object" ? image.url : undefined}
             type="text"
-            {...register(`image${number}`)}
+            {...register(`image${index + 1}`)}
             error={errors.images?.message as string}
-            key={number}
+            key={index + 1}
           />
         ))}
 
@@ -150,9 +200,9 @@ const CreateAnnouncementForm = () => {
             color="--color-grey2"
             borderColor="transparent"
             borderLength="0"
-            onClick={() => setIsCreateAnnouncementFormVisible(false)}
+            onClick={() => deleteAnnouncement(announcement.id)}
           >
-            Cancelar
+            Excluir anúncio
           </Button>
 
           <Button
@@ -164,7 +214,7 @@ const CreateAnnouncementForm = () => {
             borderLength="0"
             borderColor="transparent"
           >
-            Criar anúncio
+            Editar anúncio
           </Button>
         </div>
       </Container>
@@ -172,4 +222,4 @@ const CreateAnnouncementForm = () => {
   );
 };
 
-export default CreateAnnouncementForm;
+export default UpdateAnnouncementForm;

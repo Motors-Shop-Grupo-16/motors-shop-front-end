@@ -4,10 +4,6 @@ import { Container } from "./style";
 import { Heading } from "../../styles/typography";
 
 const Modal = ({ children, title, closeModal }: IModalProps) => {
-  const handleClick = () => {
-    console.log("clicado");
-  };
-
   return (
     <Container>
       <div className="modal">

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const createAnnouncementFormSchema = yup.object().shape({
+export const updateAnnouncementFormSchema = yup.object().shape({
   title: yup.string().required("Título obrigatório"),
   typeSale: yup
     .string()
@@ -18,6 +18,7 @@ export const createAnnouncementFormSchema = yup.object().shape({
     .string()
     .url("Deve ser uma URL válida")
     .required("Imagem obrigatória"),
+  isActive: yup.string().transform((value) => value[0].replace(/["\\]/g, "")),
   image1: yup
     .string()
     .url("Deve ser uma URL válida")
