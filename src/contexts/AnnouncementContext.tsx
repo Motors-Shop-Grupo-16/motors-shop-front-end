@@ -170,7 +170,7 @@ export const AnnouncementProvider = ({
     try {
       api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkdmVydGlzZXIiOnRydWUsImlhdCI6MTY3NzI2ODY1NSwiZXhwIjoxNjc3ODczNDU1LCJzdWIiOiI4NzkyZmNmZC00OWM2LTQ3NzItYjM5Ni1hY2U2ODg2NTQ2YzQifQ.LPs0DayzmMISq8BNYKXaYQqrdWUTtPgcn5aoPee5GlM`;
 
-      await api.delete(`/advertiser/${id}`);
+      await api.delete(`/announcements/advertiser/${id}`);
 
       setIsUpdateAnnouncementFormVisible(false);
     } catch (error) {
