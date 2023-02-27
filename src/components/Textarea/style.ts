@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -33,5 +34,14 @@ export const Container = styled.div`
     font-weight: 500;
     font-size: 14px;
     color: var(--color-grey1);
+  }
+
+  span {
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: var(--color-alert1);
+    position: absolute;
+    top: 76px;
   }
 `;

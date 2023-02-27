@@ -7,8 +7,11 @@ export const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   min-height: 100vh;
-  padding: 16px;
-  z-index: 1;
+  padding: 80px 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
 
   .modal {
     display: flex;
