@@ -18,11 +18,8 @@ const UpdateAnnouncementForm = ({
   const [imagesFields, setImagesFields] = useState<Array<number | IImage>>(
     announcement.images
   );
-  const {
-    updateAnnouncement,
-    setIsUpdateAnnouncementFormVisible,
-    deleteAnnouncement,
-  } = useContext(AnnouncementContext);
+  const { updateAnnouncement, setIsUpdateAnnouncement, deleteAnnouncement } =
+    useContext(AnnouncementContext);
 
   const {
     register,
@@ -38,10 +35,7 @@ const UpdateAnnouncementForm = ({
   };
 
   return (
-    <Modal
-      title="Editar anúncio"
-      closeModal={setIsUpdateAnnouncementFormVisible}
-    >
+    <Modal title="Editar anúncio" closeModal={setIsUpdateAnnouncement}>
       <Container
         onSubmit={handleSubmit((data) =>
           updateAnnouncement(data, announcement.id)

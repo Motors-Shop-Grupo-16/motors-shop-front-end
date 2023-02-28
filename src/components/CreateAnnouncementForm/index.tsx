@@ -13,7 +13,7 @@ import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 
 const CreateAnnouncementForm = () => {
   const [imagesFields, setImagesFields] = useState([1]);
-  const { createAnnouncement, setIsCreateAnnouncementFormVisible } =
+  const { createAnnouncement, setIsCreateAnnouncement } =
     useContext(AnnouncementContext);
 
   const {
@@ -30,10 +30,7 @@ const CreateAnnouncementForm = () => {
   };
 
   return (
-    <Modal
-      title="Criar anúncio"
-      closeModal={setIsCreateAnnouncementFormVisible}
-    >
+    <Modal title="Criar anúncio" closeModal={setIsCreateAnnouncement}>
       <Container onSubmit={handleSubmit(createAnnouncement)}>
         <div className="selectContainer">
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
@@ -150,7 +147,7 @@ const CreateAnnouncementForm = () => {
             color="--color-grey2"
             borderColor="transparent"
             borderLength="0"
-            onClick={() => setIsCreateAnnouncementFormVisible(false)}
+            onClick={() => setIsCreateAnnouncement(false)}
           >
             Cancelar
           </Button>
