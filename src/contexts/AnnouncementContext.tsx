@@ -4,7 +4,6 @@ import {
   SetStateAction,
   createContext,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import { FieldValues } from "react-hook-form";
@@ -56,7 +55,7 @@ export const AnnouncementProvider = ({
   const [isCreateAnnouncement, setIsCreateAnnouncement] =
     useState<boolean>(false);
   const [isUpdateAnnouncement, setIsUpdateAnnouncement] =
-    useState<boolean>(true);
+    useState<boolean>(false);
 
   useEffect(() => {
     async function listAnnouncements() {
@@ -153,10 +152,8 @@ export const AnnouncementProvider = ({
       isActive: isActive == "true" ? true : false,
     };
 
-    console.log(dataToSend);
-
     try {
-      api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkdmVydGlzZXIiOnRydWUsImlhdCI6MTY3NzQ5ODUzOSwiZXhwIjoxNjc4MTAzMzM5LCJzdWIiOiI4NzkyZmNmZC00OWM2LTQ3NzItYjM5Ni1hY2U2ODg2NTQ2YzQifQ._RR_t2NRj7Qhn4A2cLW8bbnwkgQE2DYKiFfsKqg7uqc`;
+      api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkdmVydGlzZXIiOnRydWUsImlhdCI6MTY3NzU5MzA2OCwiZXhwIjoxNjc4MTk3ODY4LCJzdWIiOiI4NzkyZmNmZC00OWM2LTQ3NzItYjM5Ni1hY2U2ODg2NTQ2YzQifQ.CJ6-nlOWNKmQNb_FK6O9CYy9zzYoHGf7ZL7wAVgYQSg`;
 
       await api.patch(`/announcements/advertiser/${id}`, dataToSend);
 
@@ -178,24 +175,21 @@ export const AnnouncementProvider = ({
     }
   };
 
-  const values = useMemo(
-    () => ({
-      announcements,
-      setAnnouncements,
-      cars,
-      setCars,
-      motorcycles,
-      setMotorcycles,
-      isCreateAnnouncement,
-      setIsCreateAnnouncement,
-      createAnnouncement,
-      isUpdateAnnouncement,
-      setIsUpdateAnnouncement,
-      updateAnnouncement,
-      deleteAnnouncement,
-    }),
-    [cars]
-  );
+  const values = {
+    announcements,
+    setAnnouncements,
+    cars,
+    setCars,
+    motorcycles,
+    setMotorcycles,
+    isCreateAnnouncement,
+    setIsCreateAnnouncement,
+    createAnnouncement,
+    isUpdateAnnouncement,
+    setIsUpdateAnnouncement,
+    updateAnnouncement,
+    deleteAnnouncement,
+  };
 
   return (
     <AnnouncementContext.Provider value={values}>
