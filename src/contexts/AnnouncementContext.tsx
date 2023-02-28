@@ -32,11 +32,11 @@ export interface IAnnouncementContext {
   setCars: Dispatch<SetStateAction<IAnnouncement[] | []>>;
   motorcycles: IAnnouncement[] | [];
   setMotorcycles: Dispatch<SetStateAction<IAnnouncement[] | []>>;
-  isCreateAnnouncementFormVisible: boolean;
-  setIsCreateAnnouncementFormVisible: Dispatch<SetStateAction<boolean>>;
+  isCreateAnnouncement: boolean;
+  setIsCreateAnnouncement: Dispatch<SetStateAction<boolean>>;
   createAnnouncement: (data: FieldValues) => void;
-  isUpdateAnnouncementFormVisible: boolean;
-  setIsUpdateAnnouncementFormVisible: Dispatch<SetStateAction<boolean>>;
+  isUpdateAnnouncement: boolean;
+  setIsUpdateAnnouncement: Dispatch<SetStateAction<boolean>>;
   updateAnnouncement: (data: FieldValues, id: string) => Promise<void>;
   deleteAnnouncement: (id: string) => Promise<void>;
 }
@@ -53,9 +53,9 @@ export const AnnouncementProvider = ({
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>([]);
   const [cars, setCars] = useState<IAnnouncement[]>([]);
   const [motorcycles, setMotorcycles] = useState<IAnnouncement[]>([]);
-  const [isCreateAnnouncementFormVisible, setIsCreateAnnouncementFormVisible] =
+  const [isCreateAnnouncement, setIsCreateAnnouncement] =
     useState<boolean>(false);
-  const [isUpdateAnnouncementFormVisible, setIsUpdateAnnouncementFormVisible] =
+  const [isUpdateAnnouncement, setIsUpdateAnnouncement] =
     useState<boolean>(true);
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export const AnnouncementProvider = ({
 
       await api.post("/announcements", dataToSend);
 
-      setIsCreateAnnouncementFormVisible(false);
+      setIsCreateAnnouncement(false);
     } catch (error) {
       console.error(error);
     }
@@ -160,7 +160,7 @@ export const AnnouncementProvider = ({
 
       await api.patch(`/announcements/advertiser/${id}`, dataToSend);
 
-      setIsUpdateAnnouncementFormVisible(false);
+      setIsUpdateAnnouncement(false);
     } catch (error) {
       console.error(error);
     }
@@ -172,7 +172,7 @@ export const AnnouncementProvider = ({
 
       await api.delete(`/announcements/advertiser/${id}`);
 
-      setIsUpdateAnnouncementFormVisible(false);
+      setIsUpdateAnnouncement(false);
     } catch (error) {
       console.error(error);
     }
@@ -186,11 +186,11 @@ export const AnnouncementProvider = ({
       setCars,
       motorcycles,
       setMotorcycles,
-      isCreateAnnouncementFormVisible,
-      setIsCreateAnnouncementFormVisible,
+      isCreateAnnouncement,
+      setIsCreateAnnouncement,
       createAnnouncement,
-      isUpdateAnnouncementFormVisible,
-      setIsUpdateAnnouncementFormVisible,
+      isUpdateAnnouncement,
+      setIsUpdateAnnouncement,
       updateAnnouncement,
       deleteAnnouncement,
     }),
