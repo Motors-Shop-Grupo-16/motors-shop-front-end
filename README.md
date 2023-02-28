@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img height="180em" width="48%" alt="Logo Motors-Shop" src="src/assets/MotorsShop.png" />
+	<img height="280em" width="48%" alt="Logo Motors-Shop" src="src/assets/MotorsShop.png" />
 </h1>
 
 <h3 align="center">
