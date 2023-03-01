@@ -3,10 +3,20 @@ import styled from "styled-components";
 export const Container = styled.footer`
   display: flex;
   width: 100%;
+  height: 140px;
   justify-content: center;
   align-items: center;
   background-color: var(--color-grey0);
   padding: 45px 60px;
+
+  /* position: fixed;
+  bottom: 0;
+  left: 0; */
+
+  @media (max-width: 755px) {
+    height: 310px;
+    padding: 45px 0px;
+  }
 
   .footer-content {
     display: flex;

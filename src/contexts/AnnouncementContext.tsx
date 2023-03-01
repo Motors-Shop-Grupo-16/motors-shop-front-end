@@ -5,7 +5,7 @@ import {
   IAnnouncement,
   IAnnouncementContext,
   IAnnouncementProviderProps,
-} from "./interfaces";
+} from "./AnnouncementContext.interfaces";
 
 export const AnnouncementContext = createContext({} as IAnnouncementContext);
 
