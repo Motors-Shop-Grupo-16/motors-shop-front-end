@@ -5,7 +5,7 @@ import { BodyText } from "../../styles/typography";
 
 const Footer = () => {
   return (
-    <Container>
+    <Container className="footer">
       <div className="footer-content">
         <img src={logo} alt="Motors Shop logo" />
         <BodyText tag="p" style="body-2" weight="400" color="--color-whiteFixed">
