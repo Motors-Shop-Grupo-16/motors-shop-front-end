@@ -1,5 +1,5 @@
+import { isDate, parse } from "date-fns";
 import * as yup from "yup";
-import { parse, isDate } from "date-fns";
 
 function parseDateString(value: string, originalValue: string) {
   const parsedDate = isDate(originalValue)
@@ -18,11 +18,14 @@ export const registerUserFormSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password")], "As senhas devem ser iguais")
     .required("Comfirmar senha é obrigatório"),
-  cpf: yup.string().required("CPF é obrigatório"),
-  phone: yup.string().required("Telefone é obrigatório"),
+  cpf: yup
+    .string()
+    .min(14, "CPF precisa ser no formato 000.000.000-00")
+    .required("CPF é obrigatório"),
+  phone: yup.string().min(15, "Telefone precisa ser no formato (00) 0000-0000").required("Telefone é obrigatório"),
   dateOfBirth: yup
     .date()
-    .typeError("Esperado data 2000-02-29")
+    .typeError("Data precisa ser no formato YYYY-MM-DD")
     .transform(parseDateString)
     .max(today),
   description: yup.string().required("Descrição é obrigatória"),

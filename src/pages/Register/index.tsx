@@ -5,15 +5,14 @@ import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import { Form } from "../../components/Form";
 import Input from "../../components/Input";
-import { BodyText, Heading } from "../../styles/typography";
-import { Container } from "./style";
-
 import { Select } from "../../components/Select/style";
 import Textarea from "../../components/Textarea";
-import { IRegisterUser, UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
+import { IRegisterUser } from "../../contexts/UserContext.interfaces";
+import { cepMask, cpfMask, dateMask, phoneMask } from "../../masks";
+import { BodyText, Heading } from "../../styles/typography";
 import { registerUserFormSchema } from "../../validators/registerUserFormSchema";
-
-import { cpfMask, phoneMask, cepMask, dateMask } from "../../masks";
+import { Container } from "./style";
 
 export const Register = () => {
   const { registerUser } = useContext(UserContext);
@@ -24,6 +23,7 @@ export const Register = () => {
     cep: "",
     dateOfBirth: "",
   });
+
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({
@@ -42,7 +42,6 @@ export const Register = () => {
 
   const [selected, setSelected] = useState<string>("true");
   const handleChange = (event: any) => {
-    console.log(event.target.value);
     setSelected(event.target.value);
   };
 
@@ -110,8 +109,8 @@ export const Register = () => {
           placeholder="2000-02-29"
           type="text"
           {...register("dateOfBirth")}
-          // value={dateMask(values.dateOfBirth)}
-          // onChange={inputChange}
+          value={dateMask(values.dateOfBirth)}
+          onChange={inputChange}
           error={errors.dateOfBirth?.message as string}
         />
 
@@ -166,7 +165,7 @@ export const Register = () => {
           {...register("address.road")}
           error={errors.address?.road?.message as string}
         />
-        
+
         <div className="form-small-inputs">
           <Input
             label="Número"

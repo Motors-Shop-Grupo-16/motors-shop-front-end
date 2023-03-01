@@ -9,12 +9,14 @@ import { BodyText, Heading } from "../../styles/typography";
 import { loginFormSchema } from "../../validators/loginFormSchema";
 import { Container } from "./style";
 
+import { useNavigate } from "react-router-dom";
+import SendEmailRecoverPasswordForm from "../../components/SendEmailRecoverPasswordForm";
 import { UserContext } from "../../contexts/UserContext";
-import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ISignIn } from "../../contexts/UserContext.interfaces";
 
 export const Login = () => {
-  const { signIn } = useContext(UserContext);
+  const { signIn, isRecoverPassword, setIsRecoverPassword } =
+    useContext(UserContext);
 
   const {
     register,
@@ -28,6 +30,7 @@ export const Login = () => {
 
   return (
     <Container>
+      {isRecoverPassword && <SendEmailRecoverPasswordForm />}
       <h1>Navbar</h1>
       <Form onSubmit={handleSubmit(signIn)}>
         <Heading
@@ -60,7 +63,7 @@ export const Login = () => {
 
         <div
           className="form-login-password"
-          onClick={() => console.log("Abrir modal recuperar senha")}
+          onClick={() => setIsRecoverPassword(true)}
         >
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey2">
             Esqueci minha senha
