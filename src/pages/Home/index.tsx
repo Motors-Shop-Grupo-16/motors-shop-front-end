@@ -7,12 +7,14 @@ import { Heading } from "../../styles/typography";
 import { Container } from "./styles";
 import Footer from "../../components/Footer";
 import { Slogan } from "../../components/Slogan";
+import Navbar from "../../components/NavBar";
 
 export const Home = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
   return (
     <>
       <Slogan />
+
       <Container>
         <PageContainer>
           <Heading
@@ -25,6 +27,7 @@ export const Home = () => {
           >
             Leilão
           </Heading>
+
           <AuctionList />
         </PageContainer>
 
@@ -39,6 +42,7 @@ export const Home = () => {
           >
             Carros
           </Heading>
+
           <ProductList products={cars} />
         </PageContainer>
 
@@ -53,9 +57,11 @@ export const Home = () => {
           >
             Motos
           </Heading>
+
           <ProductList products={motorcycles} />
         </PageContainer>
       </Container>
+
       <Footer />
     </>
   );
