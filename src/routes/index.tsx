@@ -6,10 +6,10 @@ import { ResetPassword } from "../pages/ResetPassword";
 
 export const RoutesMain = () => (
   <Routes>
-    <Route path="*" element={<Navigate replace to="/" />} />
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/reset-password" element={<ResetPassword />} />
+    <Route path="*" element={<Navigate replace to="/" />} />
   </Routes>
 );

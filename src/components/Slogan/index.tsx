@@ -9,14 +9,14 @@ export const Slogan = () => {
         <Heading
           className="auction-title"
           tag="h1"
-          style="heading-1"
+          style="heading-3"
           weight="700"
           color="--color-grey10"
         >
           Velocidade e experiência em um lugar feito para você
         </Heading>
 
-        <BodyText tag="p" style="body1" color="--color-grey9" weight="400">
+        <BodyText tag="p" style="body-1" color="--color-grey9" weight="400">
           Um ambiente feito para você explorar o seu melhor
         </BodyText>
 

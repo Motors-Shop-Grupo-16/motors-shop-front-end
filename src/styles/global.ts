@@ -1,12 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  *::-webkit-scrollbar {
+  ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: var(--color-brand3);
   border-radius: 20px; 
 }
