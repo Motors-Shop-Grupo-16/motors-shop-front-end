@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { BiMenu } from 'react-icons/bi';
-import { GrFormClose } from 'react-icons/gr';
+import { useState } from "react";
+import { BiMenu } from "react-icons/bi";
+import { GrFormClose } from "react-icons/gr";
 
-import logo from '../../assets/Logo.png';
-import { LinkBtn } from '../../styles/buttonsNavBar';
-import { Container, NavContainer, UserUl, NavUl } from './styles';
+import logo from "../../assets/Logo.png";
+import { LinkBtn } from "../../styles/buttonsNavBar";
+import { Container, NavContainer, UserUl, NavUl } from "./styles";
 
 const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);

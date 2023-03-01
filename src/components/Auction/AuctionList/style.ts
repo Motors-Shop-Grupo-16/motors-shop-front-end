@@ -5,10 +5,7 @@ const Container = styled.ul`
   overflow-x: scroll;
   align-items: center;
   gap: 24px;
-
-  ::-webkit-scrollbar {
-    /* display: none; */
-  }
+  padding-bottom: 8px;
 
   @media (max-width: 755px) {
     gap: 8px;

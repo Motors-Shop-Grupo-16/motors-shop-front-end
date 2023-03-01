@@ -5,9 +5,9 @@ import { Register } from "../pages/Register";
 
 export const RoutesMain = () => (
   <Routes>
-    <Route path="*" element={<Navigate replace to="/" />} />
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
+    <Route path="*" element={<Navigate replace to="/" />} />
   </Routes>
 );
