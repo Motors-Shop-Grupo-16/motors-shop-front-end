@@ -29,4 +29,9 @@ export const Container = styled.form`
     margin-top: 16px;
     gap: 8px;
   }
+
+  .smallInputs {
+    display: flex;
+    gap: 8px;
+  }
 `;

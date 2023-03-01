@@ -75,25 +75,27 @@ const UpdateAnnouncementForm = ({
           error={errors.title?.message as string}
         />
 
-        <Input
-          label="Ano"
-          id="year"
-          placeholder="Digitar ano"
-          defaultValue={announcement.year}
-          type="text"
-          {...register("year")}
-          error={errors.year?.message as string}
-        />
+        <div className="smallInputs">
+          <Input
+            label="Ano"
+            id="year"
+            placeholder="Digitar ano"
+            defaultValue={announcement.year}
+            type="text"
+            {...register("year")}
+            error={errors.year?.message as string}
+          />
 
-        <Input
-          label="Quilometragem"
-          id="mileage"
-          placeholder="0"
-          defaultValue={announcement.mileage}
-          type="text"
-          {...register("mileage")}
-          error={errors.mileage?.message as string}
-        />
+          <Input
+            label="Quilometragem"
+            id="mileage"
+            placeholder="0"
+            defaultValue={announcement.mileage}
+            type="text"
+            {...register("mileage")}
+            error={errors.mileage?.message as string}
+          />
+        </div>
 
         <Input
           label="Preço"
