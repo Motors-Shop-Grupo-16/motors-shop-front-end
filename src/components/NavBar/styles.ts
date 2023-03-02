@@ -3,14 +3,14 @@ import { divProps } from './interfaces';
 
 export const Container = styled.header<divProps>`
   height: 80px;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  background-color: ${(props) => props.theme.colors.grey10};
-  border-bottom: 2px solid ${(props) => props.theme.colors.grey6};
+  /* padding: 16px; */
+  background-color: var(--color-grey10);
+  border-bottom: 2px solid var(--color-grey6);
   img {
     height: 26px;
     width: 153px;
@@ -24,16 +24,16 @@ export const Container = styled.header<divProps>`
     cursor: pointer;
     border: none;
     border-radius: 4px;
-    background-color: ${(props) => props.theme.colors.grey10};
+    background-color: var(--color-grey10);
   }
   .separator {
     width: 100%;
     height: 2px;
-    background-color: ${(props) => props.theme.colors.grey6};
+    background-color: var(--color-grey6);
     margin: 10px;
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 1000px) {
     img {
       margin-left: 15px;
     }
@@ -68,7 +68,7 @@ export const NavContainer = styled.div<divProps>`
   position: absolute;
   top: 80px;
   right: 1px;
-  background-color: ${(props) => props.theme.colors.grey9};
+  background-color: var(--color-grey9);
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
   a {
     font-size: 16px;
@@ -95,7 +95,7 @@ export const NavContainer = styled.div<divProps>`
       `};
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 1000px) {
     display: none;
     width: auto;
     height: 80px;
@@ -122,7 +122,7 @@ export const UserUl = styled.ul<divProps>`
   text-align: left;
   font-size: 16px;
   font-weight: 400;
-  color: ${(props) => props.theme.colors.grey2};
+  color: var(--color-grey2);
   li {
     width: 100%;
     display: flex;
@@ -132,8 +132,8 @@ export const UserUl = styled.ul<divProps>`
     div {
       width: 32px;
       height: 32px;
-      color: ${(props) => props.theme.colors.whiteFixed};
-      background: ${(props) => props.theme.colors.brand2};
+      color: var(--color-whiteFixed);
+      background: var(--color-brand2);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -171,7 +171,7 @@ export const UserUl = styled.ul<divProps>`
     flex-direction: column;
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 1000px) {
     flex-direction: column;
     .sub_menu {
       display: none;
@@ -182,7 +182,7 @@ export const UserUl = styled.ul<divProps>`
           position: absolute;
           top: 78px;
           right: -5px;
-          background: ${(props) => props.theme.colors.grey9};
+          background: var(--color-grey9);
           box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
           width: 170px;
           padding: 5px;
@@ -199,6 +199,7 @@ export const NavUl = styled.ul<divProps>`
   width: 100%;
   align-items: center;
   text-align: left;
+  gap: 44px;
   li {
     width: 100%;
     display: flex;
@@ -227,7 +228,7 @@ export const NavUl = styled.ul<divProps>`
     }
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 1000px) {
     flex-direction: row;
     li {
       .link_li {

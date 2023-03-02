@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Button = styled.button`
   width: 146px;
@@ -7,7 +7,7 @@ export const Button = styled.button`
   cursor: pointer;
   border-radius: 4px;
   font-size: 16px;
-  font-family: ${(props) => props.theme.fonts.texts};
+  font-family: "Inter", sans-serif;
   font-weight: 600;
 
   @media (min-width: 400px) {
@@ -23,108 +23,108 @@ export const Button = styled.button`
     font-size: 14px;
   }
   &.grey {
-    background-color: ${(props) => props.theme.colors.grey0};
-    border: 1.5px solid ${(props) => props.theme.colors.grey0};
-    color: ${(props) => (props) => props.theme.colors.whiteFixed};
+    background-color: var(--color-grey0);
+    border: 1.5px solid var(--color-grey0);
+    color: var(--color-whiteFixed);
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.grey1};
-      border: 1.5px solid ${(props) => props.theme.colors.grey1};
-      color: ${(props) => (props) => props.theme.colors.whiteFixed};
+      background-color: var(--color-grey1);
+      border: 1.5px solid var(--color-grey1);
+      color: var(--color-whiteFixed);
     }
   }
   &.outline {
     background-color: transparent;
-    border: 1.5px solid ${(props) => props.theme.colors.grey0};
-    color: ${(props) => (props) => props.theme.colors.grey0};
+    border: 1.5px solid var(--color-grey0);
+    color: var(--color-grey0);
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.grey1};
-      border: 1.5px solid ${(props) => props.theme.colors.grey1};
-      color: ${(props) => (props) => props.theme.colors.grey10};
+      background-color: var(--color-grey1);
+      border: 1.5px solid var(--color-grey1);
+      color: var(--color-grey10);
     }
   }
   &.outlineGrey {
     background-color: transparent;
-    border: 1.5px solid ${(props) => props.theme.colors.grey4};
-    color: ${(props) => (props) => props.theme.colors.grey0};
+    border: 1.5px solid var(--color-grey4);
+    color: var(--color-grey0);
 
     &:hover {
-      background-color: ${(props) => props.theme.colors.grey1};
-      border: 1.5px solid ${(props) => props.theme.colors.grey1};
-      color: ${(props) => (props) => props.theme.colors.grey10};
+      background-color: var(--color-grey1);
+      border: 1.5px solid var(--color-grey1);
+      color: var(--color-grey10);
     }
   }
   &.brand {
-    background-color: ${(props) => props.theme.colors.brand1};
-    border: 1.5px solid ${(props) => props.theme.colors.brand1};
-    color: ${(props) => (props) => props.theme.colors.whiteFixed};
+    background-color: var(--color-brand1);
+    border: 1.5px solid var(--color-brand1);
+    color: var(--color-whiteFixed);
     &:hover {
-      background-color: ${(props) => props.theme.colors.brand2};
-      border: 1.5px solid ${(props) => props.theme.colors.brand2};
-      color: ${(props) => (props) => props.theme.colors.whiteFixed};
+      background-color: var(--color-brand2);
+      border: 1.5px solid var(--color-brand2);
+      color: var(--color-whiteFixed);
     }
   }
   &.brandOpacity {
-    background-color: ${(props) => props.theme.colors.brand4};
-    border: 1.5px solid ${(props) => props.theme.colors.brand4};
-    color: ${(props) => (props) => props.theme.colors.brand1};
+    background-color: var(--color-brand4);
+    border: 1.5px solid var(--color-brand4);
+    color: var(--color-brand1);
   }
   &.brandDisable {
-    background-color: ${(props) => props.theme.colors.brand3};
-    border: 1.5px solid ${(props) => props.theme.colors.brand3};
-    color: ${(props) => (props) => props.theme.colors.brand4};
+    background-color: var(--color-brand3);
+    border: 1.5px solid var(--color-brand3);
+    color: var(--color-brand4);
   }
   &.light {
-    background-color: ${(props) => props.theme.colors.grey10};
-    border: 1.5px solid ${(props) => props.theme.colors.grey10};
-    color: ${(props) => (props) => props.theme.colors.grey1};
+    background-color: var(--color-grey10);
+    border: 1.5px solid var(--color-grey10);
+    color: var(--color-grey1);
   }
 
   &.outlineLight {
     background-color: transparent;
-    border: 1.5px solid ${(props) => props.theme.colors.grey10};
-    color: ${(props) => (props) => props.theme.colors.grey10};
+    border: 1.5px solid var(--color-grey10);
+    color: var(--color-grey10);
     &:hover {
-      background-color: ${(props) => props.theme.colors.grey10};
-      border: 1.5px solid ${(props) => props.theme.colors.grey10};
-      color: ${(props) => (props) => props.theme.colors.grey1};
+      background-color: var(--color-grey10);
+      border: 1.5px solid var(--color-grey10);
+      color: var(--color-grey1);
     }
   }
 
   &.negative {
-    background-color: ${(props) => props.theme.colors.grey6};
-    border: 1.5px solid ${(props) => props.theme.colors.grey6};
-    color: ${(props) => (props) => props.theme.colors.grey2};
+    background-color: var(--color-grey6);
+    border: 1.5px solid var(--color-grey6);
+    color: var(--color-grey2);
     &:hover {
-      background-color: ${(props) => props.theme.colors.grey5};
-      border: 1.5px solid ${(props) => props.theme.colors.grey5};
-      color: ${(props) => (props) => props.theme.colors.grey2};
+      background-color: var(--color-grey5);
+      border: 1.5px solid var(--color-grey5);
+      color: var(--color-grey2);
     }
   }
   &.disable {
-    background-color: ${(props) => props.theme.colors.grey5};
-    border: 1.5px solid ${(props) => props.theme.colors.grey5};
-    color: ${(props) => (props) => props.theme.colors.whiteFixed};
+    background-color: var(--color-grey5);
+    border: 1.5px solid var(--color-grey5);
+    color: var(--color-whiteFixed);
   }
   &.alert {
-    background-color: ${(props) => props.theme.colors.alert3};
-    border: 1.5px solid ${(props) => props.theme.colors.alert3};
-    color: ${(props) => (props) => props.theme.colors.alert1};
+    background-color: var(--color-alert3);
+    border: 1.5px solid var(--color-alert3);
+    color: var(--color-alert1);
     &:hover {
-      background-color: ${(props) => props.theme.colors.alert2};
-      border: 1.5px solid ${(props) => props.theme.colors.alert2};
-      color: ${(props) => (props) => props.theme.colors.alert1};
+      background-color: var(--color-alert3);
+      border: 1.5px solid var(--color-alert2);
+      color: var(--color-alert1);
     }
   }
   &.sucess {
-    background-color: ${(props) => props.theme.colors.sucess3};
-    border: 1.5px solid ${(props) => props.theme.colors.sucess3};
-    color: ${(props) => (props) => props.theme.colors.sucess1};
+    background-color: var(--color-sucess3);
+    border: 1.5px solid var(--color-sucess3);
+    color: var(--color-sucess1);
     &:hover {
-      background-color: ${(props) => props.theme.colors.sucess2};
-      border: 1.5px solid ${(props) => props.theme.colors.sucess2};
-      color: ${(props) => (props) => props.theme.colors.sucess1};
+      background-color: var(--color-sucess2);
+      border: 1.5px solid var(--color-sucess2);
+      color: var(--color-sucess1);
     }
   }
 `;
@@ -137,11 +137,11 @@ export const LinkBtn = styled(Button)`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: ${(props) => props.theme.colors.grey0};
+  color: var(--color-grey0);
   border: none;
   &:hover {
-    background-color: ${(props) => props.theme.colors.grey8};
-    color: ${(props) => props.theme.colors.grey0};
+    background-color: var(--color-grey8);
+    color: var(--color-grey0);
     border: none;
   }
 `;

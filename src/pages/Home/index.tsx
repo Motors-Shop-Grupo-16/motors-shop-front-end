@@ -13,6 +13,7 @@ export const Home = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
   return (
     <>
+      <Navbar />
       <Slogan />
 
       <Container>

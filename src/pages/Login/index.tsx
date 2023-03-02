@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import SendEmailRecoverPasswordForm from "../../components/SendEmailRecoverPasswordForm";
 import { UserContext } from "../../contexts/UserContext";
 import { ISignIn } from "../../contexts/UserContext.interfaces";
+import Navbar from "../../components/NavBar";
 
 export const Login = () => {
   const { signIn, isRecoverPassword, setIsRecoverPassword } =
@@ -29,77 +30,79 @@ export const Login = () => {
   const navigate = useNavigate();
 
   return (
-    <Container>
+    <>
+      <Navbar />
       {isRecoverPassword && <SendEmailRecoverPasswordForm />}
-      <h1>Navbar</h1>
-      <Form onSubmit={handleSubmit(signIn)}>
-        <Heading
-          className=""
-          tag="h5"
-          style="heading-5"
-          weight="500"
-          color="--color-grey0"
-        >
-          Login
-        </Heading>
+      <Container>
+        <Form onSubmit={handleSubmit(signIn)}>
+          <Heading
+            className=""
+            tag="h5"
+            style="heading-5"
+            weight="500"
+            color="--color-grey0"
+          >
+            Login
+          </Heading>
 
-        <Input
-          label="Email"
-          id="email"
-          placeholder="Digitar email"
-          type="email"
-          {...register("email")}
-          error={errors.email?.message as string}
-        />
+          <Input
+            label="Email"
+            id="email"
+            placeholder="Digitar email"
+            type="email"
+            {...register("email")}
+            error={errors.email?.message as string}
+          />
 
-        <Input
-          label="Password"
-          id="password"
-          placeholder="Digitar senha"
-          type="password"
-          {...register("password")}
-          error={errors.password?.message as string}
-        />
+          <Input
+            label="Password"
+            id="password"
+            placeholder="Digitar senha"
+            type="password"
+            {...register("password")}
+            error={errors.password?.message as string}
+          />
 
-        <div
-          className="form-login-password"
-          onClick={() => setIsRecoverPassword(true)}
-        >
-          <BodyText tag="p" style="body-2" weight="500" color="--color-grey2">
-            Esqueci minha senha
-          </BodyText>
-        </div>
+          <div
+            className="form-login-password"
+            onClick={() => setIsRecoverPassword(true)}
+          >
+            <BodyText tag="p" style="body-2" weight="500" color="--color-grey2">
+              Esqueci minha senha
+            </BodyText>
+          </div>
 
-        <Button
-          type="submit"
-          width="100%"
-          buttonText="Big"
-          backgroundColor="--color-brand1"
-          color="--color-whiteFixed"
-          borderLength="1.5px"
-          borderColor="--color-brand1"
-        >
-          Entrar
-        </Button>
+          <Button
+            type="submit"
+            width="100%"
+            buttonText="Big"
+            backgroundColor="--color-brand1"
+            color="--color-whiteFixed"
+            borderLength="1.5px"
+            borderColor="--color-brand1"
+          >
+            Entrar
+          </Button>
 
-        <div className="form-login-account">
-          <BodyText tag="p" style="body-2" weight="400" color="--color-grey2">
-            Ainda não possui conta?
-          </BodyText>
-        </div>
-        <Button
-          type="button"
-          width="100%"
-          backgroundColor="--color-grey10"
-          color="--color-grey0"
-          borderLength="1.5px"
-          borderColor="--color-grey4"
-          onClick={() => navigate("/register")}
-        >
-          Cadastrar
-        </Button>
-      </Form>
-      <Footer />
-    </Container>
+          <div className="form-login-account">
+            <BodyText tag="p" style="body-2" weight="400" color="--color-grey2">
+              Ainda não possui conta?
+            </BodyText>
+          </div>
+          <Button
+            type="button"
+            width="100%"
+            backgroundColor="--color-grey10"
+            color="--color-grey0"
+            borderLength="1.5px"
+            borderColor="--color-grey4"
+            onClick={() => navigate("/register")}
+          >
+            Cadastrar
+          </Button>
+        </Form>
+        <Footer />
+      </Container>
+    </>
   );
 };
