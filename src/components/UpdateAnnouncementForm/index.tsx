@@ -19,7 +19,7 @@ const UpdateAnnouncementForm = ({
   const [imagesFields, setImagesFields] = useState<Array<number | IImage>>(
     announcement.images
   );
-  const { updateAnnouncement, setIsUpdateAnnouncement, deleteAnnouncement } =
+  const { updateAnnouncement, setIsUpdateAnnouncement, confirmDeletion } =
     useContext(AnnouncementContext);
 
   const {
@@ -197,7 +197,7 @@ const UpdateAnnouncementForm = ({
             color="--color-grey2"
             borderColor="transparent"
             borderLength="0"
-            onClick={() => deleteAnnouncement(announcement.id)}
+            onClick={() => confirmDeletion(announcement.id)}
           >
             Excluir anúncio
           </Button>

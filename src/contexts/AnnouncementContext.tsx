@@ -23,6 +23,9 @@ export const AnnouncementProvider = ({
   const [detailedAnnouncement, setDetailedAnnouncement] =
     useState<IAnnouncement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [isDeleteAnnouncement, setIsDeleteAnnouncement] =
+    useState<boolean>(false);
+  const [announcementToDelete, setAnnouncementToDelete] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -132,7 +135,7 @@ export const AnnouncementProvider = ({
     try {
       await api.delete(`/announcements/advertiser/${id}`);
 
-      setIsUpdateAnnouncement(false);
+      setIsDeleteAnnouncement(false);
     } catch (error) {
       console.error(error);
     }
@@ -155,6 +158,12 @@ export const AnnouncementProvider = ({
     }
   };
 
+  const confirmDeletion = (id: string) => {
+    setIsUpdateAnnouncement(false);
+    setIsDeleteAnnouncement(true);
+    setAnnouncementToDelete(id);
+  };
+
   const values = {
     announcements,
     setAnnouncements,
@@ -173,6 +182,11 @@ export const AnnouncementProvider = ({
     listAnnouncementById,
     detailedAnnouncement,
     loading,
+    isDeleteAnnouncement,
+    setIsDeleteAnnouncement,
+    announcementToDelete,
+    setAnnouncementToDelete,
+    confirmDeletion,
   };
 
   return (
