@@ -57,23 +57,25 @@ const CreateAnnouncementForm = () => {
           error={errors.title?.message as string}
         />
 
-        <Input
-          label="Ano"
-          id="year"
-          placeholder="Digitar ano"
-          type="text"
-          {...register("year")}
-          error={errors.year?.message as string}
-        />
+        <div className="smallInputs">
+          <Input
+            label="Ano"
+            id="year"
+            placeholder="Digitar ano"
+            type="text"
+            {...register("year")}
+            error={errors.year?.message as string}
+          />
 
-        <Input
-          label="Quilometragem"
-          id="mileage"
-          placeholder="0"
-          type="text"
-          {...register("mileage")}
-          error={errors.mileage?.message as string}
-        />
+          <Input
+            label="Quilometragem"
+            id="mileage"
+            placeholder="0"
+            type="text"
+            {...register("mileage")}
+            error={errors.mileage?.message as string}
+          />
+        </div>
 
         <Input
           label="Preço"

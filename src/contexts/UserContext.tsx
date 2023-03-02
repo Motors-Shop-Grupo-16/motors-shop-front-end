@@ -1,3 +1,5 @@
+import { ReactNode, createContext, useState } from "react";
+import { FieldValues } from "react-hook-form";
 import { createContext, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +17,7 @@ import {
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
+  const [isEditUser, setIsEditUser] = useState<boolean>(true);
   const [isRecoverPassword, setIsRecoverPassword] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -58,6 +61,19 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     });
   }
 
+  const editUser = (data: FieldValues) => {
+    const promiseRegister = api.patch("/users", data);
+
+    toast.promise(promiseRegister, {
+      loading: "Carregando...",
+      success: (response) => {
+        setIsEditUser(false);
+        return "Usuário atualizado com sucesso!";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  };
+
   function sendEmailRecover(data: ISendEmail) {
     const promisseSendEmail = api
       .post("/users/recover-password", data)
@@ -98,8 +114,11 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       setIsRecoverPassword,
       sendEmailRecover,
       recoverPassword,
+      isEditUser,
+      setIsEditUser,
+      editUser,
     }),
-    [isRecoverPassword]
+    [isRecoverPassword, isEditUser]
   );
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
