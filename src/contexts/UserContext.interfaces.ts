@@ -1,4 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
+import { FieldValues } from "react-hook-form";
 
 export interface IUserProviderProps {
   children: ReactNode;
@@ -27,6 +28,8 @@ export interface IRegisterUser {
   address: IAddress;
 }
 
+export interface IUpdateUser extends Partial<IRegisterUser> {}
+
 export interface IAddress {
   cep: string;
   state: string;
@@ -39,4 +42,7 @@ export interface IAddress {
 export interface IUserContext {
   signIn: (data: ISignIn) => void;
   registerUser: (data: IRegisterUser) => void;
+  isEditUser: boolean;
+  setIsEditUser: Dispatch<React.SetStateAction<boolean>>;
+  editUser: (data: FieldValues) => void;
 }

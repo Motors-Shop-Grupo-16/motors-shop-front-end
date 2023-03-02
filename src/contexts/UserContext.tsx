@@ -1,12 +1,20 @@
 import { ReactNode, createContext, useState } from "react";
+import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
-import { IRegisterUser, ISignIn, ISignInResponse, IUserContext, IUserProviderProps } from "./UserContext.interfaces";
+import {
+  IRegisterUser,
+  ISignIn,
+  ISignInResponse,
+  IUserContext,
+  IUserProviderProps,
+} from "./UserContext.interfaces";
 
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
+  const [isEditUser, setIsEditUser] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -50,13 +58,27 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     });
   }
 
+  const editUser = (data: FieldValues) => {
+    const promiseRegister = api.patch("/users", data);
 
+    toast.promise(promiseRegister, {
+      loading: "Carregando...",
+      success: (response) => {
+        setIsEditUser(false);
+        return "Usuário atualizado com sucesso!";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  };
 
   return (
     <UserContext.Provider
       value={{
         signIn,
         registerUser,
+        isEditUser,
+        setIsEditUser,
+        editUser,
       }}
     >
       {children}
