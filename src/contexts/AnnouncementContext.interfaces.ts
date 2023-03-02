@@ -14,6 +14,12 @@ export interface IAnnouncement {
   isActive: boolean;
   userId: string;
   User: { name: string };
+  images: IImage[];
+}
+
+export interface IImage {
+  id?: string;
+  url: string;
 }
 
 export interface IAnnouncementContext {
@@ -30,11 +36,12 @@ export interface IAnnouncementContext {
   setIsUpdateAnnouncement: Dispatch<SetStateAction<boolean>>;
   updateAnnouncement: (data: FieldValues, id: string) => Promise<void>;
   deleteAnnouncement: (id: string) => Promise<void>;
+  goTo: (route: string) => void;
+  listAnnouncementById: (id: string) => Promise<void>;
+  detailedAnnouncement: IAnnouncement | null;
+  loading: boolean;
 }
 
 export interface IAnnouncementProviderProps {
   children: ReactNode;
 }
-
-
-

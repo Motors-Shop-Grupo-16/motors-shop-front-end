@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../services/api";
 import {
   IAnnouncement,
@@ -19,6 +20,11 @@ export const AnnouncementProvider = ({
     useState<boolean>(false);
   const [isUpdateAnnouncement, setIsUpdateAnnouncement] =
     useState<boolean>(false);
+  const [detailedAnnouncement, setDetailedAnnouncement] =
+    useState<IAnnouncement | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function listAnnouncements() {
@@ -138,6 +144,23 @@ export const AnnouncementProvider = ({
     }
   };
 
+  const goTo = (route: string) => {
+    navigate(route, { replace: true });
+  };
+
+  const listAnnouncementById = async (id: string) => {
+    try {
+      setLoading(true);
+      const { data } = await api.get(`/announcements/${id}`);
+
+      setDetailedAnnouncement(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const values = {
     announcements,
     setAnnouncements,
@@ -152,6 +175,10 @@ export const AnnouncementProvider = ({
     setIsUpdateAnnouncement,
     updateAnnouncement,
     deleteAnnouncement,
+    goTo,
+    listAnnouncementById,
+    detailedAnnouncement,
+    loading,
   };
 
   return (
