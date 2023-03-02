@@ -5,13 +5,12 @@ export const Container = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
+  background: var(--color-grey8);
 
   form {
     margin-top: 122px;
     margin-bottom: 122px;
   }
-
-  background: var(--color-grey8);
   /* .footer {
       position: fixed;
       bottom: 0;

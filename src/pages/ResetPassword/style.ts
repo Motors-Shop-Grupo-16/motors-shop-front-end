@@ -5,8 +5,12 @@ export const Container = styled.div`
   height: 100vh;
   flex-direction: column;
   align-items: center;
-  gap: 122px;
   background: var(--color-grey8);
+
+  form {
+    margin-top: 122px;
+    margin-bottom: 122px;
+  }
   .footer {
     position: fixed;
     bottom: 0;
@@ -20,6 +24,10 @@ export const Container = styled.div`
   }
 
   @media (max-width: 755px) {
-    gap: 60px;
+    .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+  }
   }
 `;

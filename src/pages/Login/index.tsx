@@ -32,9 +32,8 @@ export const Login = () => {
   return (
     <>
       <Navbar />
+      {isRecoverPassword && <SendEmailRecoverPasswordForm />}
       <Container>
-        {isRecoverPassword && <SendEmailRecoverPasswordForm />}
-
         <Form onSubmit={handleSubmit(signIn)}>
           <Heading
             className=""
