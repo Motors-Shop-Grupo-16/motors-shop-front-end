@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/logo.svg";
 import { LinkBtn } from "../../styles/buttonsNavBar";
 import { Container, NavContainer, UserUl, NavUl } from "./styles";
 import { Link } from "react-router-dom";
