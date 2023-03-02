@@ -1,14 +1,22 @@
+import { useContext } from "react";
 import UserImage from "../../UserImage/userImage";
 
+import { AnnouncementContext } from "../../../contexts/AnnouncementContext";
 import { BodyText, Heading } from "../../../styles/typography";
 
-
-import { IAnnouncement } from "../../../contexts/AnnouncementContext";
+import { IAnnouncement } from "../../../contexts/AnnouncementContext.interfaces";
 import Container from "./style";
 
 const ProductCard = ({ product }: { product: IAnnouncement }) => {
+  const { goTo, listAnnouncementById } = useContext(AnnouncementContext);
+
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        listAnnouncementById(product.id);
+        goTo(`/product`);
+      }}
+    >
       <div className="productImageContainer">
         <img src={product.coverImage} alt={product.title} />
       </div>
