@@ -17,7 +17,7 @@ export const Container = styled.div`
     align-items: center;
     text-align: center;
     gap: 50px;
-    padding: 12px;
+    margin: 12px;
 
     .slogan-buttons {
       display: flex;
