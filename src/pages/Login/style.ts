@@ -11,11 +11,7 @@ export const Container = styled.div`
     margin-top: 122px;
     margin-bottom: 122px;
   }
-  /* .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    } */
+
   .form-login-account {
     text-align: center;
   }
