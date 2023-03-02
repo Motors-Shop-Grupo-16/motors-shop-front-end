@@ -5,8 +5,13 @@ export const Container = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
-  gap: 122px;
+  /* gap: 122px; */
   background: var(--color-grey8);
+
+  form {
+    margin-top: 48px;
+    margin-bottom: 97px;
+  }
 
   .form-small-inputs {
     display: flex;
@@ -35,6 +40,6 @@ export const Container = styled.div`
   }
 
   @media (max-width: 755px) {
-    gap: 60px;
+    /* gap: 60px; */
   }
 `;

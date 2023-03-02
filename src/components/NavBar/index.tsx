@@ -5,33 +5,34 @@ import { GrFormClose } from "react-icons/gr";
 import logo from "../../assets/Logo.png";
 import { LinkBtn } from "../../styles/buttonsNavBar";
 import { Container, NavContainer, UserUl, NavUl } from "./styles";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [submenuIsVisible, setSubmenuIsVisible] = useState(true);
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   const [isAdm, setIsAdm] = useState(false);
 
   return (
     <>
       <Container>
-        {/* <Link to={'/home'}> */}
-        <img src={logo} alt="logo" />
-        {/* </Link> */}
+        <Link to={"/"}>
+          <img src={logo} alt="logo" />
+        </Link>
         <NavContainer isVisible={menuIsVisible}>
           <NavUl>
             <li>
-              <LinkBtn className="medium link_li" as="a" href="#">
+              <LinkBtn className="medium link_li" as="a" href="#car">
                 Carros
               </LinkBtn>
             </li>
             <li>
-              <LinkBtn className="medium link_li" as="a" href="#">
+              <LinkBtn className="medium link_li" as="a" href="#motorcycle">
                 Motos
               </LinkBtn>
             </li>
             <li>
-              <LinkBtn className="medium link_li" as="a" href="#">
+              <LinkBtn className="medium link_li" as="a" href="#auction">
                 Leilão
               </LinkBtn>
             </li>
@@ -81,18 +82,18 @@ const Navbar = () => {
           ) : (
             <NavUl>
               <li>
-                {/* <Link to={'/login'}> */}
-                <LinkBtn className="medium link_li" as="a">
-                  Fazer Login
-                </LinkBtn>
-                {/* </Link> */}
+                <Link to={"/login"}>
+                  <LinkBtn className="medium link_li" as="a">
+                    Fazer Login
+                  </LinkBtn>
+                </Link>
               </li>
               <li className="li_btn">
-                {/* <Link to={'/register'}> */}
-                <LinkBtn className="outlineGrey medium btn_li" as="a">
-                  Cadastrar
-                </LinkBtn>
-                {/* </Link> */}
+                <Link to={"/register"}>
+                  <LinkBtn className="outlineGrey medium btn_li" as="a">
+                    Cadastrar
+                  </LinkBtn>
+                </Link>
               </li>
             </NavUl>
           )}
