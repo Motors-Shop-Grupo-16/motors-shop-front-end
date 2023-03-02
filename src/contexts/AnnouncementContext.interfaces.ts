@@ -40,6 +40,11 @@ export interface IAnnouncementContext {
   listAnnouncementById: (id: string) => Promise<void>;
   detailedAnnouncement: IAnnouncement | null;
   loading: boolean;
+  isDeleteAnnouncement: boolean;
+  setIsDeleteAnnouncement: Dispatch<SetStateAction<boolean>>;
+  announcementToDelete: string;
+  setAnnouncementToDelete: Dispatch<React.SetStateAction<string>>;
+  confirmDeletion: (id: string) => void;
 }
 
 export interface IAnnouncementProviderProps {

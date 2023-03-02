@@ -23,6 +23,9 @@ export const AnnouncementProvider = ({
   const [detailedAnnouncement, setDetailedAnnouncement] =
     useState<IAnnouncement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [isDeleteAnnouncement, setIsDeleteAnnouncement] =
+    useState<boolean>(false);
+  const [announcementToDelete, setAnnouncementToDelete] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -78,8 +81,6 @@ export const AnnouncementProvider = ({
     };
 
     try {
-      api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkdmVydGlzZXIiOnRydWUsImlhdCI6MTY3NzQ5ODUzOSwiZXhwIjoxNjc4MTAzMzM5LCJzdWIiOiI4NzkyZmNmZC00OWM2LTQ3NzItYjM5Ni1hY2U2ODg2NTQ2YzQifQ._RR_t2NRj7Qhn4A2cLW8bbnwkgQE2DYKiFfsKqg7uqc`;
-
       await api.post("/announcements", dataToSend);
 
       setIsCreateAnnouncement(false);
@@ -122,8 +123,6 @@ export const AnnouncementProvider = ({
     };
 
     try {
-      api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkdmVydGlzZXIiOnRydWUsImlhdCI6MTY3NzU5MzA2OCwiZXhwIjoxNjc4MTk3ODY4LCJzdWIiOiI4NzkyZmNmZC00OWM2LTQ3NzItYjM5Ni1hY2U2ODg2NTQ2YzQifQ.CJ6-nlOWNKmQNb_FK6O9CYy9zzYoHGf7ZL7wAVgYQSg`;
-
       await api.patch(`/announcements/advertiser/${id}`, dataToSend);
 
       setIsUpdateAnnouncement(false);
@@ -134,11 +133,9 @@ export const AnnouncementProvider = ({
 
   const deleteAnnouncement = async (id: string) => {
     try {
-      api.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkdmVydGlzZXIiOnRydWUsImlhdCI6MTY3NzI2ODY1NSwiZXhwIjoxNjc3ODczNDU1LCJzdWIiOiI4NzkyZmNmZC00OWM2LTQ3NzItYjM5Ni1hY2U2ODg2NTQ2YzQifQ.LPs0DayzmMISq8BNYKXaYQqrdWUTtPgcn5aoPee5GlM`;
-
       await api.delete(`/announcements/advertiser/${id}`);
 
-      setIsUpdateAnnouncement(false);
+      setIsDeleteAnnouncement(false);
     } catch (error) {
       console.error(error);
     }
@@ -161,6 +158,12 @@ export const AnnouncementProvider = ({
     }
   };
 
+  const confirmDeletion = (id: string) => {
+    setIsUpdateAnnouncement(false);
+    setIsDeleteAnnouncement(true);
+    setAnnouncementToDelete(id);
+  };
+
   const values = {
     announcements,
     setAnnouncements,
@@ -179,6 +182,11 @@ export const AnnouncementProvider = ({
     listAnnouncementById,
     detailedAnnouncement,
     loading,
+    isDeleteAnnouncement,
+    setIsDeleteAnnouncement,
+    announcementToDelete,
+    setAnnouncementToDelete,
+    confirmDeletion,
   };
 
   return (
