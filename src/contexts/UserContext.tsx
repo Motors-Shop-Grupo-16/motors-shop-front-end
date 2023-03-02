@@ -1,10 +1,13 @@
 import { ReactNode, createContext, useState } from "react";
 import { FieldValues } from "react-hook-form";
+import { createContext, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import {
   IRegisterUser,
+  IResetPassword,
+  ISendEmail,
   ISignIn,
   ISignInResponse,
   IUserContext,
@@ -15,6 +18,7 @@ export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isEditUser, setIsEditUser] = useState<boolean>(true);
+  const [isRecoverPassword, setIsRecoverPassword] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -50,7 +54,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     toast.promise(promisseRegister, {
       loading: "Carregando...",
       success: (response) => {
-        console.log(response.data);
         navigate("/login");
         return "Registrado com sucesso, realize o login.";
       },
@@ -71,17 +74,52 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     });
   };
 
-  return (
-    <UserContext.Provider
-      value={{
-        signIn,
-        registerUser,
-        isEditUser,
-        setIsEditUser,
-        editUser,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
+  function sendEmailRecover(data: ISendEmail) {
+    const promisseSendEmail = api
+      .post("/users/recover-password", data)
+      .then((response) => response);
+
+    toast.promise(promisseSendEmail, {
+      loading: "Enviando...",
+      success: (response) => {
+        setIsRecoverPassword(false);
+        return "Verifique o seu email.";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  }
+
+  function recoverPassword(data: IResetPassword, token: string | null) {
+    const { confirmPassword, ...dataRecover } = data;
+
+    const promisseRecoverPassword = api
+      .patch(`/users/recover-password/${token}`, dataRecover)
+      .then((response) => response);
+
+    toast.promise(promisseRecoverPassword, {
+      loading: "Alterando...",
+      success: (response) => {
+        navigate("/login");
+        return "Senha alterada com sucesso!";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  }
+
+  const values = useMemo(
+    () => ({
+      signIn,
+      registerUser,
+      isRecoverPassword,
+      setIsRecoverPassword,
+      sendEmailRecover,
+      recoverPassword,
+      isEditUser,
+      setIsEditUser,
+      editUser,
+    }),
+    [isRecoverPassword, isEditUser]
   );
+
+  return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 };

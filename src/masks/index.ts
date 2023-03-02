@@ -10,7 +10,7 @@ export const cpfMask = (value: string) => {
 export const phoneMask = (value: string) => {
   return value
     .replace(/\D/g, "")
-    .replace(/(\d{2})(\d)/, "($1) - $2")
+    .replace(/(\d{2})(\d)/, "($1) $2")
     .replace(/(\d{4})(\d)/, "$1-$2")
     .replace(/(\d{4})-(\d)(\d{4})/, "$1$2-$3")
     .replace(/(\d{4})\d+$/, "$1");
@@ -26,7 +26,10 @@ export const cepMask = (value: string) => {
 export const dateMask = (value: string) => {
   return value
     .replace(/\D/g, "")
-    .replace(/(\d{2})(\d)/, "$1-$2")
-    .replace(/(\d{2})(\d)/, "$1-$2")
-    .replace(/(\d{4})(\d)/, "$1");
+    .replace(/(\d{4})(\d)/, "$1-$2")
+    .replace(/(\d{2})(\d{2})\d+$/, "$1-$2");
 };
+
+// .replace(/\D/g, "")
+// .replace(/(\d{4})(\d)/, "$1-$2")
+// .replace(/(\d{2})(\d{2})(\d)/, "$1-$2");

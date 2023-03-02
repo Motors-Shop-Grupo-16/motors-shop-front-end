@@ -9,8 +9,9 @@ import { Select } from "../Select/style";
 import Modal from "../Modal";
 import Button from "../Button";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
-import { IImage, IUpdateAnnouncementFormProps } from "./interfaces";
+import { IUpdateAnnouncementFormProps } from "./interfaces";
 import { updateAnnouncementFormSchema } from "../../validators/updateAnnouncementFormSchema";
+import { IImage } from "../../contexts/AnnouncementContext.interfaces";
 
 const UpdateAnnouncementForm = ({
   announcement,

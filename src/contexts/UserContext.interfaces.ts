@@ -39,10 +39,23 @@ export interface IAddress {
   complement: string;
 }
 
+export interface ISendEmail {
+  email: string;
+}
+
+export interface IResetPassword {
+  password: string;
+  confirmPassword: string;
+}
+
 export interface IUserContext {
   signIn: (data: ISignIn) => void;
   registerUser: (data: IRegisterUser) => void;
   isEditUser: boolean;
   setIsEditUser: Dispatch<React.SetStateAction<boolean>>;
   editUser: (data: FieldValues) => void;
+  sendEmailRecover: (data: ISendEmail) => void;
+  recoverPassword: (data: IResetPassword, token: string | null) => void;
+  isRecoverPassword: boolean;
+  setIsRecoverPassword: Dispatch<SetStateAction<boolean>>;
 }
