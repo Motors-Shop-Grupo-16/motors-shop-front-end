@@ -19,7 +19,7 @@ export const AnnouncementProvider = ({
   const [isCreateAnnouncement, setIsCreateAnnouncement] =
     useState<boolean>(false);
   const [isUpdateAnnouncement, setIsUpdateAnnouncement] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const [detailedAnnouncement, setDetailedAnnouncement] =
     useState<IAnnouncement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -132,8 +132,9 @@ export const AnnouncementProvider = ({
   };
 
   const deleteAnnouncement = async (id: string) => {
+    console.log("entrou na deleção");
     try {
-      await api.delete(`/announcements/advertiser/${id}`);
+      await api.delete(`/announcements/${id}`);
 
       setIsDeleteAnnouncement(false);
     } catch (error) {
