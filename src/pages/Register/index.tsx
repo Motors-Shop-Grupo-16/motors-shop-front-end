@@ -14,9 +14,15 @@ import { BodyText, Heading } from "../../styles/typography";
 import { registerUserFormSchema } from "../../validators/registerUserFormSchema";
 import { Container } from "./style";
 import Navbar from "../../components/NavBar";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
-  const { registerUser } = useContext(UserContext);
+  const { registerUser, user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate("/");
+  }
 
   const [values, setValues] = useState({
     cpf: "",

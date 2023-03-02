@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	background: var(--color-grey8);
 }
 
 ol, ul {

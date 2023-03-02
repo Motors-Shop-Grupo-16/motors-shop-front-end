@@ -1,20 +1,27 @@
-import styled, { css } from 'styled-components';
-import { divProps } from './interfaces';
+import styled, { css } from "styled-components";
+import { divProps } from "./interfaces";
 
-export const Container = styled.header<divProps>`
-  height: 80px;
-  max-width: 100%;
+export const ContainerHeader = styled.header`
   display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 80px;
+  background-color: var(--color-grey10);
+  border-bottom: 2px solid var(--color-grey6);
+`;
+
+export const Container = styled.div<divProps>`
+  display: flex;
+  width: 1600px;
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
-  /* padding: 16px; */
-  background-color: var(--color-grey10);
-  border-bottom: 2px solid var(--color-grey6);
-  img {
-    height: 26px;
+  margin-right: 60px;
+  margin-left: 60px;
+  /* img {
+    height: 26  px;
     width: 153px;
-  }
+  } */
 
   .btn_menu {
     width: 50px;
@@ -34,9 +41,9 @@ export const Container = styled.header<divProps>`
   }
 
   @media (min-width: 1000px) {
-    img {
+    /* img {
       margin-left: 15px;
-    }
+    } */
     .btn_menu {
       display: none;
     }
@@ -46,10 +53,13 @@ export const Container = styled.header<divProps>`
       margin: 5px;
     }
   }
-  @media (min-width: 800px) {
-    img {
-      margin-left: 40px;
-    }
+  @media (max-width: 800px) {
+    margin-right: 12px;
+    margin-left: 12px;
+    /* img {
+      margin-left: 60px;
+      margin-right: 60px;
+    } */
   }
 `;
 
@@ -64,7 +74,7 @@ export const NavContainer = styled.div<divProps>`
       padding: 0 0 15px 0;
       z-index: 1;
     `};
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 80px;
   right: 1px;
@@ -129,7 +139,7 @@ export const UserUl = styled.ul<divProps>`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    div {
+    /* div {
       width: 32px;
       height: 32px;
       color: var(--color-whiteFixed);
@@ -139,7 +149,7 @@ export const UserUl = styled.ul<divProps>`
       align-items: center;
       justify-content: center;
       margin-left: 15px;
-    }
+    } */
     button {
       width: 120px;
       padding: 0;
