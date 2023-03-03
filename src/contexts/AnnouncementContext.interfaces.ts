@@ -13,8 +13,23 @@ export interface IAnnouncement {
   coverImage: string;
   isActive: boolean;
   userId: string;
-  User: { name: string };
+  User: {
+    id: string;
+    name: string;
+    description: string;
+  };
   images: IImage[];
+  comments: IComment[];
+}
+
+export interface IComment {
+  id: string;
+  content: string;
+  createdAt: Date;
+  User: {
+    id: string;
+    name: string;
+  };
 }
 
 export interface IImage {

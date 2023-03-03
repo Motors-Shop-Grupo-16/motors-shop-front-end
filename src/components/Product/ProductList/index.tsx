@@ -1,7 +1,7 @@
 import { IAnnouncement } from "../../../contexts/AnnouncementContext.interfaces";
 import ProductCard from "../ProductCard";
 
-import Container from "./style";
+import { Container } from "./style";
 
 const ProductList = ({ products }: { products: IAnnouncement[] }) => {
   return (

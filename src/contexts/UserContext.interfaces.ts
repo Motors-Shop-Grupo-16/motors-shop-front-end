@@ -36,7 +36,11 @@ export interface IAddress {
   city: string;
   road: string;
   number: string;
-  complement: string;
+  complement?: string;
+  User: {
+    id?: string;
+    name?: string;
+  };
 }
 
 export interface ISendEmail {

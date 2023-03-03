@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.li`
+export const Container = styled.li`
   display: flex;
   flex-direction: column;
   min-width: 290px;
@@ -83,5 +83,3 @@ const Container = styled.li`
     }
   }
 `;
-
-export default Container;

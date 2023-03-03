@@ -142,7 +142,7 @@ export const AnnouncementProvider = ({
   };
 
   const goTo = (route: string) => {
-    navigate(route, { replace: true });
+    navigate(route);
   };
 
   const listAnnouncementById = async (id: string) => {
