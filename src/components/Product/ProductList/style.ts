@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.ul`
+export const Container = styled.ul`
   display: flex;
   overflow-x: scroll;
   align-items: center;
@@ -11,5 +11,3 @@ const Container = styled.ul`
     gap: 48px;
   }
 `;
-
-export default Container;

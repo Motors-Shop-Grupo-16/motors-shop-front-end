@@ -5,7 +5,7 @@ import { AnnouncementContext } from "../../../contexts/AnnouncementContext";
 import { BodyText, Heading } from "../../../styles/typography";
 
 import { IAnnouncement } from "../../../contexts/AnnouncementContext.interfaces";
-import Container from "./style";
+import { Container } from "./style";
 
 const ProductCard = ({ product }: { product: IAnnouncement }) => {
   const { goTo, listAnnouncementById } = useContext(AnnouncementContext);
@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: IAnnouncement }) => {
     <Container
       onClick={() => {
         listAnnouncementById(product.id);
-        goTo(`/product`);
+        goTo("/product");
       }}
     >
       <div className="productImageContainer">
