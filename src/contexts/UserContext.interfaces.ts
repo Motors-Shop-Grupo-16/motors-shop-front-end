@@ -58,8 +58,8 @@ export interface IUserResponse {
   description: string;
   isAdvertiser: boolean;
   isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   Address: IAddressResponse;
 }
 
