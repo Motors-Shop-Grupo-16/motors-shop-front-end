@@ -8,11 +8,16 @@ import { Container } from "./styles";
 import Footer from "../../components/Footer";
 import { Slogan } from "../../components/Slogan";
 import Navbar from "../../components/NavBar";
+import { UserContext } from "../../contexts/UserContext";
+import EditUserForm from "../../components/EditUserForm";
 
 export const Home = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
+  const { isEditUser, user } = useContext(UserContext);
+
   return (
     <>
+      {user && isEditUser && <EditUserForm user={user} />}
       <Navbar />
       <Slogan />
 

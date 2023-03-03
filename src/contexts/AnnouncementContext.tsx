@@ -19,7 +19,7 @@ export const AnnouncementProvider = ({
   const [isCreateAnnouncement, setIsCreateAnnouncement] =
     useState<boolean>(false);
   const [isUpdateAnnouncement, setIsUpdateAnnouncement] =
-    useState<boolean>(true);
+    useState<boolean>(false);
   const [detailedAnnouncement, setDetailedAnnouncement] =
     useState<IAnnouncement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
