@@ -1,6 +1,6 @@
 import { Container } from "./style";
-import logo from "../../assets/motors-shop-white-logo.png";
-import angleUpPng from "../../assets/angle-up.png";
+import logo from "../../assets/footerLogo.svg";
+import angleUpPng from "../../assets/angle-up.svg";
 import { BodyText } from "../../styles/typography";
 
 const Footer = () => {

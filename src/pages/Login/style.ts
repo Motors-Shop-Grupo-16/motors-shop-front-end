@@ -7,6 +7,12 @@ export const Container = styled.div`
   align-items: center;
   background: var(--color-grey8);
 
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
   form {
     margin-top: 122px;
     margin-bottom: 122px;
@@ -35,7 +41,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 755px) {
+  @media (max-width: 1600px) {
     .footer {
       position: relative;
       bottom: 0;
