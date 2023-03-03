@@ -48,6 +48,25 @@ export interface IResetPassword {
   confirmPassword: string;
 }
 
+export interface IUserResponse {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  phone: string;
+  dateOfBirth: string;
+  description: string;
+  isAdvertiser: boolean;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  Address: IAddressResponse;
+}
+
+export interface IAddressResponse extends IAddress {
+  id: string;
+}
+
 export interface IUserContext {
   signIn: (data: ISignIn) => void;
   registerUser: (data: IRegisterUser) => void;
@@ -58,4 +77,6 @@ export interface IUserContext {
   recoverPassword: (data: IResetPassword, token: string | null) => void;
   isRecoverPassword: boolean;
   setIsRecoverPassword: Dispatch<SetStateAction<boolean>>;
+  user: IUserResponse | null;
+  setUser: Dispatch<SetStateAction<IUserResponse | null>>;
 }

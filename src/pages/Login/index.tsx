@@ -16,8 +16,13 @@ import { ISignIn } from "../../contexts/UserContext.interfaces";
 import Navbar from "../../components/NavBar";
 
 export const Login = () => {
-  const { signIn, isRecoverPassword, setIsRecoverPassword } =
+  const { signIn, isRecoverPassword, setIsRecoverPassword, user } =
     useContext(UserContext);
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate("/");
+  }
 
   const {
     register,
@@ -26,8 +31,6 @@ export const Login = () => {
   } = useForm<ISignIn>({
     resolver: yupResolver(loginFormSchema),
   });
-
-  const navigate = useNavigate();
 
   return (
     <>

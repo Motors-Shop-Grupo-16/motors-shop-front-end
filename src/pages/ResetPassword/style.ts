@@ -23,7 +23,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 755px) {
+  @media (max-width: 1600px) {
     .footer {
     position: relative;
     bottom: 0;
