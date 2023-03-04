@@ -19,7 +19,8 @@ const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [submenuIsVisible, setSubmenuIsVisible] = useState(false);
 
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, setIsEditUser, setIsEditAddress } =
+    useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -72,7 +73,7 @@ const Navbar = () => {
                     <LinkBtn
                       className="medium"
                       as="a"
-                      onClick={() => console.log("abrir modal eeditar perfil")}
+                      onClick={() => setIsEditUser(true)}
                     >
                       Editar Perfil
                     </LinkBtn>
@@ -81,7 +82,7 @@ const Navbar = () => {
                     <LinkBtn
                       className="medium"
                       as="a"
-                      onClick={() => console.log("abrir modal editar endereço")}
+                      onClick={() => setIsEditAddress(true)}
                     >
                       Editar Endereço
                     </LinkBtn>

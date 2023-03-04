@@ -18,28 +18,29 @@ export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUserResponse | null>(null);
-  const [isEditUser, setIsEditUser] = useState<boolean>(true);
+  const [isEditUser, setIsEditUser] = useState<boolean>(false);
   const [isRecoverPassword, setIsRecoverPassword] = useState<boolean>(false);
+  const [isEditAddress, setIsEditAddress] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function loadUser() {
-      const token = localStorage.getItem("@usermotorsshop:token");
-      if (token) {
-        try {
-          api.defaults.headers.common.authorization = `Bearer ${token}`;
+  async function loadUser() {
+    const token = localStorage.getItem("@usermotorsshop:token");
+    if (token) {
+      try {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-          await api.get("/users").then((response) => {
-            setUser(response.data);
-          });
-        } catch (error) {
-          localStorage.removeItem("@usercontacts:token");
-          localStorage.removeItem("@usercontacts:userId");
-        }
+        await api.get("/users").then((response) => {
+          setUser(response.data);
+        });
+      } catch (error) {
+        localStorage.removeItem("@usercontacts:token");
+        localStorage.removeItem("@usercontacts:userId");
       }
     }
+  }
 
+  useEffect(() => {
     loadUser();
   }, []);
 
@@ -94,7 +95,22 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       loading: "Carregando...",
       success: (response) => {
         setIsEditUser(false);
+        loadUser();
         return "Usuário atualizado com sucesso!";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  };
+
+  const editAddress = (data: FieldValues) => {
+    const promiseRegister = api.patch("/addresses", data);
+
+    toast.promise(promiseRegister, {
+      loading: "Carregando...",
+      success: (response) => {
+        setIsEditAddress(false);
+        loadUser();
+        return "Endereço atualizado com sucesso!";
       },
       error: (error) => `${error.response.data.message}`,
     });
@@ -145,8 +161,11 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       editUser,
       user,
       setUser,
+      isEditAddress,
+      setIsEditAddress,
+      editAddress,
     }),
-    [isRecoverPassword, isEditUser, user]
+    [isRecoverPassword, isEditUser, user, isEditAddress]
   );
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

@@ -8,11 +8,20 @@ import { Container } from "./styles";
 import Footer from "../../components/Footer";
 import { Slogan } from "../../components/Slogan";
 import Navbar from "../../components/NavBar";
+import { UserContext } from "../../contexts/UserContext";
+import EditUserForm from "../../components/EditUserForm";
+import EditAddressForm from "../../components/EditAddressForm";
 
 export const Home = () => {
   const { cars, motorcycles } = useContext(AnnouncementContext);
+  const { isEditUser, user, isEditAddress } = useContext(UserContext);
+
   return (
     <>
+      {user && isEditUser && <EditUserForm user={user} />}
+      {user?.Address && isEditAddress && (
+        <EditAddressForm address={user.Address} />
+      )}
       <Navbar />
       <Slogan />
 

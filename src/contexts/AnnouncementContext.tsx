@@ -132,8 +132,9 @@ export const AnnouncementProvider = ({
   };
 
   const deleteAnnouncement = async (id: string) => {
+    console.log("entrou na deleção");
     try {
-      await api.delete(`/announcements/advertiser/${id}`);
+      await api.delete(`/announcements/${id}`);
 
       setIsDeleteAnnouncement(false);
     } catch (error) {
