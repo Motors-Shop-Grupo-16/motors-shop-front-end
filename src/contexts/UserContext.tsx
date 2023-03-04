@@ -102,6 +102,20 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     });
   };
 
+  const editAddress = (data: FieldValues) => {
+    const promiseRegister = api.patch("/addresses", data);
+
+    toast.promise(promiseRegister, {
+      loading: "Carregando...",
+      success: (response) => {
+        setIsEditAddress(false);
+        loadUser();
+        return "Endereço atualizado com sucesso!";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  };
+
   function sendEmailRecover(data: ISendEmail) {
     const promisseSendEmail = api
       .post("/users/recover-password", data)
@@ -149,8 +163,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       setUser,
       isEditAddress,
       setIsEditAddress,
+      editAddress,
     }),
-    [isRecoverPassword, isEditUser, user]
+    [isRecoverPassword, isEditUser, user, isEditAddress]
   );
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

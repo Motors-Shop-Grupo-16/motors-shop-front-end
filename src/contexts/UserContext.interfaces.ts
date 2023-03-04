@@ -79,4 +79,7 @@ export interface IUserContext {
   setIsRecoverPassword: Dispatch<SetStateAction<boolean>>;
   user: IUserResponse | null;
   setUser: Dispatch<SetStateAction<IUserResponse | null>>;
+  isEditAddress: boolean;
+  setIsEditAddress: Dispatch<React.SetStateAction<boolean>>;
+  editAddress: (data: FieldValues) => void;
 }
