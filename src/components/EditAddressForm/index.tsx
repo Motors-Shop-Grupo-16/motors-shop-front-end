@@ -46,9 +46,9 @@ const EditAddressForm = ({ address }: IEditAddressFormProps) => {
           label="CEP"
           id="cep"
           placeholder="Digitar CEP"
-          defaultValue={cepMask(address.cep)}
           type="text"
           {...register("cep")}
+          value={cepMask(values.cep)}
           onChange={inputChange}
           error={errors.cep?.message as string}
         />

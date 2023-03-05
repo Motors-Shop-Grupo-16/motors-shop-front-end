@@ -3,9 +3,11 @@ import { BiMenu } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 
 import { Link, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import logo from "../../assets/logo.svg";
 import { UserContext } from "../../contexts/UserContext";
 import { LinkBtn } from "../../styles/buttonsNavBar";
+import { BodyText } from "../../styles/typography";
 import UserImage from "../UserImage/userImage";
 import {
   Container,
@@ -26,6 +28,7 @@ const Navbar = () => {
 
   function logout() {
     localStorage.removeItem("@usermotorsshop:token");
+    setSubmenuIsVisible(false);
     setUser(null);
     navigate("/");
   }
@@ -40,33 +43,42 @@ const Navbar = () => {
           <NavContainer isVisible={menuIsVisible}>
             <NavUl>
               <li>
-                <LinkBtn className="medium link_li" as="a" href="#car">
-                  Carros
-                </LinkBtn>
+                <HashLink to="/#car">
+                  <LinkBtn className="medium link_li">Carros</LinkBtn>
+                </HashLink>
               </li>
               <li>
-                <LinkBtn className="medium link_li" as="a" href="#motorcycle">
-                  Motos
-                </LinkBtn>
+                <HashLink to="/#motorcycle">
+                  <LinkBtn className="medium link_li">Motos</LinkBtn>
+                </HashLink>
               </li>
               <li>
-                <LinkBtn className="medium link_li" as="a" href="#auction">
-                  Leilão
-                </LinkBtn>
+                <HashLink to="/#auction">
+                  <LinkBtn className="medium link_li">Leilão</LinkBtn>
+                </HashLink>
               </li>
             </NavUl>
             <div className="separator"></div>
             {user ? (
               <UserUl submenuIsVisible={submenuIsVisible}>
                 <li>
-                  <div>
+                  <div className="navbar-userimage">
                     <UserImage classname="productUserImage" name={user.name} />
                   </div>
-                  <LinkBtn
+                  <div
                     onClick={() => setSubmenuIsVisible(!submenuIsVisible)}
+                    className="navbar-nameuser"
                   >
-                    {user.name}
-                  </LinkBtn>
+                    <BodyText
+                      className=""
+                      tag="p"
+                      style="body-1"
+                      weight="600"
+                      color="--color-grey0"
+                    >
+                      {user.name}
+                    </BodyText>
+                  </div>
                 </li>
                 <ul className="sub_menu">
                   <li>

@@ -130,12 +130,12 @@ export const Button = styled.button`
 `;
 
 export const LinkBtn = styled(Button)`
-  /* ex: 
-      -> <LinkBtn as='a' href='#'>Ola</LinkBtn> 
-    */
   display: flex;
   align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   background-color: transparent;
   color: var(--color-grey0);
   border: none;

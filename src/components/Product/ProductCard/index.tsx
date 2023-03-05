@@ -41,7 +41,7 @@ const ProductCard = ({ product }: { product: IAnnouncement }) => {
       <div className="productUserImageContainer">
         <UserImage classname="productUserImage" name={product.User.name} />
 
-        <BodyText style="body-2" tag="p" weight="500">
+        <BodyText className="productUserName" style="body-2" tag="p" weight="500">
           {product.User.name}
         </BodyText>
       </div>

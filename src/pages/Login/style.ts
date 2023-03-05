@@ -2,16 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column;
   align-items: center;
   background: var(--color-grey8);
-
-  .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-  }
 
   form {
     margin-top: 122px;
@@ -38,14 +31,6 @@ export const Container = styled.div`
       p {
         color: var(--color-brand2);
       }
-    }
-  }
-
-  @media (max-width: 1600px) {
-    .footer {
-      position: relative;
-      bottom: 0;
-      left: 0;
     }
   }
 `;

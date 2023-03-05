@@ -12,6 +12,7 @@ export const Container = styled.div`
   textarea {
     padding: 8px 16px;
     width: 100%;
+    height: 70px;
     border: 1.5px solid var(--color-grey8);
     border-radius: 4px;
     font-family: "Inter", sans-serif;

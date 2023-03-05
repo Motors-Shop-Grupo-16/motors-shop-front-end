@@ -1,17 +1,16 @@
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container } from "./style";
-import Input from "../Input";
-import Textarea from "../Textarea";
 import { useContext, useState } from "react";
-import { BodyText } from "../../styles/typography";
-import { Select } from "../Select/style";
-import Modal from "../Modal";
-import Button from "../Button";
-import { editUserFormSchema } from "../../validators/editUserFormSchema";
+import { useForm } from "react-hook-form";
 import { UserContext } from "../../contexts/UserContext";
+import { cpfMask, phoneMask, dateMask } from "../../masks";
+import { BodyText } from "../../styles/typography";
+import { editUserFormSchema } from "../../validators/editUserFormSchema";
+import Button from "../Button";
+import Input from "../Input";
+import Modal from "../Modal";
+import Textarea from "../Textarea";
 import { IEditUserFormProps } from "./interfaces";
-import { cpfMask } from "../../masks";
+import { Container } from "./style";
 
 const EditUserForm = ({ user }: IEditUserFormProps) => {
   const { setIsEditUser, editUser } = useContext(UserContext);
@@ -69,9 +68,10 @@ const EditUserForm = ({ user }: IEditUserFormProps) => {
           label="CPF"
           id="cpf"
           placeholder="Digitar cpf"
-          defaultValue={user.cpf}
           type="text"
           {...register("cpf")}
+          value={cpfMask(values.cpf)}
+          onChange={inputChange}
           error={errors.cpf?.message as string}
         />
 
@@ -79,9 +79,10 @@ const EditUserForm = ({ user }: IEditUserFormProps) => {
           label="Celular"
           id="phone"
           placeholder="Digitar número de telefone"
-          defaultValue={user.phone}
           type="text"
           {...register("phone")}
+          value={phoneMask(values.phone)}
+          onChange={inputChange}
           error={errors.phone?.message as string}
         />
 
@@ -89,9 +90,10 @@ const EditUserForm = ({ user }: IEditUserFormProps) => {
           label="Data de nascimento"
           id="dateOfBirth"
           placeholder="Ex.: 1999-12-29"
-          defaultValue={user.dateOfBirth.slice(0, 10)}
           type="text"
           {...register("dateOfBirth")}
+          value={dateMask(values.dateOfBirth)}
+          onChange={inputChange}
           error={errors.dateOfBirth?.message as string}
         />
 

@@ -34,6 +34,10 @@ body {
 	background: var(--color-grey8);
 }
 
+html{
+	scroll-behavior: smooth;
+}
+
 ol, ul {
 	list-style: none;
 }

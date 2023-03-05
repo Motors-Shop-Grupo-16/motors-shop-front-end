@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import SendEmailRecoverPasswordForm from "../../components/SendEmailRecoverPasswordForm";
 import { UserContext } from "../../contexts/UserContext";
 import { ISignIn } from "../../contexts/UserContext.interfaces";
-import Navbar from "../../components/NavBar";
 
 export const Login = () => {
   const { signIn, isRecoverPassword, setIsRecoverPassword, user } =
@@ -34,7 +33,7 @@ export const Login = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {isRecoverPassword && <SendEmailRecoverPasswordForm />}
       <Container>
         <Form onSubmit={handleSubmit(signIn)}>
