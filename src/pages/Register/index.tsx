@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import { Form } from "../../components/Form";
@@ -13,8 +14,6 @@ import { cepMask, cpfMask, dateMask, phoneMask } from "../../masks";
 import { BodyText, Heading } from "../../styles/typography";
 import { registerUserFormSchema } from "../../validators/registerUserFormSchema";
 import { Container } from "./style";
-import Navbar from "../../components/NavBar";
-import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const { registerUser, user } = useContext(UserContext);
@@ -54,7 +53,6 @@ export const Register = () => {
 
   return (
     <>
-      <Navbar />
       <Container>
         <Form onSubmit={handleSubmit(registerUser)}>
           <Heading

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.li`
   display: flex;
   flex-direction: column;
-  min-width: 290px;
+  width: 300px;
   gap: 16px;
 
   .productImageContainer {
@@ -61,8 +61,21 @@ export const Container = styled.li`
 
   .productUserImageContainer {
     display: flex;
+    width: 100%;
     align-items: center;
     gap: 8px;
+    .productUserImage {
+      width: 38.3px;
+    }
+
+    .productUserName {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
   }
 
   .productInfoContainer {

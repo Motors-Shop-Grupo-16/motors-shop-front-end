@@ -1,3 +1,4 @@
+import Navbar from "./components/NavBar";
 import { AnnouncementProvider } from "./contexts/AnnouncementContext";
 import { UserProvider } from "./contexts/UserContext";
 import { RoutesMain } from "./routes";
@@ -20,6 +21,7 @@ function App() {
       <AnnouncementProvider>
         <GlobalStyle />
         <ResetStyle />
+        <Navbar />
         <RoutesMain />
       </AnnouncementProvider>
     </UserProvider>

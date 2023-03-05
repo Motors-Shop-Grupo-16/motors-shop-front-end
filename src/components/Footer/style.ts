@@ -14,6 +14,13 @@ export const Container = styled.footer`
     padding: 45px 0px;
   }
 
+  position: fixed;
+  bottom: 0;
+
+  @media (max-width: 755px) {
+    position: relative;
+  }
+
   .footer-content {
     display: flex;
     width: 100%;

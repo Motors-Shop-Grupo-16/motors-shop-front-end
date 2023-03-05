@@ -18,10 +18,23 @@ export const Container = styled.div<divProps>`
   align-items: center;
   margin-right: 60px;
   margin-left: 60px;
-  /* img {
-    height: 26  px;
-    width: 153px;
-  } */
+
+  .navbar-nameuser {
+    display: flex;
+    margin-left: 10px;
+    width: 200px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .navbar-userimage {
+    margin-left: 10px;
+  }
 
   .btn_menu {
     width: 50px;
@@ -41,9 +54,6 @@ export const Container = styled.div<divProps>`
   }
 
   @media (min-width: 1000px) {
-    /* img {
-      margin-left: 15px;
-    } */
     .btn_menu {
       display: none;
     }
@@ -56,10 +66,6 @@ export const Container = styled.div<divProps>`
   @media (max-width: 800px) {
     margin-right: 12px;
     margin-left: 12px;
-    /* img {
-      margin-left: 60px;
-      margin-right: 60px;
-    } */
   }
 `;
 
@@ -139,17 +145,6 @@ export const UserUl = styled.ul<divProps>`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    /* div {
-      width: 32px;
-      height: 32px;
-      color: var(--color-whiteFixed);
-      background: var(--color-brand2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 15px;
-    } */
     button {
       width: 120px;
       padding: 0;
@@ -211,7 +206,6 @@ export const NavUl = styled.ul<divProps>`
   text-align: left;
   gap: 44px;
   li {
-    width: 100%;
     display: flex;
     width: 100%;
     flex-direction: column;

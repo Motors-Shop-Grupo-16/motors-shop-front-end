@@ -12,7 +12,6 @@ import { useLocation } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { IResetPassword } from "../../contexts/UserContext.interfaces";
 import { resetPasswordUserFormSchema } from "../../validators/resetPasswordUserFormSchema";
-import Navbar from "../../components/NavBar";
 
 export const ResetPassword = () => {
   const { recoverPassword } = useContext(UserContext);
@@ -34,7 +33,6 @@ export const ResetPassword = () => {
 
   return (
     <>
-      <Navbar />
       <Container>
         <Form onSubmit={handleSubmit((data) => recoverPassword(data, token))}>
           <Heading

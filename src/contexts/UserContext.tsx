@@ -57,7 +57,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         api.get(`/users`).then((responsee) => {
           setUser(responsee.data);
         });
-
+        loadUser();
         navigate("/");
 
         return `Seja bem-vindo(a)`;

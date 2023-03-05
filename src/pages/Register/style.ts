@@ -5,8 +5,11 @@ export const Container = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
-  /* gap: 122px; */
   background: var(--color-grey8);
+
+  .footer {
+    position: relative;
+  }
 
   form {
     margin-top: 48px;

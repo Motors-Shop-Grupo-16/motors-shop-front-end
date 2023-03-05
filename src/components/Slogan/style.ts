@@ -7,7 +7,6 @@ export const Container = styled.div`
   width: 100%;
   height: 581px;
   background: var(--color-brand2);
-  margin-bottom: 60px;
 
   .slogan-content {
     display: flex;
@@ -27,7 +26,6 @@ export const Container = styled.div`
 
   @media (max-width: 755px) {
     gap: 67px;
-    margin-bottom: 120px;
 
     .slogan-buttons {
       width: 300px;
