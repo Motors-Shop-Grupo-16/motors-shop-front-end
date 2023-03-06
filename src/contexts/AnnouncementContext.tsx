@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import {
   IAnnouncement,
@@ -14,7 +14,9 @@ export const AnnouncementContext = createContext({} as IAnnouncementContext);
 export const AnnouncementProvider = ({
   children,
 }: IAnnouncementProviderProps) => {
-  const [announcements, setAnnouncements] = useState<IAnnouncement[]>([]);
+  const [announcementsAdvertiser, setAnnouncementsAdvertiser] = useState<
+    IAnnouncement[]
+  >([]);
   const [cars, setCars] = useState<IAnnouncement[]>([]);
   const [motorcycles, setMotorcycles] = useState<IAnnouncement[]>([]);
   const [isCreateAnnouncement, setIsCreateAnnouncement] =
@@ -31,6 +33,11 @@ export const AnnouncementProvider = ({
     useState<boolean>(false);
 
   const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     async function listAnnouncements() {
@@ -182,9 +189,19 @@ export const AnnouncementProvider = ({
     setAnnouncementToDelete(id);
   };
 
+  const listAnnouncementsByIdAdvertiser = async (id: string) => {
+    try {
+      const { data } = await api.get(`/announcements/advertiser/${id}`);
+      setAnnouncementsAdvertiser(data);
+    } catch (error) {
+      goTo("/error404");
+      console.error(error);
+    }
+  };
+
   const values = {
-    announcements,
-    setAnnouncements,
+    announcementsAdvertiser,
+    setAnnouncementsAdvertiser,
     cars,
     setCars,
     motorcycles,
@@ -208,6 +225,7 @@ export const AnnouncementProvider = ({
     createComment,
     detailedAnnouncementModal,
     setDetailedAnnouncementModal,
+    listAnnouncementsByIdAdvertiser,
   };
 
   return (

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import logo from "../../assets/logo.svg";
 import { UserContext } from "../../contexts/UserContext";
@@ -34,6 +34,16 @@ const Navbar = () => {
     navigate("/");
   }
 
+  const location = useLocation();
+  let pathname = "/";
+  if (
+    location.pathname !== "/login" &&
+    location.pathname !== "/register" &&
+    location.pathname !== "/product"
+  ) {
+    pathname = location.pathname;
+  }
+
   return (
     <>
       <ContainerHeader>
@@ -44,12 +54,12 @@ const Navbar = () => {
           <NavContainer isVisible={menuIsVisible}>
             <NavUl>
               <li>
-                <HashLink to="/#car">
+                <HashLink to={`${pathname}${location.search}#car`}>
                   <LinkBtn className="medium link_li">Carros</LinkBtn>
                 </HashLink>
               </li>
               <li>
-                <HashLink to="/#motorcycle">
+                <HashLink to={`${pathname}${location.search}#motorcycle`}>
                   <LinkBtn className="medium link_li">Motos</LinkBtn>
                 </HashLink>
               </li>

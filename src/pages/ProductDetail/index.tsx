@@ -4,18 +4,17 @@ import { Navigate } from "react-router-dom";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { UserContext } from "../../contexts/UserContext";
 
-import Loading from "../../components/Loading";
-import Navbar from "../../components/NavBar";
-import UserImage from "../../components/UserImage/userImage";
-import CommentList from "../../components/Comments/CommentList";
 import Button from "../../components/Button";
-import Modal from "../../components/Modal";
+import CommentList from "../../components/Comments/CommentList";
 import Footer from "../../components/Footer";
+import Loading from "../../components/Loading";
+import Modal from "../../components/Modal";
+import UserImage from "../../components/UserImage/userImage";
 
 import { splitName } from "../../utils/createImage";
 
-import { Container } from "./style";
 import { BodyText, Heading } from "../../styles/typography";
+import { Container } from "./style";
 
 export const ProductDetail = () => {
   const {
@@ -24,20 +23,19 @@ export const ProductDetail = () => {
     createComment,
     detailedAnnouncementModal,
     setDetailedAnnouncementModal,
+    goTo,
   } = useContext(AnnouncementContext);
 
   const { token, user } = useContext(UserContext);
 
   if (loading) return <Loading />;
 
-  if (!detailedAnnouncement) return <Navigate to={"/"} />;
-
   const [commentData, setCommentData] = useState<string>("");
+
+  if (!detailedAnnouncement) return <Navigate to={"/"} />;
 
   return (
     <>
-      {/* <Navbar /> */}
-
       <Container>
         <div className="sloganBackgorund" />
 
@@ -215,6 +213,9 @@ export const ProductDetail = () => {
                 borderColor="--color-grey0"
                 borderLength="1.5px"
                 color="--color-whiteFixed"
+                onClick={() => {
+                  goTo(`/advertiser?user=${detailedAnnouncement.User.id}`);
+                }}
               >
                 Ver todos anuncios
               </Button>

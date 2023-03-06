@@ -4,6 +4,8 @@ import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { ResetPassword } from "../pages/ResetPassword";
+import { Advertiser } from "../pages/Advertiser";
+import { Error404 } from "../pages/Error404";
 
 export const RoutesMain = () => (
   <Routes>
@@ -12,6 +14,8 @@ export const RoutesMain = () => (
     <Route path="/register" element={<Register />} />
     <Route path="/reset-password" element={<ResetPassword />} />
     <Route path="/product" element={<ProductDetail />} />
+    <Route path="/advertiser" element={<Advertiser />} />
+    <Route path="/error404" element={<Error404 />} />
     <Route path="*" element={<Navigate replace to="/" />} />
   </Routes>
 );

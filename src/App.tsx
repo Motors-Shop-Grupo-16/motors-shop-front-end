@@ -1,3 +1,4 @@
+import CallModal from "./components/CallModal/indes";
 import Navbar from "./components/NavBar";
 import { AnnouncementProvider } from "./contexts/AnnouncementContext";
 import { UserProvider } from "./contexts/UserContext";
@@ -22,6 +23,7 @@ function App() {
         <GlobalStyle />
         <ResetStyle />
         <Navbar />
+        <CallModal />
         <RoutesMain />
       </AnnouncementProvider>
     </UserProvider>
