@@ -36,7 +36,7 @@ export const ProductDetail = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <Container>
         <div className="sloganBackgorund" />
@@ -319,9 +319,8 @@ export const ProductDetail = () => {
             </div>
           </section>
         </div>
+        <Footer />
       </Container>
-
-      <Footer />
     </>
   );
 };

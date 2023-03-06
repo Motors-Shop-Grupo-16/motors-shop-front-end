@@ -64,7 +64,7 @@ const Navbar = () => {
               <UserUl submenuIsVisible={submenuIsVisible}>
                 <li>
                   <div className="navbar-userimage">
-                    <UserImage classname="productUserImage" name={user.name} />
+                    <UserImage className="productUserImage" name={user.name} />
                   </div>
                   <div
                     onClick={() => setSubmenuIsVisible(!submenuIsVisible)}

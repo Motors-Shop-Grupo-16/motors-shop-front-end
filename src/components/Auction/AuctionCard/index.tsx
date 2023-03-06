@@ -47,7 +47,7 @@ export const AuctionCard = ({ auction }: { auction: IAuction }) => {
 
         <div className="auction-author">
           <div className="auction-author-icon">
-            <UserImage classname="productUserImage" name={auction.owner} />
+            <UserImage className="productUserImage" name={auction.owner} />
           </div>
           <BodyText
             className=""

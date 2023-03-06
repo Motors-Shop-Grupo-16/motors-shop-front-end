@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-bottom: 45px;
+  /* margin-bottom: 45px; */
 
-  @media (min-width: 1262px) {
+  /* @media (min-width: 1262px) {
     margin-bottom: 73px;
+  } */
+
+  .footer {
+    position: relative;
+    margin-top: 45px;
+
+    @media (min-width: 1262px) {
+      margin-top: 73px;
+    }
   }
 
   .sloganBackgorund {
