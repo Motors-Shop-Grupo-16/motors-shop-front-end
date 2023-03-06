@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
@@ -8,6 +8,7 @@ import {
   IAnnouncementProviderProps,
   ICommentData,
 } from "./AnnouncementContext.interfaces";
+import { toast } from "react-hot-toast";
 
 export const AnnouncementContext = createContext({} as IAnnouncementContext);
 
@@ -31,6 +32,8 @@ export const AnnouncementProvider = ({
   const [announcementToDelete, setAnnouncementToDelete] = useState<string>("");
   const [detailedAnnouncementModal, setDetailedAnnouncementModal] =
     useState<boolean>(false);
+
+  const [announcement, setAnnouncement] = useState<IAnnouncement | null>(null);
 
   const navigate = useNavigate();
 
@@ -59,6 +62,7 @@ export const AnnouncementProvider = ({
   }, []);
 
   const createAnnouncement = async (data: FieldValues) => {
+    console.log(data);
     const {
       coverImage,
       description,
@@ -90,13 +94,18 @@ export const AnnouncementProvider = ({
       isActive: true,
     };
 
-    try {
-      await api.post("/announcements", dataToSend);
+    const token = localStorage.getItem("@usermotorsshop:token");
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const promiseCreate = api.post(`/announcements/`, dataToSend);
 
-      setIsCreateAnnouncement(false);
-    } catch (error) {
-      console.error(error);
-    }
+    toast.promise(promiseCreate, {
+      loading: "Salvando...",
+      success: (response) => {
+        setIsCreateAnnouncement(false);
+        return "Criado com sucesso";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
   };
 
   const updateAnnouncement = async (data: FieldValues, id: string) => {
@@ -132,28 +141,44 @@ export const AnnouncementProvider = ({
       isActive: isActive == "true" ? true : false,
     };
 
-    try {
-      await api.patch(`/announcements/advertiser/${id}`, dataToSend);
+    const token = localStorage.getItem("@usermotorsshop:token");
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const promiseUpdate = api.patch(`/announcements/${id}`, dataToSend);
 
-      setIsUpdateAnnouncement(false);
-    } catch (error) {
-      console.error(error);
-    }
+    toast.promise(promiseUpdate, {
+      loading: "Atualizando...",
+      success: (response) => {
+        setIsUpdateAnnouncement(false);
+
+        return "Atualizado com sucesso";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
   };
 
   const deleteAnnouncement = async (id: string) => {
-    console.log("entrou na deleção");
-    try {
-      await api.delete(`/announcements/${id}`);
+    const token = localStorage.getItem("@usermotorsshop:token");
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const promiseDelete = api.delete(`/announcements/${id}`);
 
-      setIsDeleteAnnouncement(false);
-    } catch (error) {
-      console.error(error);
-    }
+    toast.promise(promiseDelete, {
+      loading: "Deletando...",
+      success: (response) => {
+        setIsDeleteAnnouncement(false);
+        return "Deletado com sucesso";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
   };
 
   const goTo = (route: string) => {
     navigate(route);
+  };
+
+  const confirmDeletion = (id: string) => {
+    setIsUpdateAnnouncement(false);
+    setIsDeleteAnnouncement(true);
+    setAnnouncementToDelete(id);
   };
 
   const listAnnouncementById = async (id: string) => {
@@ -183,12 +208,6 @@ export const AnnouncementProvider = ({
     }
   };
 
-  const confirmDeletion = (id: string) => {
-    setIsUpdateAnnouncement(false);
-    setIsDeleteAnnouncement(true);
-    setAnnouncementToDelete(id);
-  };
-
   const listAnnouncementsByIdAdvertiser = async (id: string) => {
     try {
       const { data } = await api.get(`/announcements/advertiser/${id}`);
@@ -199,34 +218,50 @@ export const AnnouncementProvider = ({
     }
   };
 
-  const values = {
-    announcementsAdvertiser,
-    setAnnouncementsAdvertiser,
-    cars,
-    setCars,
-    motorcycles,
-    setMotorcycles,
-    isCreateAnnouncement,
-    setIsCreateAnnouncement,
-    createAnnouncement,
-    isUpdateAnnouncement,
-    setIsUpdateAnnouncement,
-    updateAnnouncement,
-    deleteAnnouncement,
-    goTo,
-    listAnnouncementById,
-    detailedAnnouncement,
-    loading,
-    isDeleteAnnouncement,
-    setIsDeleteAnnouncement,
-    announcementToDelete,
-    setAnnouncementToDelete,
-    confirmDeletion,
-    createComment,
-    detailedAnnouncementModal,
-    setDetailedAnnouncementModal,
-    listAnnouncementsByIdAdvertiser,
-  };
+  const values = useMemo(
+    () => ({
+      announcementsAdvertiser,
+      setAnnouncementsAdvertiser,
+      cars,
+      setCars,
+      motorcycles,
+      setMotorcycles,
+      isCreateAnnouncement,
+      setIsCreateAnnouncement,
+      createAnnouncement,
+      isUpdateAnnouncement,
+      setIsUpdateAnnouncement,
+      updateAnnouncement,
+      deleteAnnouncement,
+      goTo,
+      listAnnouncementById,
+      detailedAnnouncement,
+      loading,
+      isDeleteAnnouncement,
+      setIsDeleteAnnouncement,
+      announcementToDelete,
+      setAnnouncementToDelete,
+      confirmDeletion,
+      createComment,
+      detailedAnnouncementModal,
+      setDetailedAnnouncementModal,
+      listAnnouncementsByIdAdvertiser,
+      announcement,
+      setAnnouncement,
+    }),
+    [
+      announcementsAdvertiser,
+      cars,
+      motorcycles,
+      isCreateAnnouncement,
+      isUpdateAnnouncement,
+      detailedAnnouncement,
+      loading,
+      isDeleteAnnouncement,
+      detailedAnnouncement,
+      announcement,
+    ]
+  );
 
   return (
     <AnnouncementContext.Provider value={values}>

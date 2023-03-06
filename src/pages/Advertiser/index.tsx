@@ -8,10 +8,21 @@ import ProductList from "../../components/Product/ProductList";
 import UserProfile from "../../components/UserProfile";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { IAnnouncement } from "../../contexts/AnnouncementContext.interfaces";
+import { UserContext } from "../../contexts/UserContext";
+import UpdateAnnouncementForm from "../../components/UpdateAnnouncementForm";
+import DeleteAnnouncementModal from "../../components/DeleteAnnouncementModal";
+import CreateAnnouncementForm from "../../components/CreateAnnouncementForm";
 
 export const Advertiser = () => {
-  const { announcementsAdvertiser, listAnnouncementsByIdAdvertiser } =
-    useContext(AnnouncementContext);
+  const {
+    announcementsAdvertiser,
+    listAnnouncementsByIdAdvertiser,
+    isUpdateAnnouncement,
+    isDeleteAnnouncement,
+    announcement,
+    isCreateAnnouncement,
+  } = useContext(AnnouncementContext);
+  const { user } = useContext(UserContext);
 
   function useQuery() {
     const { search } = useLocation();
@@ -20,11 +31,23 @@ export const Advertiser = () => {
   const userId = useQuery().get("user");
 
   useEffect(() => {
+    console.log("useEffect");
     listAnnouncementsByIdAdvertiser(userId!);
-  }, [userId]);
+  }, [
+    userId,
+    isUpdateAnnouncement,
+    isDeleteAnnouncement,
+    isCreateAnnouncement,
+  ]);
 
   return (
     <>
+      {isUpdateAnnouncement && announcement && (
+        <UpdateAnnouncementForm announcement={announcement} />
+      )}
+      {isDeleteAnnouncement && announcement && <DeleteAnnouncementModal />}
+      {isCreateAnnouncement && <CreateAnnouncementForm />}
+
       <Container>
         {announcementsAdvertiser.length === 0 ? (
           <></>
@@ -33,6 +56,7 @@ export const Advertiser = () => {
             <UserProfile
               name={announcementsAdvertiser[0]!.User.name}
               description={announcementsAdvertiser[0]!.User.description}
+              viewButton={userId === user?.id}
             />
             <div className="ContainerLists">
               <ContainerListAdvertiser>
@@ -51,6 +75,7 @@ export const Advertiser = () => {
                   products={announcementsAdvertiser.filter(
                     (car: IAnnouncement) => car.typeVehicle === "car"
                   )}
+                  viewButtons={userId === user?.id}
                 />
               </ContainerListAdvertiser>
 
@@ -70,6 +95,7 @@ export const Advertiser = () => {
                   products={announcementsAdvertiser.filter(
                     (car: IAnnouncement) => car.typeVehicle === "motorcycle"
                   )}
+                  viewButtons={userId === user?.id}
                 />
               </ContainerListAdvertiser>
             </div>

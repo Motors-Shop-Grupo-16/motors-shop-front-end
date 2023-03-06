@@ -1,17 +1,17 @@
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container } from "./style";
-import Input from "../Input";
-import Textarea from "../Textarea";
 import { useContext, useState } from "react";
-import { BodyText } from "../../styles/typography";
-import { Select } from "../Select/style";
-import Modal from "../Modal";
-import Button from "../Button";
+import { useForm } from "react-hook-form";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
-import { IUpdateAnnouncementFormProps } from "./interfaces";
-import { updateAnnouncementFormSchema } from "../../validators/updateAnnouncementFormSchema";
 import { IImage } from "../../contexts/AnnouncementContext.interfaces";
+import { BodyText } from "../../styles/typography";
+import { updateAnnouncementFormSchema } from "../../validators/updateAnnouncementFormSchema";
+import Button from "../Button";
+import Input from "../Input";
+import Modal from "../Modal";
+import { Select } from "../Select/style";
+import Textarea from "../Textarea";
+import { IUpdateAnnouncementFormProps } from "./interfaces";
+import { Container } from "./style";
 
 const UpdateAnnouncementForm = ({
   announcement,
@@ -35,6 +35,16 @@ const UpdateAnnouncementForm = ({
     setImagesFields([...imagesFields]);
   };
 
+  const [selectedTypeSale, setSelectedTypeSale] = useState<string>(
+    announcement.typeSale
+  );
+  const [selectedTypeVehicle, setSelectedTypeVehicle] = useState<string>(
+    announcement.typeVehicle
+  );
+  const [selectedIsActive, setSelectedIsActive] = useState<string>(
+    announcement.isActive ? "true" : "false"
+  );
+
   return (
     <Modal title="Editar anúncio" closeModal={setIsUpdateAnnouncement}>
       <Container
@@ -46,19 +56,15 @@ const UpdateAnnouncementForm = ({
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Tipo de anúncio
           </BodyText>
-          <Select id="typeSale" multiple {...register("typeSale")}>
-            <option
-              value="sale"
-              selected={announcement.typeSale == "sale" ? true : false}
-            >
-              Venda
-            </option>
-            <option
-              value="auction"
-              selected={announcement.typeSale == "auction" ? true : false}
-            >
-              Leilão
-            </option>
+          <Select
+            id="typeSale"
+            multiple
+            {...register("typeSale")}
+            value={[selectedTypeSale]}
+            onChange={(event) => setSelectedTypeSale(event.target.value)}
+          >
+            <option value="sale">Venda</option>
+            <option value="auction">Leilão</option>
           </Select>
           <span>{errors.typeSale?.message as string}</span>
         </div>
@@ -121,19 +127,15 @@ const UpdateAnnouncementForm = ({
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Tipo de veículo
           </BodyText>
-          <Select id="typeVehicle" multiple {...register("typeVehicle")}>
-            <option
-              value="car"
-              selected={announcement.typeVehicle == "car" ? true : false}
-            >
-              Carro
-            </option>
-            <option
-              value="motorcycle"
-              selected={announcement.typeVehicle == "motorcycle" ? true : false}
-            >
-              Moto
-            </option>
+          <Select
+            id="typeVehicle"
+            multiple
+            {...register("typeVehicle")}
+            value={[selectedTypeVehicle]}
+            onChange={(event) => setSelectedTypeVehicle(event.target.value)}
+          >
+            <option value="car">Carro</option>
+            <option value="motorcycle">Moto</option>
           </Select>
           <span>{errors.typeVehicle?.message as string}</span>
         </div>
@@ -142,13 +144,15 @@ const UpdateAnnouncementForm = ({
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Publicado
           </BodyText>
-          <Select id="isActive" multiple {...register("isActive")}>
-            <option value="true" selected={announcement.isActive}>
-              Sim
-            </option>
-            <option value="false" selected={!announcement.isActive}>
-              Não
-            </option>
+          <Select
+            id="isActive"
+            multiple
+            {...register("isActive")}
+            value={[selectedIsActive]}
+            onChange={(event) => setSelectedIsActive(event.target.value)}
+          >
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
           </Select>
           <span>{errors.isActive?.message as string}</span>
         </div>

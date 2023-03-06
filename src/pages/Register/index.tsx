@@ -192,6 +192,7 @@ export const Register = () => {
             />
           </div>
 
+
           <div className="selectContainer">
             <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
               Tipo de conta

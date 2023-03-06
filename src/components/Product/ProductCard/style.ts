@@ -3,8 +3,25 @@ import styled from "styled-components";
 export const Container = styled.li`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  gap: 16px;
+  gap: 20px;
+
+  .productButtonsContainer {
+    display: flex;
+    gap: 25px;
+    button {
+      &:hover {
+        background: var(--color-grey1);
+        color: var(--color-grey10);
+      }
+    }
+  }
+
+  .productContentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 16px;
+  }
 
   .productImageContainer {
     display: flex;
@@ -64,9 +81,9 @@ export const Container = styled.li`
     width: 100%;
     align-items: center;
     gap: 8px;
-    .productUserImage {
+    /* .productUserImage {
       width: 38.3px;
-    }
+    } */
 
     .productUserName {
       overflow: hidden;
