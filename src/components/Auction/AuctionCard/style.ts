@@ -29,7 +29,7 @@ const Container = styled.div<IAuctionCardProps>`
 
     .auction-time {
       display: flex;
-      max-width: 123px;
+      max-width: fit-content;
       align-items: center;
       border-radius: 32px;
       padding: 8px 8px;
@@ -84,7 +84,7 @@ const Container = styled.div<IAuctionCardProps>`
     @media (max-width: 755px) {
       padding: 33px 22px;
       height: 470px;
-      
+
       .auction-info {
         flex-direction: column;
         align-items: start;
