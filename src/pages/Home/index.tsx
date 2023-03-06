@@ -20,7 +20,6 @@ export const Home = () => {
       {user?.Address && isEditAddress && (
         <EditAddressForm address={user.Address} />
       )}
-
       <Slogan />
       <ContainerHomePage>
         <Container>

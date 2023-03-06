@@ -33,7 +33,6 @@ export const Login = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       {isRecoverPassword && <SendEmailRecoverPasswordForm />}
       <Container>
         <Form onSubmit={handleSubmit(signIn)}>
