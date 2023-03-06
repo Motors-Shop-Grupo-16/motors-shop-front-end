@@ -32,7 +32,7 @@ export const Advertiser = () => {
           <>
             <UserProfile
               name={announcementsAdvertiser[0]!.User.name}
-              description={announcementsAdvertiser[0]!.User.name}
+              description={announcementsAdvertiser[0]!.User.description}
             />
             <div className="ContainerLists">
               <ContainerListAdvertiser>

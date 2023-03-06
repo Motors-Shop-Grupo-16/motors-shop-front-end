@@ -1,16 +1,10 @@
-import { ReactNode, useContext } from "react";
-import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { BodyText, Heading } from "../../styles/typography";
 import { splitName } from "../../utils/createImage";
 import UserImage from "../UserImage/userImage";
+import { IUserProfile } from "./interfaces";
 import { Container } from "./style";
 
-interface IUserProfile {
-  name: string;
-  description: string;
-}
-
-const UserProfile = ({name, description}: IUserProfile ) => {
+const UserProfile = ({ name, description }: IUserProfile) => {
   return (
     <Container>
       <div className="userProfileContent">
