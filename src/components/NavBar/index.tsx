@@ -21,7 +21,7 @@ const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [submenuIsVisible, setSubmenuIsVisible] = useState(false);
 
-  const { user, setUser, setIsEditUser, setIsEditAddress } =
+  const { user, setUser, setIsEditUser, setIsEditAddress, setToken } =
     useContext(UserContext);
 
   const navigate = useNavigate();
@@ -30,6 +30,7 @@ const Navbar = () => {
     localStorage.removeItem("@usermotorsshop:token");
     setSubmenuIsVisible(false);
     setUser(null);
+    setToken(null);
     navigate("/");
   }
 

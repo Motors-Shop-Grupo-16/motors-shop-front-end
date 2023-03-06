@@ -1,10 +1,8 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
 export interface IButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    IButtonConfig {
-  children: ReactNode;
-}
+  extends IButtonConfig,
+    ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export interface IButtonConfig {
   width?: string;

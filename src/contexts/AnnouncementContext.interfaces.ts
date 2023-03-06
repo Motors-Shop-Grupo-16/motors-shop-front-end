@@ -17,6 +17,7 @@ export interface IAnnouncement {
     id: string;
     name: string;
     description: string;
+    phone: string;
   };
   images: IImage[];
   comments: IComment[];
@@ -31,6 +32,8 @@ export interface IComment {
     name: string;
   };
 }
+
+export type ICommentData = Pick<IComment, "content">;
 
 export interface IImage {
   id?: string;
@@ -60,6 +63,9 @@ export interface IAnnouncementContext {
   announcementToDelete: string;
   setAnnouncementToDelete: Dispatch<React.SetStateAction<string>>;
   confirmDeletion: (id: string) => void;
+  createComment: (commentData: ICommentData, id: string) => Promise<void>;
+  detailedAnnouncementModal: boolean;
+  setDetailedAnnouncementModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IAnnouncementProviderProps {
