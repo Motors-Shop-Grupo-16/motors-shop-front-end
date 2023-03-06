@@ -46,13 +46,13 @@ export const AnnouncementProvider = ({
 
       setCars(
         responseAnnouncements.data.filter(
-          (car: IAnnouncement) => car.typeVehicle === "car"
+          (car: IAnnouncement) => car.typeVehicle === "car" && car.typeSale === "sale"
         )
       );
 
       setMotorcycles(
         responseAnnouncements.data.filter(
-          (car: IAnnouncement) => car.typeVehicle === "motorcycle"
+          (motorcycle: IAnnouncement) => motorcycle.typeVehicle === "motorcycle" && motorcycle.typeSale === "sale"
         )
       );
 

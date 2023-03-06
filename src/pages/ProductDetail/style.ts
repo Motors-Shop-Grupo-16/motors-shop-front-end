@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* margin-bottom: 45px; */
-
-  /* @media (min-width: 1262px) {
-    margin-bottom: 73px;
-  } */
-
   .footer {
     position: relative;
     margin-top: 45px;
@@ -222,19 +216,18 @@ export const Container = styled.div`
                 width: 100%;
               }
             }
-          }
+            .modalFigure {
+              max-width: 466px;
+              max-height: 239px;
+              overflow: hidden;
+              background-color: var(--color-grey7);
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
-          .modalFigure {
-            max-width: 466px;
-            max-height: 239px;
-            overflow: hidden;
-            background-color: var(--color-grey7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            .modalImage {
-              width: 80%;
+              .modalImage {
+                width: 80%;
+              }
             }
           }
         }

@@ -8,7 +8,7 @@ const UserProfile = ({ name, description }: IUserProfile) => {
   return (
     <Container>
       <div className="userProfileContent">
-        <UserImage name={"André Silva Souza"} className="productUserImage" />
+        <UserImage name={name} className="productUserImage" />
         <div className="userProfileContentUserName">
           <Heading
             className=""
