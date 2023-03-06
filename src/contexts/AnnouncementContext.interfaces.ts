@@ -41,8 +41,8 @@ export interface IImage {
 }
 
 export interface IAnnouncementContext {
-  announcements: IAnnouncement[] | [];
-  setAnnouncements: Dispatch<SetStateAction<IAnnouncement[] | []>>;
+  announcementsAdvertiser: IAnnouncement[] | [];
+  setAnnouncementsAdvertiser: Dispatch<SetStateAction<IAnnouncement[] | []>>;
   cars: IAnnouncement[] | [];
   setCars: Dispatch<SetStateAction<IAnnouncement[] | []>>;
   motorcycles: IAnnouncement[] | [];
@@ -56,6 +56,7 @@ export interface IAnnouncementContext {
   deleteAnnouncement: (id: string) => Promise<void>;
   goTo: (route: string) => void;
   listAnnouncementById: (id: string) => Promise<void>;
+  listAnnouncementsByIdAdvertiser: (id: string) => Promise<void>;
   detailedAnnouncement: IAnnouncement | null;
   loading: boolean;
   isDeleteAnnouncement: boolean;
