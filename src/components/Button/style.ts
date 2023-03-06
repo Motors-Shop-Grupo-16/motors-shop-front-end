@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
-import { IButtonConfig } from "./interfaces";
+import { IButtonProps } from "./interfaces";
 
-const Container = styled.button<IButtonConfig>`
+export const Container = styled.button<IButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,7 @@ const Container = styled.button<IButtonConfig>`
 
   font-family: var(--font-family1);
   font-weight: 600;
-  color: var(${(props) => (props.color ? props.color : "--color-grey2")});
+  color: var(${({ color }) => (color ? color : "--color-grey2")});
 
   ${({ buttonText }) =>
     buttonText === "Big"
@@ -38,6 +38,12 @@ const Container = styled.button<IButtonConfig>`
       : css`
           border: 1.5px solid var(--color-grey2);
         `}
-`;
 
-export default Container;
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          border-color: var(--color-grey5);
+          background-color: var(--color-grey5);
+        `
+      : ""}
+`;

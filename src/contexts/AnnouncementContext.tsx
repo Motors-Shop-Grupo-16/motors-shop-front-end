@@ -6,6 +6,7 @@ import {
   IAnnouncement,
   IAnnouncementContext,
   IAnnouncementProviderProps,
+  ICommentData,
 } from "./AnnouncementContext.interfaces";
 
 export const AnnouncementContext = createContext({} as IAnnouncementContext);
@@ -26,6 +27,8 @@ export const AnnouncementProvider = ({
   const [isDeleteAnnouncement, setIsDeleteAnnouncement] =
     useState<boolean>(false);
   const [announcementToDelete, setAnnouncementToDelete] = useState<string>("");
+  const [detailedAnnouncementModal, setDetailedAnnouncementModal] =
+    useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -159,6 +162,20 @@ export const AnnouncementProvider = ({
     }
   };
 
+  const createComment = async (commentData: ICommentData, id: string) => {
+    const token = localStorage.getItem("@usermotorsshop:token");
+    if (token) {
+      try {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        await api.post(`/comments/${id}`, commentData);
+
+        listAnnouncementById(id);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   const confirmDeletion = (id: string) => {
     setIsUpdateAnnouncement(false);
     setIsDeleteAnnouncement(true);
@@ -188,6 +205,9 @@ export const AnnouncementProvider = ({
     announcementToDelete,
     setAnnouncementToDelete,
     confirmDeletion,
+    createComment,
+    detailedAnnouncementModal,
+    setDetailedAnnouncementModal,
   };
 
   return (

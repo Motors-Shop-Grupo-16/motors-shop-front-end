@@ -86,4 +86,6 @@ export interface IUserContext {
   isEditAddress: boolean;
   setIsEditAddress: Dispatch<React.SetStateAction<boolean>>;
   editAddress: (data: FieldValues) => void;
+  token: string | null;
+  setToken: Dispatch<SetStateAction<string | null>>;
 }

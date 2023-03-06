@@ -35,7 +35,7 @@ export const registerUserFormSchema = yup.object().shape({
     city: yup.string().required("Cidade é obrigatório"),
     road: yup.string().required("Rua é obrigatório"),
     number: yup.string().required("Número é obrigatório"),
-    complement: yup.string().required("Complemento é obrigatório"),
+    complement: yup.string().notRequired(),
   }),
   isBuyer: yup
     .string()

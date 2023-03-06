@@ -5,9 +5,9 @@ import { IUserImageProps } from "./interfaces";
 
 import Container from "./style";
 
-const UserImage = ({ name, classname }: IUserImageProps) => {
+const UserImage = ({ name, className }: IUserImageProps) => {
   return (
-    <Container color={colorRandomizer(name)} className={classname}>
+    <Container color={colorRandomizer(name)} className={className}>
       {createImage(name)}
     </Container>
   );

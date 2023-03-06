@@ -22,6 +22,7 @@ time, mark, audio, video, input, textarea, select, option, button {
 	vertical-align: baseline;
   	box-sizing: border-box;
 	text-decoration: none;
+	outline: none;
 }
 
 article, aside, details, figcaption, figure, 

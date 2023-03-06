@@ -22,10 +22,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isRecoverPassword, setIsRecoverPassword] = useState<boolean>(false);
   const [isEditAddress, setIsEditAddress] = useState<boolean>(false);
 
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("@usermotorsshop:token")
+  );
+
   const navigate = useNavigate();
 
   async function loadUser() {
-    const token = localStorage.getItem("@usermotorsshop:token");
     if (token) {
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -34,8 +37,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           setUser(response.data);
         });
       } catch (error) {
-        localStorage.removeItem("@usercontacts:token");
-        localStorage.removeItem("@usercontacts:userId");
+        localStorage.removeItem("@usermotorsshop:token");
+        localStorage.removeItem("@usermotorsshop:userId");
       }
     }
   }
@@ -53,6 +56,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         const { token } = response.data;
 
         localStorage.setItem("@usermotorsshop:token", token);
+        setToken(token);
         api.defaults.headers.common.authorization = `Bearer ${token}`;
         api.get(`/users`).then((responsee) => {
           setUser(responsee.data);
@@ -164,8 +168,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       isEditAddress,
       setIsEditAddress,
       editAddress,
+      token,
+      setToken,
     }),
-    [isRecoverPassword, isEditUser, user, isEditAddress]
+    [isRecoverPassword, isEditUser, user, isEditAddress, token]
   );
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
