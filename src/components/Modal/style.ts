@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -11,7 +11,26 @@ export const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 3; */
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 8px;
+  position: fixed;
   z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.5);
+
+  .containerModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .modal {
     display: flex;
