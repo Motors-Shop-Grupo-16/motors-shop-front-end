@@ -7,9 +7,9 @@ const pluralFormatter = (number: number, month?: boolean) => {
 
 const dateFormatter = (date: Date) => {
   const currentDate = new Date().getTime();
-  const createdAt = new Date(date).getTime();
+  const incomingDate = new Date(date).getTime();
 
-  const timeDifference = currentDate - createdAt;
+  const timeDifference = currentDate - incomingDate;
 
   if (timeDifference < 1000) {
     return `Agora`;

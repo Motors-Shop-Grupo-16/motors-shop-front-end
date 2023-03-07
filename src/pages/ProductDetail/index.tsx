@@ -184,10 +184,10 @@ export const ProductDetail = () => {
                   className="productButton"
                 >
                   <a
-                    href={`https://wa.me/+${detailedAnnouncement.User.phone}`.replace(
+                    href={`https://wa.me/+${detailedAnnouncement.User.phone.replace(
                       /[\D]/g,
                       ""
-                    )}
+                    )}`}
                     className="buttonLink"
                     target="_blank"
                   >
