@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const Link = styled.a`
   width: 146px;
   height: 48px;
   padding: 12px 28px;
@@ -129,7 +129,7 @@ export const Button = styled.button`
   }
 `;
 
-export const LinkBtn = styled(Button)`
+export const LinkBtn = styled(Link)`
   display: flex;
   align-items: center;
   overflow: hidden;
