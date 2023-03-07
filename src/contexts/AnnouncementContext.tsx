@@ -266,7 +266,7 @@ export const AnnouncementProvider = ({
       detailedAnnouncement,
       loading,
       isDeleteAnnouncement,
-      detailedAnnouncement,
+      detailedAnnouncementModal,
       announcement,
       auctions
     ]
