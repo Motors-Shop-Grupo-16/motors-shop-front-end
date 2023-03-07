@@ -64,7 +64,6 @@ export interface IAnnouncementContext {
   listAnnouncementById: (id: string) => Promise<void>;
   listAnnouncementsByIdAdvertiser: (id: string) => Promise<void>;
   detailedAnnouncement: IAnnouncement | null;
-  loading: boolean;
   isDeleteAnnouncement: boolean;
   setIsDeleteAnnouncement: Dispatch<SetStateAction<boolean>>;
   announcementToDelete: string;
@@ -73,12 +72,8 @@ export interface IAnnouncementContext {
   createComment: (commentData: ICommentData, id: string) => Promise<void>;
   detailedAnnouncementModal: boolean;
   setDetailedAnnouncementModal: Dispatch<SetStateAction<boolean>>;
-  updateComment: (
-    id: string,
-    data: { content: string },
-    announcementId: string
-  ) => Promise<void>;
-  deleteComment: (id: string, announcementId: string) => Promise<void>;
+  updateComment: (id: string, data: { content: string }) => Promise<void>;
+  deleteComment: (id: string) => Promise<void>;
   commentModal: boolean;
   setCommentModal: Dispatch<SetStateAction<boolean>>;
 }

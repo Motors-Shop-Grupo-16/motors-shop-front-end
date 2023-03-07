@@ -29,7 +29,6 @@ export const AnnouncementProvider = ({
     useState<boolean>(false);
   const [detailedAnnouncement, setDetailedAnnouncement] =
     useState<IAnnouncement | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const [isDeleteAnnouncement, setIsDeleteAnnouncement] =
     useState<boolean>(false);
   const [announcementToDelete, setAnnouncementToDelete] = useState<string>("");
@@ -194,15 +193,12 @@ export const AnnouncementProvider = ({
 
   const listAnnouncementById = async (id: string) => {
     try {
-      setLoading(true);
       const { data } = await api.get(`/announcements/${id}`);
 
       setDetailedAnnouncement(data);
     } catch (error) {
       console.error(error);
       goTo("/error404");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -236,7 +232,6 @@ export const AnnouncementProvider = ({
   const updateComment = async (
     id: string,
     data: { content: string },
-    announcementId: string
   ) => {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
 
@@ -245,7 +240,6 @@ export const AnnouncementProvider = ({
     toast.promise(promisePatch, {
       loading: "Editando...",
       success: () => {
-        listAnnouncementById(announcementId);
         setCommentModal(false);
         return "Editado com sucesso";
       },
@@ -253,7 +247,7 @@ export const AnnouncementProvider = ({
     });
   };
 
-  const deleteComment = async (id: string, announcementId: string) => {
+  const deleteComment = async (id: string) => {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
 
     const promiseDelete = api.delete(`/comments/${id}`);
@@ -261,7 +255,6 @@ export const AnnouncementProvider = ({
     toast.promise(promiseDelete, {
       loading: "Deletando...",
       success: () => {
-        listAnnouncementById(announcementId);
         setCommentModal(false);
         return "Deletado com sucesso";
       },
@@ -287,7 +280,6 @@ export const AnnouncementProvider = ({
       goTo,
       listAnnouncementById,
       detailedAnnouncement,
-      loading,
       isDeleteAnnouncement,
       setIsDeleteAnnouncement,
       announcementToDelete,
@@ -312,7 +304,6 @@ export const AnnouncementProvider = ({
       isCreateAnnouncement,
       isUpdateAnnouncement,
       detailedAnnouncement,
-      loading,
       isDeleteAnnouncement,
       detailedAnnouncementModal,
       announcement,
