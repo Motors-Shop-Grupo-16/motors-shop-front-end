@@ -167,13 +167,7 @@ export const ProductDetail = () => {
                         className="productPrice"
                         tag="p"
                       >
-                        {Number(detailedAnnouncement.price).toLocaleString(
-                          "pt-BR",
-                          {
-                            style: "currency",
-                            currency: "BRL",
-                          }
-                        )}
+                        {`R$ ${detailedAnnouncement.price}`}
                       </Heading>
                     </div>
 
