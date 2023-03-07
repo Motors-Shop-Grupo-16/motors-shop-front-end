@@ -93,7 +93,7 @@ export const NavContainer = styled.div<divProps>`
   }
 
   li {
-    .hashLink {
+    .link_li {
       display: flex;
       width: 100%;
       flex-direction: column;
@@ -102,27 +102,11 @@ export const NavContainer = styled.div<divProps>`
       color: var(--color-grey2);
       padding: 0 20px 0;
       font-family: var(font-family2);
+      font-size: 16px;
+      width: 100%;
 
       :hover {
-        .link_li {
-          color: var(--color-brand1);
-        }
-      }
-
-      .link_li {
-        font-size: 16px;
-        display: flex;
-        width: 100%;
-        font-family: var(--font-family2);
-
-        ${(props) =>
-          props.user === true
-            ? css`
-                font-weight: 400;
-              `
-            : css`
-                font-weight: 600;
-              `};
+        color: var(--color-brand1);
       }
     }
   }
@@ -242,7 +226,12 @@ export const NavUl = styled.ul<divProps>`
     align-items: flex-start;
     padding-left: 0;
 
+    .link_li_login {
+      margin-top: 30px;
+    }
+
     .link_li {
+      /* width: 100%; */
       justify-content: flex-start;
       padding-left: 20px;
       font-family: var(--font-family2);
@@ -275,6 +264,11 @@ export const NavUl = styled.ul<divProps>`
   @media (min-width: 1000px) {
     flex-direction: row;
     li {
+      width: 130px;
+
+      .link_li_login {
+        margin-top: 0;
+      }
       .link_li {
         justify-content: center;
       }
