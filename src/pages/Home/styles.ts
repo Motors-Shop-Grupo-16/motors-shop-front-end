@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
 export const ContainerHomePage = styled.main`
-  .footer {
-    position: relative;
-  }
+  min-height: 100vh;
   background: var(--color-whiteFixed);
+
+  .footer {
+    @media (min-height: 2000px) {
+      position: fixed;
+    }
+  }
 `;
 
 export const ContainerListHome = styled.div`

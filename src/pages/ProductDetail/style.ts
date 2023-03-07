@@ -396,11 +396,12 @@ export const Container = styled.div`
   }
 
   .footer {
-    position: relative;
     margin-top: 45px;
-
     @media (min-width: 1262px) {
       margin-top: 73px;
+    }
+    @media (min-height: 1800px) {
+      position: fixed;
     }
   }
 `;

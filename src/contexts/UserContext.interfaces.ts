@@ -61,7 +61,6 @@ export interface IUserResponse {
   dateOfBirth: string;
   description: string;
   isAdvertiser: boolean;
-  isActive: boolean;
   createdAt: string;
   updatedAt: string;
   Address: IAddressResponse;

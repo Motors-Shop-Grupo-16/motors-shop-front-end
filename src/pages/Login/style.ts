@@ -6,6 +6,12 @@ export const Container = styled.div`
   align-items: center;
   background: var(--color-grey8);
 
+  .footer {
+    @media (min-height: 950px) {
+      position: fixed;
+    }
+  }
+
   form {
     margin-top: 122px;
     margin-bottom: 122px;
