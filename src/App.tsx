@@ -1,4 +1,4 @@
-import CallModal from "./components/CallModal/indes";
+import CallModal from "./components/CallModal";
 import Navbar from "./components/NavBar";
 import { AnnouncementProvider } from "./contexts/AnnouncementContext";
 import { UserProvider } from "./contexts/UserContext";
