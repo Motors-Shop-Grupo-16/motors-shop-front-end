@@ -21,13 +21,13 @@ const ProductCard = ({
     setIsUpdateAnnouncement,
     setAnnouncement,
   } = useContext(AnnouncementContext);
+
   return (
     <Container>
       <div
         className="productContentContainer"
         onClick={() => {
-          listAnnouncementById(product.id);
-          goTo("/product");
+          goTo(`/product?announcement=${product.id}`);
         }}
       >
         <div className="productImageContainer">
