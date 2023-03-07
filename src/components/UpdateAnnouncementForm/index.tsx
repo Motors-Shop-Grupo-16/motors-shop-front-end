@@ -31,8 +31,6 @@ const UpdateAnnouncementForm = ({
     resolver: yupResolver(updateAnnouncementFormSchema),
   });
 
-  console.log(announcement.price)
-
   const [values, setValues] = useState({
     year: announcement.year,
     price: announcement.price,
