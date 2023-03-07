@@ -120,7 +120,7 @@ const ProductCard = ({
             borderLength="2px"
             onClick={() => {
               listAnnouncementById(product.id);
-              goTo("/product");
+              goTo(`/product?announcement=${product.id}`);
             }}
           >
             Ver como
