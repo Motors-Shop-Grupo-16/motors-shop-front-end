@@ -5,6 +5,7 @@ import { GrFormClose } from "react-icons/gr";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import logo from "../../assets/logo.svg";
+import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { UserContext } from "../../contexts/UserContext";
 import { LinkBtn } from "../../styles/buttonsNavBar";
 import { BodyText } from "../../styles/typography";
@@ -21,17 +22,17 @@ const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [submenuIsVisible, setSubmenuIsVisible] = useState(false);
 
+  const { goTo } = useContext(AnnouncementContext);
+
   const { user, setUser, setIsEditUser, setIsEditAddress, setToken } =
     useContext(UserContext);
-
-  const navigate = useNavigate();
 
   function logout() {
     localStorage.removeItem("@usermotorsshop:token");
     setSubmenuIsVisible(false);
     setUser(null);
     setToken(null);
-    navigate("/");
+    goTo("/");
   }
 
   const location = useLocation();
@@ -54,18 +55,24 @@ const Navbar = () => {
           <NavContainer isVisible={menuIsVisible}>
             <NavUl>
               <li>
-                <HashLink to={`${pathname}${location.search}#car`}>
-                  <LinkBtn className="medium link_li">Carros</LinkBtn>
+                <HashLink
+                  className="hashLink"
+                  to={`${pathname}${location.search}#car`}
+                >
+                  <a className="link_li">Carros</a>
                 </HashLink>
               </li>
               <li>
-                <HashLink to={`${pathname}${location.search}#motorcycle`}>
-                  <LinkBtn className="medium link_li">Motos</LinkBtn>
+                <HashLink
+                  className="hashLink"
+                  to={`${pathname}${location.search}#motorcycle`}
+                >
+                  <a className="link_li">Motos</a>
                 </HashLink>
               </li>
               <li>
-                <HashLink to="/#auction">
-                  <LinkBtn className="medium link_li">Leilão</LinkBtn>
+                <HashLink className="hashLink" to="/#auction">
+                  <a className="link_li">Leilão</a>
                 </HashLink>
               </li>
             </NavUl>
@@ -131,19 +138,15 @@ const Navbar = () => {
             ) : (
               <NavUl>
                 <li>
-                  <LinkBtn
-                    className="medium link_li"
-                    as="a"
-                    onClick={() => navigate("/login")}
-                  >
+                  <a className="medium link_li" onClick={() => goTo("/login")}>
                     Fazer Login
-                  </LinkBtn>
+                  </a>
                 </li>
                 <li className="li_btn">
                   <LinkBtn
                     className="outlineGrey medium btn_li"
                     as="a"
-                    onClick={() => navigate("/register")}
+                    onClick={() => goTo("/register")}
                   >
                     Cadastrar
                   </LinkBtn>
