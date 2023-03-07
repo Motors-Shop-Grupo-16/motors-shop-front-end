@@ -5,6 +5,12 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .footer {
+    @media (min-height: 880px) {
+      position: fixed;
+    }
+  }
+
   form {
     margin-top: 122px;
     margin-bottom: 122px;

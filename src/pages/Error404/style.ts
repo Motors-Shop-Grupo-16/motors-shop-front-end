@@ -5,6 +5,12 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .footer {
+    @media (min-height: 1800px) {
+      position: fixed;
+    }
+  }
+
   .titleError {
     display: flex;
     align-items: center;

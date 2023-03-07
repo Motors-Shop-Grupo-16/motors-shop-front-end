@@ -16,10 +16,7 @@ export const Container = styled.footer`
 
   position: relative;
   bottom: 0;
-
-  @media (min-height: 916px) {
-    position: fixed;
-  }
+  
 
   .footer-content {
     display: flex;

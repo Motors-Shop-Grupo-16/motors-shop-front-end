@@ -15,6 +15,12 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
 
+  .footer {
+    @media (min-height: 2000px) {
+      position: fixed;
+    }
+  }
+
   .ContainerLists {
     display: flex;
     flex-direction: column;
@@ -30,9 +36,5 @@ export const Container = styled.div`
     @media (max-width: 755px) {
       padding-left: 20px;
     }
-  }
-
-  .footer {
-    position: relative;
   }
 `;

@@ -8,7 +8,9 @@ export const Container = styled.div`
   background: var(--color-grey8);
 
   .footer {
-    position: relative;
+    @media (min-height: 1800px) {
+      position: fixed;
+    }
   }
 
   form {
