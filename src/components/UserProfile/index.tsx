@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { BodyText, Heading } from "../../styles/typography";
 import { splitName } from "../../utils/createImage";
+import Button from "../Button";
 import UserImage from "../UserImage/userImage";
 import { IUserProfile } from "./interfaces";
 import { Container } from "./style";
+import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 
-const UserProfile = ({ name, description }: IUserProfile) => {
+const UserProfile = ({ name, description, viewButton }: IUserProfile) => {
+  const { setIsCreateAnnouncement } = useContext(AnnouncementContext);
   return (
     <Container>
       <div className="userProfileContent">
@@ -40,6 +44,22 @@ const UserProfile = ({ name, description }: IUserProfile) => {
         >
           {description}
         </BodyText>
+        {viewButton && (
+          <Button
+            type="button"
+            width="fit-content"
+            buttonText=""
+            backgroundColor="--color-grey10"
+            color="--color-brand1"
+            borderColor="--color-brand1"
+            borderLength="2px"
+            onClick={() => {
+              setIsCreateAnnouncement(true);
+            }}
+          >
+            Criar anúncio
+          </Button>
+        )}
       </div>
     </Container>
   );

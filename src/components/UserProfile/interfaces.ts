@@ -1,5 +1,5 @@
 export interface IUserProfile {
-    name: string;
-    description: string;
-  }
-  
+  name: string;
+  description: string;
+  viewButton?: boolean;
+}

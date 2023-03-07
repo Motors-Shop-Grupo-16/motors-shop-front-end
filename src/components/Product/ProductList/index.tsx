@@ -4,7 +4,13 @@ import ProductCard from "../ProductCard";
 
 import { Container } from "./style";
 
-const ProductList = ({ products }: { products: IAnnouncement[] }) => {
+const ProductList = ({
+  products,
+  viewButtons,
+}: {
+  products: IAnnouncement[];
+  viewButtons?: boolean;
+}) => {
   return (
     <>
       {products.length == 0 ? (
@@ -14,7 +20,11 @@ const ProductList = ({ products }: { products: IAnnouncement[] }) => {
       ) : (
         <Container>
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              viewButtons={viewButtons}
+            />
           ))}
         </Container>
       )}

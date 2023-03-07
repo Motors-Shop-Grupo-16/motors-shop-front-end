@@ -1,15 +1,15 @@
-import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container } from "./style";
-import { createAnnouncementFormSchema } from "../../validators/createAnnouncementFormSchema";
-import Input from "../Input";
-import Textarea from "../Textarea";
 import { useContext, useState } from "react";
-import { BodyText } from "../../styles/typography";
-import { Select } from "../Select/style";
-import Modal from "../Modal";
-import Button from "../Button";
+import { useForm } from "react-hook-form";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
+import { BodyText } from "../../styles/typography";
+import { createAnnouncementFormSchema } from "../../validators/createAnnouncementFormSchema";
+import Button from "../Button";
+import Input from "../Input";
+import Modal from "../Modal";
+import { Select } from "../Select/style";
+import Textarea from "../Textarea";
+import { Container } from "./style";
 
 const CreateAnnouncementForm = () => {
   const [imagesFields, setImagesFields] = useState([1]);
@@ -29,6 +29,9 @@ const CreateAnnouncementForm = () => {
     setImagesFields([...imagesFields]);
   };
 
+  const [selectedTypeSale, setSelectedTypeSale] = useState<string>("sale");
+  const [selectedTypeVehicle, setSelectedTypeVehicle] = useState<string>("car");
+
   return (
     <Modal title="Criar anúncio" closeModal={setIsCreateAnnouncement}>
       <Container onSubmit={handleSubmit(createAnnouncement)}>
@@ -36,10 +39,14 @@ const CreateAnnouncementForm = () => {
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Tipo de anúncio
           </BodyText>
-          <Select id="typeSale" multiple {...register("typeSale")}>
-            <option value="sale" selected>
-              Venda
-            </option>
+          <Select
+            id="typeSale"
+            multiple
+            {...register("typeSale")}
+            value={[selectedTypeSale]}
+            onChange={(event) => setSelectedTypeSale(event.target.value)}
+          >
+            <option value="sale">Venda</option>
             <option value="auction">Leilão</option>
           </Select>
           <span>{errors.typeSale?.message as string}</span>
@@ -98,10 +105,14 @@ const CreateAnnouncementForm = () => {
           <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
             Tipo de veículo
           </BodyText>
-          <Select id="typeVehicle" multiple {...register("typeVehicle")}>
-            <option value="car" selected>
-              Carro
-            </option>
+          <Select
+            id="typeVehicle"
+            multiple
+            {...register("typeVehicle")}
+            value={[selectedTypeVehicle]}
+            onChange={(event) => setSelectedTypeVehicle(event.target.value)}
+          >
+            <option value="car">Carro</option>
             <option value="motorcycle">Moto</option>
           </Select>
           <span>{errors.typeVehicle?.message as string}</span>

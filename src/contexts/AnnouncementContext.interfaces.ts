@@ -45,6 +45,8 @@ export interface IImage {
 export interface IAnnouncementContext {
   announcementsAdvertiser: IAnnouncement[];
   setAnnouncementsAdvertiser: Dispatch<SetStateAction<IAnnouncement[]>>;
+  announcement: IAnnouncement | null;
+  setAnnouncement: Dispatch<SetStateAction<IAnnouncement | null>>;
   cars: IAnnouncement[];
   setCars: Dispatch<SetStateAction<IAnnouncement[]>>;
   motorcycles: IAnnouncement[];

@@ -9,6 +9,12 @@ export const Container = styled.div`
   background: var(--color-brand1);
   padding: 0 16px;
 
+  button {
+    &:hover {
+      background: var(--color-brand4);
+    }
+  }
+
   .userProfileContent {
     display: flex;
     flex-direction: column;
