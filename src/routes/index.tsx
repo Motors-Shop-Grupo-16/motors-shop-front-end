@@ -15,7 +15,6 @@ export const RoutesMain = () => (
     <Route path="/reset-password" element={<ResetPassword />} />
     <Route path="/product" element={<ProductDetail />} />
     <Route path="/advertiser" element={<Advertiser />} />
-    <Route path="/error404" element={<Error404 />} />
-    <Route path="*" element={<Navigate replace to="/" />} />
+    <Route path="*" element={<Error404 />} />
   </Routes>
 );

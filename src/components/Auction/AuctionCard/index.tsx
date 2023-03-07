@@ -1,16 +1,14 @@
 import { BsArrowRight } from "react-icons/bs";
 import { FiClock } from "react-icons/fi";
 import { BodyText, Heading } from "../../../styles/typography";
-import { IAuction } from "./interfaces";
+import { IAnnouncement } from "../../../contexts/AnnouncementContext.interfaces";
 import Container from "./style";
 import UserImage from "../../UserImage/userImage";
+import dateFormatter from "../../../utils/dateFormatter";
 
-export const AuctionCard = ({ auction }: { auction: IAuction }) => {
-  function handleClick() {
-    console.log("Ir Para pagina action");
-  }
+export const AuctionCard = ({ auction }: { auction: IAnnouncement }) => {
   return (
-    <Container imageUrl={auction.imageUrl}>
+    <Container imageUrl={auction.coverImage}>
       <div className="auction-content">
         <div className="auction-time">
           <FiClock color="var(--color-brand1)" size={20} />
@@ -21,7 +19,7 @@ export const AuctionCard = ({ auction }: { auction: IAuction }) => {
             weight="500"
             color="--color-grey1"
           >
-            {auction.time}
+            {dateFormatter(auction.createdAt)}
           </Heading>
         </div>
 
@@ -47,7 +45,7 @@ export const AuctionCard = ({ auction }: { auction: IAuction }) => {
 
         <div className="auction-author">
           <div className="auction-author-icon">
-            <UserImage className="productUserImage" name={auction.owner} />
+            <UserImage className="productUserImage" name={auction.User.name} />
           </div>
           <BodyText
             className=""
@@ -56,7 +54,7 @@ export const AuctionCard = ({ auction }: { auction: IAuction }) => {
             weight="500"
             color="--color-whiteFixed"
           >
-            {auction.owner}
+            {auction.User.name}
           </BodyText>
         </div>
 
@@ -96,7 +94,7 @@ export const AuctionCard = ({ auction }: { auction: IAuction }) => {
         </div>
       </div>
 
-      <div className="auction-nav" onClick={() => handleClick()}>
+      <div className="auction-nav">
         <BodyText
           className="auction-info-mileage"
           tag="p"

@@ -20,6 +20,7 @@ export const AnnouncementProvider = ({
   >([]);
   const [cars, setCars] = useState<IAnnouncement[]>([]);
   const [motorcycles, setMotorcycles] = useState<IAnnouncement[]>([]);
+  const [auctions, setAuctions] = useState<IAnnouncement[]>([]);
   const [isCreateAnnouncement, setIsCreateAnnouncement] =
     useState<boolean>(false);
   const [isUpdateAnnouncement, setIsUpdateAnnouncement] =
@@ -48,13 +49,19 @@ export const AnnouncementProvider = ({
 
       setCars(
         responseAnnouncements.data.filter(
-          (car: IAnnouncement) => car.typeVehicle === "car"
+          (car: IAnnouncement) => car.typeVehicle === "car" && car.typeSale === "sale"
         )
       );
 
       setMotorcycles(
         responseAnnouncements.data.filter(
-          (car: IAnnouncement) => car.typeVehicle === "motorcycle"
+          (motorcycle: IAnnouncement) => motorcycle.typeVehicle === "motorcycle" && motorcycle.typeSale === "sale"
+        )
+      );
+
+      setAuctions(
+        responseAnnouncements.data.filter(
+          (auction: IAnnouncement) => auction.typeSale === "auction"
         )
       );
     }
@@ -248,6 +255,7 @@ export const AnnouncementProvider = ({
       listAnnouncementsByIdAdvertiser,
       announcement,
       setAnnouncement,
+      auctions
     }),
     [
       announcementsAdvertiser,
@@ -260,6 +268,7 @@ export const AnnouncementProvider = ({
       isDeleteAnnouncement,
       detailedAnnouncement,
       announcement,
+      auctions
     ]
   );
 

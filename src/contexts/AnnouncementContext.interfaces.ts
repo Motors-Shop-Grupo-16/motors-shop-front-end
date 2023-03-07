@@ -21,6 +21,8 @@ export interface IAnnouncement {
   };
   images: IImage[];
   comments: IComment[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IComment {
@@ -41,14 +43,15 @@ export interface IImage {
 }
 
 export interface IAnnouncementContext {
-  announcementsAdvertiser: IAnnouncement[] | [];
-  setAnnouncementsAdvertiser: Dispatch<SetStateAction<IAnnouncement[] | []>>;
+  announcementsAdvertiser: IAnnouncement[];
+  setAnnouncementsAdvertiser: Dispatch<SetStateAction<IAnnouncement[]>>;
   announcement: IAnnouncement | null;
   setAnnouncement: Dispatch<SetStateAction<IAnnouncement | null>>;
-  cars: IAnnouncement[] | [];
-  setCars: Dispatch<SetStateAction<IAnnouncement[] | []>>;
-  motorcycles: IAnnouncement[] | [];
-  setMotorcycles: Dispatch<SetStateAction<IAnnouncement[] | []>>;
+  cars: IAnnouncement[];
+  setCars: Dispatch<SetStateAction<IAnnouncement[]>>;
+  motorcycles: IAnnouncement[];
+  setMotorcycles: Dispatch<SetStateAction<IAnnouncement[]>>;
+  auctions: IAnnouncement[];
   isCreateAnnouncement: boolean;
   setIsCreateAnnouncement: Dispatch<SetStateAction<boolean>>;
   createAnnouncement: (data: FieldValues) => void;

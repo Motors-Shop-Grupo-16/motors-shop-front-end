@@ -27,10 +27,9 @@ export const ProductDetail = () => {
   } = useContext(AnnouncementContext);
 
   const { token, user } = useContext(UserContext);
+  const [commentData, setCommentData] = useState<string>("");
 
   if (loading) return <Loading />;
-
-  const [commentData, setCommentData] = useState<string>("");
 
   if (!detailedAnnouncement) return <Navigate to={"/"} />;
 
@@ -149,20 +148,19 @@ export const ProductDetail = () => {
 
               <ul className="imagesList">
                 {detailedAnnouncement.images.map((image, i) => (
-                  <>
-                    <li
-                      key={image.id}
-                      className="imageItem"
-                      onClick={() => setDetailedAnnouncementModal(true)}
-                    >
-                      <figure className="imageContainer">
-                        <img
-                          src={image.url}
-                          alt={`Image ${i}`}
-                          className="image"
-                        />
-                      </figure>
-                    </li>
+                  <li
+                    key={image.id}
+                    className="imageItem"
+                    onClick={() => setDetailedAnnouncementModal(true)}
+                  >
+                    <figure className="imageContainer">
+                      <img
+                        src={image.url}
+                        alt={`Image ${i}`}
+                        className="image"
+                      />
+                    </figure>
+
                     {detailedAnnouncementModal && (
                       <Modal
                         title="Imagem do veículo"
@@ -177,7 +175,7 @@ export const ProductDetail = () => {
                         </figure>
                       </Modal>
                     )}
-                  </>
+                  </li>
                 ))}
               </ul>
             </div>
