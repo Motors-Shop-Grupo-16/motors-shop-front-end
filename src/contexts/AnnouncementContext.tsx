@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
@@ -9,6 +9,8 @@ import {
   ICommentData,
 } from "./AnnouncementContext.interfaces";
 import { toast } from "react-hot-toast";
+
+import { UserContext } from "./UserContext";
 
 export const AnnouncementContext = createContext({} as IAnnouncementContext);
 
@@ -43,19 +45,24 @@ export const AnnouncementProvider = ({
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  const { token } = useContext(UserContext);
+
   useEffect(() => {
     async function listAnnouncements() {
       const responseAnnouncements = await api.get("/announcements");
 
       setCars(
         responseAnnouncements.data.filter(
-          (car: IAnnouncement) => car.typeVehicle === "car" && car.typeSale === "sale"
+          (car: IAnnouncement) =>
+            car.typeVehicle === "car" && car.typeSale === "sale"
         )
       );
 
       setMotorcycles(
         responseAnnouncements.data.filter(
-          (motorcycle: IAnnouncement) => motorcycle.typeVehicle === "motorcycle" && motorcycle.typeSale === "sale"
+          (motorcycle: IAnnouncement) =>
+            motorcycle.typeVehicle === "motorcycle" &&
+            motorcycle.typeSale === "sale"
         )
       );
 
@@ -69,7 +76,6 @@ export const AnnouncementProvider = ({
   }, []);
 
   const createAnnouncement = async (data: FieldValues) => {
-    console.log(data);
     const {
       coverImage,
       description,
@@ -101,7 +107,6 @@ export const AnnouncementProvider = ({
       isActive: true,
     };
 
-    const token = localStorage.getItem("@usermotorsshop:token");
     api.defaults.headers.common.authorization = `Bearer ${token}`;
     const promiseCreate = api.post(`/announcements/`, dataToSend);
 
@@ -148,7 +153,6 @@ export const AnnouncementProvider = ({
       isActive: isActive == "true" ? true : false,
     };
 
-    const token = localStorage.getItem("@usermotorsshop:token");
     api.defaults.headers.common.authorization = `Bearer ${token}`;
     const promiseUpdate = api.patch(`/announcements/${id}`, dataToSend);
 
@@ -164,7 +168,6 @@ export const AnnouncementProvider = ({
   };
 
   const deleteAnnouncement = async (id: string) => {
-    const token = localStorage.getItem("@usermotorsshop:token");
     api.defaults.headers.common.authorization = `Bearer ${token}`;
     const promiseDelete = api.delete(`/announcements/${id}`);
 
@@ -202,7 +205,6 @@ export const AnnouncementProvider = ({
   };
 
   const createComment = async (commentData: ICommentData, id: string) => {
-    const token = localStorage.getItem("@usermotorsshop:token");
     if (token) {
       try {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -222,6 +224,42 @@ export const AnnouncementProvider = ({
     } catch (error) {
       goTo("/error404");
       console.error(error);
+    }
+  };
+
+  const updateComment = async (
+    id: string,
+    data: { content: string },
+    announcementId: string
+  ) => {
+    try {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      await api.patch(`/comments/${id}`, data);
+
+      listAnnouncementById(announcementId);
+
+      return true;
+    } catch (error) {
+      console.error(error);
+
+      return false;
+    }
+  };
+
+  const deleteComment = async (id: string, announcementId: string) => {
+    try {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      await api.delete(`/comments/${id}`);
+
+      listAnnouncementById(announcementId);
+
+      return true;
+    } catch (error) {
+      console.error(error);
+
+      return false;
     }
   };
 
@@ -255,7 +293,9 @@ export const AnnouncementProvider = ({
       listAnnouncementsByIdAdvertiser,
       announcement,
       setAnnouncement,
-      auctions
+      auctions,
+      updateComment,
+      deleteComment,
     }),
     [
       announcementsAdvertiser,
@@ -268,7 +308,7 @@ export const AnnouncementProvider = ({
       isDeleteAnnouncement,
       detailedAnnouncementModal,
       announcement,
-      auctions
+      auctions,
     ]
   );
 

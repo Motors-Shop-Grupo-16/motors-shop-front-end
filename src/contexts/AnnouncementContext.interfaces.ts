@@ -29,6 +29,7 @@ export interface IComment {
   id: string;
   content: string;
   createdAt: Date;
+  updatedAt: Date;
   User: {
     id: string;
     name: string;
@@ -72,6 +73,12 @@ export interface IAnnouncementContext {
   createComment: (commentData: ICommentData, id: string) => Promise<void>;
   detailedAnnouncementModal: boolean;
   setDetailedAnnouncementModal: Dispatch<SetStateAction<boolean>>;
+  updateComment: (
+    id: string,
+    data: { content: string },
+    announcementId: string
+  ) => Promise<boolean>;
+  deleteComment: (id: string, announcementId: string) => Promise<boolean>;
 }
 
 export interface IAnnouncementProviderProps {
