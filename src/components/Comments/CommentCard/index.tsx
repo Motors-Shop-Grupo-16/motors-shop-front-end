@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
+import { AnnouncementContext } from "../../../contexts/AnnouncementContext";
 import { UserContext } from "../../../contexts/UserContext";
 
 import UserImage from "../../UserImage/userImage";
-import Modal from "../../Modal";
-import Button from "../../Button";
 
 import { splitName } from "../../../utils/createImage";
 import dateFormatter from "../../../utils/dateFormatter";
@@ -20,10 +19,11 @@ import { Container } from "./style";
 const CommentCard = ({
   comment,
   setModalData,
-  setCommentModal,
   setCommentUpdateData,
 }: ICommentProps) => {
   const { user } = useContext(UserContext);
+
+  const { setCommentModal } = useContext(AnnouncementContext);
 
   return (
     <Container
