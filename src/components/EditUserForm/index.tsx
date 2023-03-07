@@ -13,7 +13,8 @@ import { IEditUserFormProps } from "./interfaces";
 import { Container } from "./style";
 
 const EditUserForm = ({ user }: IEditUserFormProps) => {
-  const { setIsEditUser, editUser } = useContext(UserContext);
+  const { setIsEditUser, editUser, confirmUserDeletion } =
+    useContext(UserContext);
 
   const [values, setValues] = useState({
     cpf: user.cpf,
@@ -115,9 +116,9 @@ const EditUserForm = ({ user }: IEditUserFormProps) => {
             color="--color-grey2"
             borderColor="transparent"
             borderLength="0"
-            onClick={() => setIsEditUser(false)}
+            onClick={() => confirmUserDeletion()}
           >
-            Cancelar
+            Excluir conta
           </Button>
 
           <Button
