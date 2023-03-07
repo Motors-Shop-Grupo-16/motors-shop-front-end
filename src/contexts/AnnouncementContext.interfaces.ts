@@ -77,8 +77,10 @@ export interface IAnnouncementContext {
     id: string,
     data: { content: string },
     announcementId: string
-  ) => Promise<boolean>;
-  deleteComment: (id: string, announcementId: string) => Promise<boolean>;
+  ) => Promise<void>;
+  deleteComment: (id: string, announcementId: string) => Promise<void>;
+  commentModal: boolean;
+  setCommentModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IAnnouncementProviderProps {

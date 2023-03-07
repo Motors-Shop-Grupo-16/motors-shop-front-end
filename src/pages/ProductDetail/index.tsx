@@ -29,13 +29,14 @@ export const ProductDetail = () => {
     goTo,
     updateComment,
     deleteComment,
+    commentModal,
+    setCommentModal,
   } = useContext(AnnouncementContext);
 
   const { token, user } = useContext(UserContext);
   const [commentData, setCommentData] = useState<string>("");
   const [modalDataImage, setModalDataImage] = useState<IModalData | null>(null);
   const [modalData, setModalData] = useState<IComment | undefined>(undefined);
-  const [commentModal, setCommentModal] = useState<boolean>(false);
   const [commentUpdateData, setCommentUpdateData] = useState<string>("");
 
   if (loading) return <Loading />;
@@ -81,14 +82,9 @@ export const ProductDetail = () => {
                   borderColor="--color-alert2"
                   borderLength="1.5px"
                   color="--color-alert1"
-                  onClick={async () => {
-                    const res = await deleteComment(
-                      modalData!.id,
-                      detailedAnnouncement.id
-                    );
-
-                    res && setCommentModal(false);
-                  }}
+                  onClick={() =>
+                    deleteComment(modalData!.id, detailedAnnouncement.id)
+                  }
                 >
                   Excluir
                 </Button>
@@ -99,15 +95,13 @@ export const ProductDetail = () => {
                   borderColor="--color-brand1"
                   borderLength="1.5px"
                   color="--color-whiteFixed"
-                  onClick={async () => {
-                    const res = await updateComment(
+                  onClick={() =>
+                    updateComment(
                       modalData!.id,
                       { content: commentUpdateData },
                       detailedAnnouncement.id
-                    );
-
-                    res && setCommentModal(false);
-                  }}
+                    )
+                  }
                 >
                   Editar
                 </Button>
@@ -305,7 +299,6 @@ export const ProductDetail = () => {
               {detailedAnnouncement!.comments.length ? (
                 <CommentList
                   setModalData={setModalData}
-                  setCommentModal={setCommentModal}
                   setCommentUpdateData={setCommentUpdateData}
                 />
               ) : (
