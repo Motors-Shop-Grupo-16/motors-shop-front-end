@@ -29,12 +29,12 @@ export const AnnouncementProvider = ({
     useState<boolean>(false);
   const [detailedAnnouncement, setDetailedAnnouncement] =
     useState<IAnnouncement | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const [isDeleteAnnouncement, setIsDeleteAnnouncement] =
     useState<boolean>(false);
   const [announcementToDelete, setAnnouncementToDelete] = useState<string>("");
   const [detailedAnnouncementModal, setDetailedAnnouncementModal] =
     useState<boolean>(false);
+  const [commentModal, setCommentModal] = useState<boolean>(false);
 
   const [announcement, setAnnouncement] = useState<IAnnouncement | null>(null);
 
@@ -193,27 +193,29 @@ export const AnnouncementProvider = ({
 
   const listAnnouncementById = async (id: string) => {
     try {
-      setLoading(true);
       const { data } = await api.get(`/announcements/${id}`);
 
       setDetailedAnnouncement(data);
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
+      goTo("/error404");
     }
   };
 
   const createComment = async (commentData: ICommentData, id: string) => {
     if (token) {
-      try {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
-        await api.post(`/comments/${id}`, commentData);
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-        listAnnouncementById(id);
-      } catch (error) {
-        console.error(error);
-      }
+      const promisePost = api.post(`/comments/${id}`, commentData);
+
+      toast.promise(promisePost, {
+        loading: "Criando...",
+        success: () => {
+          listAnnouncementById(id);
+          return "Criado com sucesso";
+        },
+        error: (error) => `${error.response.data.message}`,
+      });
     }
   };
 
@@ -230,37 +232,34 @@ export const AnnouncementProvider = ({
   const updateComment = async (
     id: string,
     data: { content: string },
-    announcementId: string
   ) => {
-    try {
-      api.defaults.headers.common.authorization = `Bearer ${token}`;
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-      await api.patch(`/comments/${id}`, data);
+    const promisePatch = api.patch(`/comments/${id}`, data);
 
-      listAnnouncementById(announcementId);
-
-      return true;
-    } catch (error) {
-      console.error(error);
-
-      return false;
-    }
+    toast.promise(promisePatch, {
+      loading: "Editando...",
+      success: () => {
+        setCommentModal(false);
+        return "Editado com sucesso";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
   };
 
-  const deleteComment = async (id: string, announcementId: string) => {
-    try {
-      api.defaults.headers.common.authorization = `Bearer ${token}`;
+  const deleteComment = async (id: string) => {
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-      await api.delete(`/comments/${id}`);
+    const promiseDelete = api.delete(`/comments/${id}`);
 
-      listAnnouncementById(announcementId);
-
-      return true;
-    } catch (error) {
-      console.error(error);
-
-      return false;
-    }
+    toast.promise(promiseDelete, {
+      loading: "Deletando...",
+      success: () => {
+        setCommentModal(false);
+        return "Deletado com sucesso";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
   };
 
   const values = useMemo(
@@ -281,7 +280,6 @@ export const AnnouncementProvider = ({
       goTo,
       listAnnouncementById,
       detailedAnnouncement,
-      loading,
       isDeleteAnnouncement,
       setIsDeleteAnnouncement,
       announcementToDelete,
@@ -296,6 +294,8 @@ export const AnnouncementProvider = ({
       auctions,
       updateComment,
       deleteComment,
+      commentModal,
+      setCommentModal,
     }),
     [
       announcementsAdvertiser,
@@ -304,11 +304,11 @@ export const AnnouncementProvider = ({
       isCreateAnnouncement,
       isUpdateAnnouncement,
       detailedAnnouncement,
-      loading,
       isDeleteAnnouncement,
       detailedAnnouncementModal,
       announcement,
       auctions,
+      commentModal,
     ]
   );
 
