@@ -19,7 +19,7 @@ export const AuctionCard = ({ auction }: { auction: IAnnouncement }) => {
             weight="500"
             color="--color-grey1"
           >
-            {dateFormatter(auction.createdAt)}
+            {dateFormatter(auction.updatedAt)}
           </Heading>
         </div>
 

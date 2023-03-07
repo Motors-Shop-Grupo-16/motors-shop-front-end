@@ -13,6 +13,9 @@ import UserImage from "../../components/UserImage/userImage";
 
 import { splitName } from "../../utils/createImage";
 
+import { IModalData } from "./interfaces";
+import { IComment } from "../../contexts/AnnouncementContext.interfaces";
+
 import { BodyText, Heading } from "../../styles/typography";
 import { Container } from "./style";
 
@@ -24,10 +27,16 @@ export const ProductDetail = () => {
     detailedAnnouncementModal,
     setDetailedAnnouncementModal,
     goTo,
+    updateComment,
+    deleteComment,
   } = useContext(AnnouncementContext);
 
   const { token, user } = useContext(UserContext);
   const [commentData, setCommentData] = useState<string>("");
+  const [modalDataImage, setModalDataImage] = useState<IModalData | null>(null);
+  const [modalData, setModalData] = useState<IComment | undefined>(undefined);
+  const [commentModal, setCommentModal] = useState<boolean>(false);
+  const [commentUpdateData, setCommentUpdateData] = useState<string>("");
 
   if (loading) return <Loading />;
 
@@ -36,6 +45,77 @@ export const ProductDetail = () => {
   return (
     <>
       <Container>
+        {detailedAnnouncementModal && (
+          <Modal
+            title="Imagem do veículo"
+            closeModal={() => setDetailedAnnouncementModal(false)}
+          >
+            <figure className="modalFigure">
+              <img
+                src={modalDataImage!.url}
+                alt={`Image ${modalDataImage!.i}`}
+                className="modalImage"
+              />
+            </figure>
+          </Modal>
+        )}
+
+        {commentModal && (
+          <Modal
+            key={modalData!.id}
+            title="Editar Comentário"
+            closeModal={() => setCommentModal(false)}
+          >
+            <div className="commentUpdateContainer">
+              <textarea
+                className="commentUpdateTextarea"
+                value={commentUpdateData}
+                placeholder={modalData!.content}
+                onChange={(e) => setCommentUpdateData(e.target.value)}
+              />
+
+              <div className="modalButtonsContainer">
+                <Button
+                  width="108px"
+                  backgroundColor="--color-alert2"
+                  borderColor="--color-alert2"
+                  borderLength="1.5px"
+                  color="--color-alert1"
+                  onClick={async () => {
+                    const res = await deleteComment(
+                      modalData!.id,
+                      detailedAnnouncement.id
+                    );
+
+                    res && setCommentModal(false);
+                  }}
+                >
+                  Excluir
+                </Button>
+
+                <Button
+                  width="108px"
+                  backgroundColor="--color-brand1"
+                  borderColor="--color-brand1"
+                  borderLength="1.5px"
+                  color="--color-whiteFixed"
+                  onClick={async () => {
+                    const res = await updateComment(
+                      modalData!.id,
+                      { content: commentUpdateData },
+                      detailedAnnouncement.id
+                    );
+
+                    res && setCommentModal(false);
+                  }}
+                >
+                  Editar
+                </Button>
+              </div>
+            </div>
+          </Modal>
+        )}
+
         <div className="sloganBackgorund" />
 
         <div className="container">
@@ -104,7 +184,10 @@ export const ProductDetail = () => {
                   className="productButton"
                 >
                   <a
-                    href={`https://wa.me/${detailedAnnouncement.User.phone}`}
+                    href={`https://wa.me/+${detailedAnnouncement.User.phone}`.replace(
+                      /[\D]/g,
+                      ""
+                    )}
                     className="buttonLink"
                     target="_blank"
                   >
@@ -151,7 +234,10 @@ export const ProductDetail = () => {
                   <li
                     key={image.id}
                     className="imageItem"
-                    onClick={() => setDetailedAnnouncementModal(true)}
+                    onClick={() => {
+                      setDetailedAnnouncementModal(true);
+                      setModalDataImage({ ...image, i });
+                    }}
                   >
                     <figure className="imageContainer">
                       <img
@@ -160,21 +246,6 @@ export const ProductDetail = () => {
                         className="image"
                       />
                     </figure>
-
-                    {detailedAnnouncementModal && (
-                      <Modal
-                        title="Imagem do veículo"
-                        closeModal={() => setDetailedAnnouncementModal(false)}
-                      >
-                        <figure className="modalFigure">
-                          <img
-                            src={image.url}
-                            alt={`Image ${i}`}
-                            className="modalImage"
-                          />
-                        </figure>
-                      </Modal>
-                    )}
                   </li>
                 ))}
               </ul>
@@ -232,7 +303,11 @@ export const ProductDetail = () => {
               </Heading>
 
               {detailedAnnouncement!.comments.length ? (
-                <CommentList />
+                <CommentList
+                  setModalData={setModalData}
+                  setCommentModal={setCommentModal}
+                  setCommentUpdateData={setCommentUpdateData}
+                />
               ) : (
                 <BodyText
                   className="noCommentsTitle"
