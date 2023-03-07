@@ -1,17 +1,18 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useLayoutEffect, useMemo } from "react";
 import { Heading } from "../../styles/typography";
 import { Container, ContainerListAdvertiser } from "./style";
 
 import { useLocation } from "react-router-dom";
+import { AuctionList } from "../../components/Auction/AuctionList";
+import CreateAnnouncementForm from "../../components/CreateAnnouncementForm";
+import DeleteAnnouncementModal from "../../components/DeleteAnnouncementModal";
 import Footer from "../../components/Footer";
 import ProductList from "../../components/Product/ProductList";
+import UpdateAnnouncementForm from "../../components/UpdateAnnouncementForm";
 import UserProfile from "../../components/UserProfile";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { IAnnouncement } from "../../contexts/AnnouncementContext.interfaces";
 import { UserContext } from "../../contexts/UserContext";
-import UpdateAnnouncementForm from "../../components/UpdateAnnouncementForm";
-import DeleteAnnouncementModal from "../../components/DeleteAnnouncementModal";
-import CreateAnnouncementForm from "../../components/CreateAnnouncementForm";
 
 export const Advertiser = () => {
   const {
@@ -30,8 +31,7 @@ export const Advertiser = () => {
   }
   const userId = useQuery().get("user");
 
-  useEffect(() => {
-    console.log("useEffect");
+  useLayoutEffect(() => {
     listAnnouncementsByIdAdvertiser(userId!);
   }, [
     userId,
@@ -59,6 +59,26 @@ export const Advertiser = () => {
               viewButton={userId === user?.id}
             />
             <div className="ContainerLists">
+              <ContainerListAdvertiser className="home-auction">
+                <Heading
+                  id="auction"
+                  className=""
+                  tag="h5"
+                  style="heading-5"
+                  weight="600"
+                  color="--color-grey1"
+                >
+                  Leilão
+                </Heading>
+
+                <AuctionList
+                  auctions={announcementsAdvertiser.filter(
+                    (auction: IAnnouncement) => auction.typeSale === "auction"
+                  )}
+                  viewButtons={userId === user?.id}
+                />
+              </ContainerListAdvertiser>
+
               <ContainerListAdvertiser>
                 <Heading
                   id="car"
@@ -73,7 +93,8 @@ export const Advertiser = () => {
 
                 <ProductList
                   products={announcementsAdvertiser.filter(
-                    (car: IAnnouncement) => car.typeVehicle === "car"
+                    (car: IAnnouncement) =>
+                      car.typeVehicle === "car" && car.typeSale === "sale"
                   )}
                   viewButtons={userId === user?.id}
                 />
@@ -93,7 +114,9 @@ export const Advertiser = () => {
 
                 <ProductList
                   products={announcementsAdvertiser.filter(
-                    (car: IAnnouncement) => car.typeVehicle === "motorcycle"
+                    (motorcycle: IAnnouncement) =>
+                      motorcycle.typeVehicle === "motorcycle" &&
+                      motorcycle.typeSale === "sale"
                   )}
                   viewButtons={userId === user?.id}
                 />

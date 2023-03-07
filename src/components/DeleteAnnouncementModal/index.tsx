@@ -39,8 +39,8 @@ const DeleteAnnouncementModal = () => {
             type="button"
             width="fit-content"
             buttonText="Big"
-            backgroundColor="--color-brand1"
-            color="--color-whiteFixed"
+            backgroundColor="--color-alert2"
+            color="--color-alert1"
             borderLength="0"
             borderColor="transparent"
             onClick={() => {

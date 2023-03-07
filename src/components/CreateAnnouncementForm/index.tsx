@@ -10,6 +10,7 @@ import Modal from "../Modal";
 import { Select } from "../Select/style";
 import Textarea from "../Textarea";
 import { Container } from "./style";
+import { currencyMask, yearMask } from "../../masks";
 
 const CreateAnnouncementForm = () => {
   const [imagesFields, setImagesFields] = useState([1]);
@@ -23,6 +24,19 @@ const CreateAnnouncementForm = () => {
   } = useForm({
     resolver: yupResolver(createAnnouncementFormSchema),
   });
+
+  const [values, setValues] = useState({
+    year: "",
+    price: "0",
+  });
+
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
 
   const addImageField = () => {
     imagesFields.push(imagesFields.length + 1);
@@ -71,6 +85,8 @@ const CreateAnnouncementForm = () => {
             placeholder="Digitar ano"
             type="text"
             {...register("year")}
+            value={yearMask(values.year)}
+            onChange={inputChange}
             error={errors.year?.message as string}
           />
 
@@ -90,6 +106,8 @@ const CreateAnnouncementForm = () => {
           placeholder="Digitar preço"
           type="text"
           {...register("price")}
+          value={currencyMask(values.price)}
+          onChange={inputChange}
           error={errors.price?.message as string}
         />
 

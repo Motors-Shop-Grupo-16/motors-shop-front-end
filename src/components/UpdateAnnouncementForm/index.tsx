@@ -12,6 +12,7 @@ import { Select } from "../Select/style";
 import Textarea from "../Textarea";
 import { IUpdateAnnouncementFormProps } from "./interfaces";
 import { Container } from "./style";
+import { currencyMask, yearMask } from "../../masks";
 
 const UpdateAnnouncementForm = ({
   announcement,
@@ -29,6 +30,19 @@ const UpdateAnnouncementForm = ({
   } = useForm({
     resolver: yupResolver(updateAnnouncementFormSchema),
   });
+
+  const [values, setValues] = useState({
+    year: announcement.year,
+    price: announcement.price,
+  });
+
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
 
   const addImageField = () => {
     imagesFields.push(imagesFields.length + 1);
@@ -90,6 +104,8 @@ const UpdateAnnouncementForm = ({
             defaultValue={announcement.year}
             type="text"
             {...register("year")}
+            value={yearMask(values.year)}
+            onChange={inputChange}
             error={errors.year?.message as string}
           />
 
@@ -111,6 +127,8 @@ const UpdateAnnouncementForm = ({
           defaultValue={announcement.price}
           type="text"
           {...register("price")}
+          value={currencyMask(values.price)}
+          onChange={inputChange}
           error={errors.price?.message as string}
         />
 

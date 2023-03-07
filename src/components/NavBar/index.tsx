@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import logo from "../../assets/logo.svg";
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
@@ -122,7 +122,7 @@ const Navbar = () => {
                       <LinkBtn
                         className="medium"
                         as="a"
-                        onClick={() => console.log("Ir pagina meus anuncios")}
+                        onClick={() => goTo(`/advertiser?user=${user.id}`)}
                       >
                         Meus Anúncios
                       </LinkBtn>

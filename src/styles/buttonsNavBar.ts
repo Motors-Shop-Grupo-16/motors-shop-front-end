@@ -9,7 +9,6 @@ export const Link = styled.a`
   font-size: 16px;
   font-family: "Inter", sans-serif;
   font-weight: 600;
-
   @media (min-width: 400px) {
     width: 119px;
     height: 38px;
@@ -26,7 +25,6 @@ export const Link = styled.a`
     background-color: var(--color-grey0);
     border: 1.5px solid var(--color-grey0);
     color: var(--color-whiteFixed);
-
     &:hover {
       background-color: var(--color-grey1);
       border: 1.5px solid var(--color-grey1);
@@ -37,7 +35,6 @@ export const Link = styled.a`
     background-color: transparent;
     border: 1.5px solid var(--color-grey0);
     color: var(--color-grey0);
-
     &:hover {
       background-color: var(--color-grey1);
       border: 1.5px solid var(--color-grey1);
@@ -48,7 +45,6 @@ export const Link = styled.a`
     background-color: transparent;
     border: 1.5px solid var(--color-grey4);
     color: var(--color-grey0);
-
     &:hover {
       background-color: var(--color-grey1);
       border: 1.5px solid var(--color-grey1);
@@ -80,7 +76,6 @@ export const Link = styled.a`
     border: 1.5px solid var(--color-grey10);
     color: var(--color-grey1);
   }
-
   &.outlineLight {
     background-color: transparent;
     border: 1.5px solid var(--color-grey10);
@@ -91,7 +86,6 @@ export const Link = styled.a`
       color: var(--color-grey1);
     }
   }
-
   &.negative {
     background-color: var(--color-grey6);
     border: 1.5px solid var(--color-grey6);
@@ -135,7 +129,6 @@ export const LinkBtn = styled(Link)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   background-color: transparent;
   color: var(--color-grey0);
   border: none;
