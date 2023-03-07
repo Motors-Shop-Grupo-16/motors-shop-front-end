@@ -88,10 +88,7 @@ const ProductCard = ({
           </div>
 
           <Heading style="heading-7" className="productPrice" tag="p">
-            {Number(product.price).toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
+            {`R$ ${product.price}`}
           </Heading>
         </div>
       </div>

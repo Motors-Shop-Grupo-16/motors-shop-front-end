@@ -9,6 +9,17 @@ const Container = styled.div<IAuctionCardProps>`
   min-width: 735px;
   flex-direction: column;
 
+  .productButtonsContainer {
+    display: flex;
+    gap: 25px;
+    button {
+      &:hover {
+        background: var(--color-brand3);
+        color: var(--color-grey10);
+      }
+    }
+  }
+
   .auction-content {
     display: flex;
     flex-direction: column;

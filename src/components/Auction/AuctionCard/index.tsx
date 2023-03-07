@@ -5,8 +5,20 @@ import { IAnnouncement } from "../../../contexts/AnnouncementContext.interfaces"
 import Container from "./style";
 import UserImage from "../../UserImage/userImage";
 import dateFormatter from "../../../utils/dateFormatter";
+import Button from "../../Button";
+import { useContext } from "react";
+import { AnnouncementContext } from "../../../contexts/AnnouncementContext";
 
-export const AuctionCard = ({ auction }: { auction: IAnnouncement }) => {
+export const AuctionCard = ({
+  auction,
+  viewButtons,
+}: {
+  auction: IAnnouncement;
+  viewButtons?: boolean;
+}) => {
+  const { setAnnouncement, setIsUpdateAnnouncement } =
+    useContext(AnnouncementContext);
+
   return (
     <Container imageUrl={auction.coverImage}>
       <div className="auction-content">
@@ -86,25 +98,44 @@ export const AuctionCard = ({ auction }: { auction: IAnnouncement }) => {
             weight="500"
             color="--color-whiteFixed"
           >
-            {Number(auction.price).toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
+            {`R$ ${auction.price}`}
           </Heading>
         </div>
       </div>
 
       <div className="auction-nav">
-        <BodyText
-          className="auction-info-mileage"
-          tag="p"
-          style="body-1"
-          weight="600"
-          color="--color-whiteFixed"
-        >
-          Acessar página do leilão
-        </BodyText>
-        <BsArrowRight color="var(--color-whiteFixed)" size={24} />
+        {viewButtons ? (
+          <div className="productButtonsContainer">
+            <Button
+              type="button"
+              width="fit-content"
+              buttonText=""
+              backgroundColor="--color-grand1"
+              color="--color-grey10"
+              borderColor="--color-grey10"
+              borderLength="2px"
+              onClick={() => {
+                setAnnouncement(auction);
+                setIsUpdateAnnouncement(true);
+              }}
+            >
+              Editar
+            </Button>
+          </div>
+        ) : (
+          <>
+            <BodyText
+              className="auction-info-mileage"
+              tag="p"
+              style="body-1"
+              weight="600"
+              color="--color-whiteFixed"
+            >
+              Acessar página do leilão
+            </BodyText>
+            <BsArrowRight color="var(--color-whiteFixed)" size={24} />
+          </>
+        )}
       </div>
     </Container>
   );

@@ -8,7 +8,7 @@ import { Heading } from "../../styles/typography";
 import { Container, ContainerHomePage, ContainerListHome } from "./styles";
 
 export const Home = () => {
-  const { cars, motorcycles } = useContext(AnnouncementContext);
+  const { cars, motorcycles, auctions } = useContext(AnnouncementContext);
 
   return (
     <>
@@ -27,7 +27,7 @@ export const Home = () => {
               Leilão
             </Heading>
 
-            <AuctionList />
+            <AuctionList auctions={auctions} />
           </ContainerListHome>
 
           <ContainerListHome>

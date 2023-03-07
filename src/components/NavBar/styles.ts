@@ -86,16 +86,45 @@ export const NavContainer = styled.div<divProps>`
   right: 1px;
   background-color: var(--color-grey9);
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
-  a {
-    font-size: 16px;
-    ${(props) =>
-      props.user === true
-        ? css`
-            font-weight: 400;
-          `
-        : css`
-            font-weight: 600;
-          `};
+  padding-top: 5px;
+
+  @media (min-width: 1000px) {
+    padding-top: 0px;
+  }
+
+  li {
+    .hashLink {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      height: 30px;
+      justify-content: center;
+      color: var(--color-grey2);
+      padding: 0 20px 0;
+      font-family: var(font-family2);
+
+      :hover {
+        .link_li {
+          color: var(--color-brand1);
+        }
+      }
+
+      .link_li {
+        font-size: 16px;
+        display: flex;
+        width: 100%;
+        font-family: var(--font-family2);
+
+        ${(props) =>
+          props.user === true
+            ? css`
+                font-weight: 400;
+              `
+            : css`
+                font-weight: 600;
+              `};
+      }
+    }
   }
   @media (min-width: 430px) {
     display: none;
@@ -165,7 +194,7 @@ export const UserUl = styled.ul<divProps>`
       justify-content: flex-start;
 
       a {
-        width: auto;
+        width: 100%;
       }
     }
     @media (min-width: 450px) {
@@ -205,6 +234,7 @@ export const NavUl = styled.ul<divProps>`
   align-items: center;
   text-align: left;
   gap: 44px;
+
   li {
     display: flex;
     width: 100%;
@@ -214,6 +244,16 @@ export const NavUl = styled.ul<divProps>`
 
     .link_li {
       justify-content: flex-start;
+      padding-left: 20px;
+      font-family: var(--font-family2);
+      color: var(--color-grey2);
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+
+      :hover {
+        color: var(--color-brand1);
+      }
     }
     &.li_btn {
       padding: 0;
