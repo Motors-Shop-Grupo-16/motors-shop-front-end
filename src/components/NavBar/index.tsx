@@ -56,23 +56,23 @@ const Navbar = () => {
             <NavUl>
               <li>
                 <HashLink
-                  className="hashLink"
+                  className="link_li"
                   to={`${pathname}${location.search}#car`}
                 >
-                  <a className="link_li">Carros</a>
+                  Carros
                 </HashLink>
               </li>
               <li>
                 <HashLink
-                  className="hashLink"
+                  className="link_li"
                   to={`${pathname}${location.search}#motorcycle`}
                 >
-                  <a className="link_li">Motos</a>
+                  Motos
                 </HashLink>
               </li>
               <li>
-                <HashLink className="hashLink" to="/#auction">
-                  <a className="link_li">Leilão</a>
+                <HashLink className="link_li" to="/#auction">
+                  Leilão
                 </HashLink>
               </li>
             </NavUl>
@@ -103,7 +103,11 @@ const Navbar = () => {
                     <LinkBtn
                       className="medium"
                       as="a"
-                      onClick={() => setIsEditUser(true)}
+                      onClick={() => {
+                        setIsEditUser(true);
+                        setSubmenuIsVisible(false);
+                        setMenuIsVisible(false);
+                      }}
                     >
                       Editar Perfil
                     </LinkBtn>
@@ -112,7 +116,11 @@ const Navbar = () => {
                     <LinkBtn
                       className="medium"
                       as="a"
-                      onClick={() => setIsEditAddress(true)}
+                      onClick={() => {
+                        setIsEditAddress(true);
+                        setSubmenuIsVisible(false);
+                        setMenuIsVisible(false);
+                      }}
                     >
                       Editar Endereço
                     </LinkBtn>
@@ -122,7 +130,11 @@ const Navbar = () => {
                       <LinkBtn
                         className="medium"
                         as="a"
-                        onClick={() => goTo(`/advertiser?user=${user.id}`)}
+                        onClick={() => {
+                          goTo(`/advertiser?user=${user.id}`);
+                          setSubmenuIsVisible(false);
+                          setMenuIsVisible(false);
+                        }}
                       >
                         Meus Anúncios
                       </LinkBtn>
@@ -138,7 +150,7 @@ const Navbar = () => {
             ) : (
               <NavUl>
                 <li>
-                  <a className="medium link_li" onClick={() => goTo("/login")}>
+                  <a className="medium link_li link_li_login" onClick={() => goTo("/login")}>
                     Fazer Login
                   </a>
                 </li>

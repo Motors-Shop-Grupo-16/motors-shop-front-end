@@ -21,6 +21,7 @@ export const Container = styled.div`
     width: 100%;
     max-width: 1240px;
     min-height: 327px;
+    border-radius:4px;
     background: var(--color-grey10);
     gap: 24px;
     position: relative;
