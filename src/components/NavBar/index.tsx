@@ -17,6 +17,7 @@ import {
   NavUl,
   UserUl,
 } from "./styles";
+import { splitName } from "../../utils/createImage";
 
 const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -94,7 +95,7 @@ const Navbar = () => {
                       weight="600"
                       color="--color-grey0"
                     >
-                      {user.name}
+                      {splitName(user.name)}
                     </BodyText>
                   </div>
                 </li>
@@ -150,7 +151,10 @@ const Navbar = () => {
             ) : (
               <NavUl>
                 <li>
-                  <a className="medium link_li link_li_login" onClick={() => goTo("/login")}>
+                  <a
+                    className="medium link_li link_li_login"
+                    onClick={() => goTo("/login")}
+                  >
                     Fazer Login
                   </a>
                 </li>

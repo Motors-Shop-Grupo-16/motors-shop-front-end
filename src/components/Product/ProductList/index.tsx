@@ -17,7 +17,7 @@ const ProductList = ({
     <>
       {products.length == 0 ? (
         <EmptyList>
-          No momento não temos esses veículos disponíveis para venda.
+          No momento não temos esses veículos cadastrados
         </EmptyList>
       ) : (
         <Container>

@@ -22,7 +22,6 @@ export const Container = styled.li`
     flex-direction: column;
     width: 300px;
     min-height: 348px;
-    /* gap: 16px; */
     justify-content: space-between;
   }
 
@@ -101,9 +100,6 @@ export const Container = styled.li`
     width: 100%;
     align-items: center;
     gap: 8px;
-    /* .productUserImage {
-      width: 38.3px;
-    } */
 
     .productUserName {
       overflow: hidden;
