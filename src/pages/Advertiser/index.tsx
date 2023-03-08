@@ -97,6 +97,7 @@ export const Advertiser = () => {
                       car.typeVehicle === "car" && car.typeSale === "sale"
                   )}
                   viewButtons={userId === user?.id}
+                  isActive={true}
                 />
               </ContainerListAdvertiser>
 
@@ -119,6 +120,7 @@ export const Advertiser = () => {
                       motorcycle.typeSale === "sale"
                   )}
                   viewButtons={userId === user?.id}
+                  isActive={true}
                 />
               </ContainerListAdvertiser>
             </div>

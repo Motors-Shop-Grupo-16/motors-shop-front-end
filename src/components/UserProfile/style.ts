@@ -41,6 +41,8 @@ export const Container = styled.div`
 
     .userProfileContentUserName {
       display: flex;
+      /* justify-content:center; */
+      align-items:center;
       gap: 9px;
       .userProfileContentUserNameAdvertiser {
         padding: 4px 8px;

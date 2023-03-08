@@ -101,7 +101,6 @@ const UpdateAnnouncementForm = ({
             label="Ano"
             id="year"
             placeholder="Digitar ano"
-            defaultValue={announcement.year}
             type="text"
             {...register("year")}
             value={yearMask(values.year)}
@@ -124,7 +123,6 @@ const UpdateAnnouncementForm = ({
           label="Preço"
           id="price"
           placeholder="Digitar preço"
-          defaultValue={announcement.price}
           type="text"
           {...register("price")}
           value={currencyMask(values.price)}

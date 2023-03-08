@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { AnnouncementContext } from "../../contexts/AnnouncementContext";
 import { UserContext } from "../../contexts/UserContext";
@@ -12,8 +12,8 @@ import UserImage from "../../components/UserImage/userImage";
 
 import { splitName } from "../../utils/createImage";
 
-import { IModalData } from "./interfaces";
 import { IComment } from "../../contexts/AnnouncementContext.interfaces";
+import { IModalData } from "./interfaces";
 
 import { BodyText, Heading } from "../../styles/typography";
 import { Container } from "./style";
@@ -180,10 +180,14 @@ export const ProductDetail = () => {
                       className="productButton"
                     >
                       <a
-                        href={`https://wa.me/+${detailedAnnouncement.User.phone.replace(
-                          /[\D]/g,
-                          ""
-                        )}`}
+                        href={
+                          user
+                            ? `https://wa.me/+${detailedAnnouncement.User.phone.replace(
+                                /[\D]/g,
+                                ""
+                              )}`
+                            : "/login"
+                        }
                         className="buttonLink"
                         target="_blank"
                       >
