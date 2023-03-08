@@ -13,7 +13,10 @@ const today = new Date();
 export const registerUserFormSchema = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
   email: yup.string().email().required("Email é obrigatório"),
-  password: yup.string().required("Senha é obrigatório"),
+  password: yup
+    .string()
+    .required("Senha é obrigatório")
+    .min(8, "A senha deve ter no mínimo 8 caracteres"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "As senhas devem ser iguais")
@@ -22,7 +25,10 @@ export const registerUserFormSchema = yup.object().shape({
     .string()
     .min(14, "CPF precisa ser no formato 000.000.000-00")
     .required("CPF é obrigatório"),
-  phone: yup.string().min(15, "Telefone precisa ser no formato (00) 0000-0000").required("Telefone é obrigatório"),
+  phone: yup
+    .string()
+    .min(15, "Telefone precisa ser no formato (00) 0000-0000")
+    .required("Telefone é obrigatório"),
   dateOfBirth: yup
     .date()
     .typeError("Data precisa ser no formato YYYY-MM-DD")

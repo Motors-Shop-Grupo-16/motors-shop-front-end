@@ -9,6 +9,7 @@ export const ContainerListAdvertiser = styled.div`
 `;
 
 export const Container = styled.div`
+  animation: fadeIn 0.5s;
   display: flex;
   flex-direction: column;
   justify-content: center;

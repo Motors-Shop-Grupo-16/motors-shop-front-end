@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+import "animate.css";
+
 export const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
   width: 12px;

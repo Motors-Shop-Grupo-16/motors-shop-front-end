@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerHomePage = styled.main`
+  animation: fadeIn 0.5s;
   min-height: 100vh;
   background: var(--color-whiteFixed);
 

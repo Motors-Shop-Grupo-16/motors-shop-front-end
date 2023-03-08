@@ -1,7 +1,7 @@
 import Footer from "../../components/Footer";
 import { Heading } from "../../styles/typography";
 import { Container } from "./style";
-// import imagem from "../../assets/"
+
 export const Error404 = () => {
   return (
     <>
@@ -17,7 +17,7 @@ export const Error404 = () => {
             Page Not Found
           </Heading>
 
-          <img src="" alt=""/>
+          <img src="" alt="" />
         </div>
 
         <Footer />

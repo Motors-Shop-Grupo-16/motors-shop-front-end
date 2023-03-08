@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  animation: fadeIn 0.5s;
   display: flex;
   height: 100%;
   flex-direction: column;

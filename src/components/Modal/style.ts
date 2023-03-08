@@ -1,18 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  min-height: 100vh;
-  padding: 80px 16px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 3; */
-
   display: block;
   justify-content: center;
   align-items: center;
@@ -25,11 +13,13 @@ export const Container = styled.div`
   bottom: 0;
   overflow: auto;
   background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s;
 
   .containerModal {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: zoomIn 0.5s;
   }
 
   .modal {

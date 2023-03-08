@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  animation: fadeIn 0.5s;
+
   .modalFigure {
     max-width: 466px;
     max-height: 239px;
