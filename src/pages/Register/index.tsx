@@ -70,7 +70,7 @@ export const Register = () => {
           </BodyText>
 
           <Input
-            label="Nome"
+            label="Nome *"
             id="name"
             placeholder="Ex: Samuel Leão"
             type="text"
@@ -79,7 +79,7 @@ export const Register = () => {
           />
 
           <Input
-            label="Email"
+            label="Email *"
             id="email"
             placeholder="Ex: samuel@kenzie.com.br"
             type="email"
@@ -88,7 +88,7 @@ export const Register = () => {
           />
 
           <Input
-            label="CPF"
+            label="CPF *"
             id="cpf"
             placeholder="000.000.000-00"
             type="text"
@@ -99,7 +99,7 @@ export const Register = () => {
           />
 
           <Input
-            label="Celular"
+            label="Celular *"
             id="phone"
             placeholder="(DDD) 00000-0000"
             type="text"
@@ -110,7 +110,7 @@ export const Register = () => {
           />
 
           <Input
-            label="Data de nascimento"
+            label="Data de nascimento *"
             id="dateOfBirth"
             placeholder="2000-02-29"
             type="text"
@@ -121,7 +121,7 @@ export const Register = () => {
           />
 
           <Textarea
-            label="Descrição"
+            label="Descrição *"
             id="description"
             placeholder="Digitar descrição"
             {...register("description")}
@@ -133,7 +133,7 @@ export const Register = () => {
           </BodyText>
 
           <Input
-            label="CEP"
+            label="CEP *"
             id="cep"
             placeholder="00000-000"
             type="text"
@@ -145,7 +145,7 @@ export const Register = () => {
 
           <div className="form-small-inputs">
             <Input
-              label="Estado"
+              label="Estado *"
               id="state"
               placeholder="Digitar Estado"
               type="text"
@@ -154,7 +154,7 @@ export const Register = () => {
             />
 
             <Input
-              label="Cidade"
+              label="Cidade *"
               id="city"
               placeholder="Digitar Cidade"
               type="text"
@@ -164,7 +164,7 @@ export const Register = () => {
           </div>
 
           <Input
-            label="Rua"
+            label="Rua *"
             id="road"
             placeholder="Digitar Rua"
             type="text"
@@ -174,7 +174,7 @@ export const Register = () => {
 
           <div className="form-small-inputs">
             <Input
-              label="Número"
+              label="Número *"
               id="number"
               placeholder="Digitar número"
               type="text"
@@ -191,7 +191,6 @@ export const Register = () => {
               error={errors.address?.complement?.message as string}
             />
           </div>
-
 
           <div className="selectContainer">
             <BodyText tag="p" style="body-2" weight="500" color="--color-grey0">
@@ -210,7 +209,7 @@ export const Register = () => {
           </div>
 
           <Input
-            label="Senha"
+            label="Senha *"
             id="password"
             placeholder="Digitar senha"
             type="password"
@@ -219,7 +218,7 @@ export const Register = () => {
           />
 
           <Input
-            label="Confirmar Senha"
+            label="Confirmar Senha *"
             id="confirmPassword"
             placeholder="Digitar senha"
             type="password"

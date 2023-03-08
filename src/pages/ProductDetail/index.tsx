@@ -178,21 +178,19 @@ export const ProductDetail = () => {
                       borderColor="--color-brand1"
                       color="--color-whiteFixed"
                       className="productButton"
-                    >
-                      <a
-                        href={
-                          user
-                            ? `https://wa.me/+${detailedAnnouncement.User.phone.replace(
+                      onClick={() =>
+                        user
+                          ? window.open(
+                              `https://wa.me/+${detailedAnnouncement.User.phone.replace(
                                 /[\D]/g,
                                 ""
-                              )}`
-                            : "/login"
-                        }
-                        className="buttonLink"
-                        target="_blank"
-                      >
-                        Comprar
-                      </a>
+                              )}`,
+                              "_blank"
+                            )
+                          : goTo("/login")
+                      }
+                    >
+                      Comprar
                     </Button>
                   </div>
                 </div>

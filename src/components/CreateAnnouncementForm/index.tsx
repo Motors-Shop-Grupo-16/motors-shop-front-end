@@ -70,7 +70,7 @@ const CreateAnnouncementForm = () => {
           Informações do veículo
         </BodyText>
         <Input
-          label="Título"
+          label="Título *"
           id="title"
           placeholder="Digitar título"
           type="text"
@@ -80,7 +80,7 @@ const CreateAnnouncementForm = () => {
 
         <div className="smallInputs">
           <Input
-            label="Ano"
+            label="Ano *"
             id="year"
             placeholder="Digitar ano"
             type="text"
@@ -91,7 +91,7 @@ const CreateAnnouncementForm = () => {
           />
 
           <Input
-            label="Quilometragem"
+            label="Quilometragem *"
             id="mileage"
             placeholder="0"
             type="text"
@@ -101,7 +101,7 @@ const CreateAnnouncementForm = () => {
         </div>
 
         <Input
-          label="Preço"
+          label="Preço *"
           id="price"
           placeholder="Digitar preço"
           type="text"
@@ -112,7 +112,7 @@ const CreateAnnouncementForm = () => {
         />
 
         <Textarea
-          label="Descrição"
+          label="Descrição *"
           id="description"
           placeholder="Digitar descrição"
           {...register("description")}
@@ -137,7 +137,7 @@ const CreateAnnouncementForm = () => {
         </div>
 
         <Input
-          label="Imagem da capa"
+          label="Imagem da capa *"
           id="coverImage"
           placeholder="Inserir URL da imagem"
           type="text"
@@ -147,7 +147,7 @@ const CreateAnnouncementForm = () => {
 
         {imagesFields.map((number) => (
           <Input
-            label={`${number}ª imagem da galeria`}
+            label={`${number}ª imagem da galeria${number === 1 ? " *" : ""}`}
             id={`image${number}`}
             placeholder="Inserir URL da imagem"
             type="text"
