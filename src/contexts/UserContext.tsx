@@ -21,6 +21,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isEditUser, setIsEditUser] = useState<boolean>(false);
   const [isRecoverPassword, setIsRecoverPassword] = useState<boolean>(false);
   const [isEditAddress, setIsEditAddress] = useState<boolean>(false);
+  const [isDeleteUser, setIsDeleteUser] = useState<boolean>(false);
 
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("@usermotorsshop:token")
@@ -120,6 +121,25 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     });
   };
 
+  const deleteUser = () => {
+    const promiseRegister = api.delete("/users");
+
+    toast.promise(promiseRegister, {
+      loading: "Carregando...",
+      success: (response) => {
+        setIsDeleteUser(false);
+        navigate("/");
+        return "Usuário deletado com sucesso!";
+      },
+      error: (error) => `${error.response.data.message}`,
+    });
+  };
+
+  const confirmUserDeletion = () => {
+    setIsEditUser(false);
+    setIsDeleteUser(true);
+  };
+
   function sendEmailRecover(data: ISendEmail) {
     const promisseSendEmail = api
       .post("/users/recover-password", data)
@@ -168,10 +188,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       isEditAddress,
       setIsEditAddress,
       editAddress,
+      isDeleteUser,
+      setIsDeleteUser,
+      deleteUser,
+      confirmUserDeletion,
       token,
       setToken,
     }),
-    [isRecoverPassword, isEditUser, user, isEditAddress, token]
+    [isRecoverPassword, isEditUser, user, isEditAddress, token, isDeleteUser]
   );
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

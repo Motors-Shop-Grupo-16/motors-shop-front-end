@@ -85,6 +85,10 @@ export interface IUserContext {
   isEditAddress: boolean;
   setIsEditAddress: Dispatch<React.SetStateAction<boolean>>;
   editAddress: (data: FieldValues) => void;
+  isDeleteUser: boolean;
+  setIsDeleteUser: Dispatch<React.SetStateAction<boolean>>;
+  deleteUser: () => void;
+  confirmUserDeletion: () => void;
   token: string | null;
   setToken: Dispatch<SetStateAction<string | null>>;
 }
