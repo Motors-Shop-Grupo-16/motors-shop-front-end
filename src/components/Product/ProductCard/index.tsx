@@ -11,9 +11,11 @@ import Button from "../../Button";
 const ProductCard = ({
   product,
   viewButtons,
+  isActive,
 }: {
   product: IAnnouncement;
   viewButtons?: boolean;
+  isActive?: boolean;
 }) => {
   const {
     goTo,
@@ -32,6 +34,29 @@ const ProductCard = ({
       >
         <div className="productImageContainer">
           <img src={product.coverImage} alt={product.title} />
+          {isActive === true ? (
+            product.isActive === true ? (
+              <BodyText
+                style="body-2"
+                className="productIsActiveContainer"
+                tag="p"
+                color="--color-whiteFixed"
+              >
+                {"Ativo"}
+              </BodyText>
+            ) : (
+              <BodyText
+                style="body-2"
+                className="productIsInactiveContainer"
+                tag="p"
+                color="--color-whiteFixed"
+              >
+                {"Inativo"}
+              </BodyText>
+            )
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="productTitleContainer">

@@ -7,9 +7,11 @@ import { Container } from "./style";
 const ProductList = ({
   products,
   viewButtons,
+  isActive,
 }: {
   products: IAnnouncement[];
   viewButtons?: boolean;
+  isActive?: boolean;
 }) => {
   return (
     <>
@@ -24,6 +26,7 @@ const ProductList = ({
               key={product.id}
               product={product}
               viewButtons={viewButtons}
+              isActive={isActive}
             />
           ))}
         </Container>

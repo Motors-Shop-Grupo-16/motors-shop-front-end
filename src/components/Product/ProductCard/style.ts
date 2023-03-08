@@ -4,6 +4,7 @@ export const Container = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-height: 348px;
 
   .productButtonsContainer {
     display: flex;
@@ -20,7 +21,9 @@ export const Container = styled.li`
     display: flex;
     flex-direction: column;
     width: 300px;
-    gap: 16px;
+    min-height: 348px;
+    /* gap: 16px; */
+    justify-content: space-between;
   }
 
   .productImageContainer {
@@ -33,10 +36,27 @@ export const Container = styled.li`
     transition: 0.5s;
     height: 152px;
     max-width: 100%;
+    position: relative;
 
     img {
       width: 180px;
       transition: 0.5s;
+    }
+
+    .productIsActiveContainer{
+      position: absolute;
+      top: 11px;
+      left: 16px;
+      background: var(--color-brand1);
+      padding: 0px 8px;
+    }
+
+    .productIsInactiveContainer{
+      position: absolute;
+      top: 11px;
+      left: 16px;
+      background: var(--color-grey4);
+      padding: 0px 8px;
     }
   }
 
@@ -66,7 +86,7 @@ export const Container = styled.li`
 
   .productDescriptionContainer {
     width: 90%;
-
+    height: 48px;
     .productDescription {
       overflow: hidden;
       text-overflow: ellipsis;

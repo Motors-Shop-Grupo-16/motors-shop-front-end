@@ -71,7 +71,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     });
   };
 
-  function registerUser(dataUser: IRegisterUser) {
+  const registerUser = (dataUser: IRegisterUser) => {
     const { isBuyer, cep, ...data } = dataUser;
     data.address.cep = cep;
     const user = {
@@ -140,7 +140,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     setIsDeleteUser(true);
   };
 
-  function sendEmailRecover(data: ISendEmail) {
+  const sendEmailRecover = (data: ISendEmail) => {
     const promisseSendEmail = api
       .post("/users/recover-password", data)
       .then((response) => response);
@@ -153,9 +153,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       },
       error: (error) => `${error.response.data.message}`,
     });
-  }
+  };
 
-  function recoverPassword(data: IResetPassword, token: string | null) {
+  const recoverPassword = (data: IResetPassword, token: string | null) => {
     const { confirmPassword, ...dataRecover } = data;
 
     const promisseRecoverPassword = api
@@ -170,7 +170,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       },
       error: (error) => `${error.response.data.message}`,
     });
-  }
+  };
 
   const values = useMemo(
     () => ({
