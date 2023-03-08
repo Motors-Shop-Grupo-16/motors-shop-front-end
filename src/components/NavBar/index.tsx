@@ -41,7 +41,9 @@ const Navbar = () => {
   if (
     location.pathname !== "/login" &&
     location.pathname !== "/register" &&
-    location.pathname !== "/product"
+    location.pathname !== "/product" &&
+    location.pathname !== "/error404" &&
+    location.pathname !== "/reset-password/"
   ) {
     pathname = location.pathname;
   }
@@ -67,12 +69,16 @@ const Navbar = () => {
                 <HashLink
                   className="link_li"
                   to={`${pathname}${location.search}#motorcycle`}
+                  
                 >
                   Motos
                 </HashLink>
               </li>
               <li>
-                <HashLink className="link_li" to="/#auction">
+                <HashLink
+                  className="link_li"
+                  to={`${pathname}${location.search}#auction`}
+                >
                   Leilão
                 </HashLink>
               </li>
