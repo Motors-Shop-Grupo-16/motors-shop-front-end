@@ -16,11 +16,13 @@ import { ICommentProps } from "./interfaces";
 
 import { BodyText } from "../../../styles/typography";
 import { Container } from "./style";
+import { currencyMask } from "../../../masks";
 
 const CommentCard = ({
   comment,
   setModalData,
   setCommentUpdateData,
+  setLanceUpdateData,
 }: ICommentProps) => {
   const { user } = useContext(UserContext);
 
@@ -34,6 +36,7 @@ const CommentCard = ({
           setCommentModal(true);
           setModalData(comment!);
           setCommentUpdateData(comment!.content);
+          setLanceUpdateData(comment!.content);
         }
       }}
       isOwner={user?.id === comment!.User!.id ? true : false}
@@ -69,7 +72,7 @@ const CommentCard = ({
         color="--color-grey2"
       >
         {detailedAnnouncement!.typeSale === "auction"
-          ? `R$ ${comment!.content}`
+          ? `R$ ${currencyMask(comment!.content)}`
           : comment!.content}
       </BodyText>
 

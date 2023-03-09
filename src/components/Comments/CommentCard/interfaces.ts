@@ -6,4 +6,5 @@ export interface ICommentProps {
   comment?: IComment;
   setModalData: Dispatch<SetStateAction<IComment | undefined>>;
   setCommentUpdateData: Dispatch<SetStateAction<string>>;
+  setLanceUpdateData: Dispatch<SetStateAction<string>>;
 }

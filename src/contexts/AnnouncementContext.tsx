@@ -212,7 +212,7 @@ export const AnnouncementProvider = ({
         loading: "Carregando...",
         success: () => {
           listAnnouncementById(id);
-          return "Comentário criado com sucesso";
+          return "Criado com sucesso";
         },
         error: (error) => `${error.response.data.message}`,
       });
@@ -238,7 +238,7 @@ export const AnnouncementProvider = ({
       loading: "Carregando...",
       success: () => {
         setCommentModal(false);
-        return "Comentário atualizado com sucesso";
+        return "Atualizado com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });
@@ -253,7 +253,7 @@ export const AnnouncementProvider = ({
       loading: "Carregando...",
       success: () => {
         setCommentModal(false);
-        return "Comentário excluido com sucesso";
+        return "Excluido com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });
