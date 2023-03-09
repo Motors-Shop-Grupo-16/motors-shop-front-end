@@ -44,6 +44,8 @@ export const Register = () => {
     formState: { errors },
   } = useForm<IRegisterUser>({
     resolver: yupResolver(registerUserFormSchema),
+    mode: "all",
+    reValidateMode: "onChange",
   });
 
   const [selected, setSelected] = useState<string>("true");

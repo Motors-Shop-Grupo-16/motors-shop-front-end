@@ -33,6 +33,8 @@ const EditAddressForm = ({ address }: IEditAddressFormProps) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(editAddressFormSchema),
+    mode: "all",
+    reValidateMode: "onChange",
   });
 
   return (
