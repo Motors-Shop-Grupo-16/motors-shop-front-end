@@ -6,7 +6,7 @@ import { Heading } from "../../styles/typography";
 const Modal = ({ children, title, closeModal }: IModalProps) => {
   return (
     <Container>
-      <div className="containerModal">
+      <div className="containerModal" onClick={() => closeModal(false)}>
         <div className="modal">
           <div className="modalHeader">
             <Heading tag="h3" style="heading-7">
