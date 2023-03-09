@@ -36,8 +36,11 @@ export const yearMask = (value: string) => {
 };
 
 export const currencyMask = (value: string) => {
-  value = value.replace(".", "").replace(",", "").replace(/\D/g, "");
   const options = { minimumFractionDigits: 2 };
+  if (value === "") {
+    return new Intl.NumberFormat("pt-BR", options).format(0 / 100);
+  }
+  value = value.replace(".", "").replace(",", "").replace(/\D/g, "");
   return new Intl.NumberFormat("pt-BR", options).format(
     parseFloat(value) / 100
   );
