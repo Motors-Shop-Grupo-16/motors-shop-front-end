@@ -85,6 +85,7 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
 
         @media (min-width: 1262px) {
           height: 377px;
@@ -92,15 +93,14 @@ export const Container = styled.div`
 
         .coverImageFigure {
           max-width: 441px;
-          max-height: 252.96px;
           width: 100%;
-          height: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
 
           .coverImage {
             width: 100%;
+            height: 100%;
           }
         }
       }
@@ -244,6 +244,8 @@ export const Container = styled.div`
             .imageContainer {
               max-width: 90%;
               width: 100%;
+              overflow: hidden;
+              max-height: 90%;
 
               .image {
                 width: 100%;
