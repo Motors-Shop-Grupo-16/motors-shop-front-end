@@ -29,6 +29,8 @@ const UpdateAnnouncementForm = ({
     formState: { errors },
   } = useForm({
     resolver: yupResolver(updateAnnouncementFormSchema),
+    mode: "all",
+    reValidateMode: "onChange",
   });
 
   const [values, setValues] = useState({

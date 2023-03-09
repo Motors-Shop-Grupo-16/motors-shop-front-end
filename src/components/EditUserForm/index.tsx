@@ -36,6 +36,8 @@ const EditUserForm = ({ user }: IEditUserFormProps) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(editUserFormSchema),
+    mode: "all",
+    reValidateMode: "onChange",
   });
 
   return (

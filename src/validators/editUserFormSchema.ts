@@ -19,6 +19,6 @@ export const editUserFormSchema = yup.object().shape({
     .date()
     .typeError("Esperado data 2000-02-29")
     .transform(parseDateString)
-    .max(today),
+    .max(today, "Data não pode ser superior ao dia atual"),
   description: yup.string().required("Descrição é obrigatória"),
 });
