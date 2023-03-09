@@ -40,6 +40,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       } catch (error) {
         localStorage.removeItem("@usermotorsshop:token");
         localStorage.removeItem("@usermotorsshop:userId");
+        setToken(null);
+        setUser(null);
       }
     }
   }
@@ -128,6 +130,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       loading: "Carregando...",
       success: () => {
         setIsDeleteUser(false);
+        loadUser();
         navigate("/");
         return "Usuário deletado com sucesso!";
       },
