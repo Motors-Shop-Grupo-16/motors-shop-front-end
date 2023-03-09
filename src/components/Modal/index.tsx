@@ -10,7 +10,6 @@ const Modal = ({ children, title, closeModal }: IModalProps) => {
   });
   return (
     <Container>
-      {/* <div className="containerModal" onClick={() => closeModal(false)}> */}
       <div className="containerModal">
         <div className="modal" ref={modalRef}>
           <div className="modalHeader">
