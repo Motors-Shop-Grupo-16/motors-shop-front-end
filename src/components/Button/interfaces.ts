@@ -2,7 +2,9 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 
 export interface IButtonProps
   extends IButtonConfig,
-    ButtonHTMLAttributes<HTMLButtonElement> {}
+    ButtonHTMLAttributes<HTMLButtonElement> {
+  logged?: boolean;
+}
 
 export interface IButtonConfig {
   width?: string;

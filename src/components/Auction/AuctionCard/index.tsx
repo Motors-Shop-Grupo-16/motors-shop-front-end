@@ -16,7 +16,7 @@ export const AuctionCard = ({
   auction: IAnnouncement;
   viewButtons?: boolean;
 }) => {
-  const { setAnnouncement, setIsUpdateAnnouncement } =
+  const { setAnnouncement, goTo, setIsUpdateAnnouncement } =
     useContext(AnnouncementContext);
 
   return (
@@ -103,7 +103,12 @@ export const AuctionCard = ({
         </div>
       </div>
 
-      <div className="auction-nav">
+      <div
+        className="auction-nav"
+        onClick={() => {
+          goTo(`/product?announcement=${auction.id}`);
+        }}
+      >
         {viewButtons ? (
           <div className="productButtonsContainer">
             <Button

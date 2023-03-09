@@ -170,28 +170,30 @@ export const ProductDetail = () => {
                         {`R$ ${detailedAnnouncement.price}`}
                       </Heading>
                     </div>
-
-                    <Button
-                      width="100px"
-                      backgroundColor="--color-brand1"
-                      borderLength="1.5"
-                      borderColor="--color-brand1"
-                      color="--color-whiteFixed"
-                      className="productButton"
-                      onClick={() =>
-                        user
-                          ? window.open(
-                              `https://wa.me/+${detailedAnnouncement.User.phone.replace(
-                                /[\D]/g,
-                                ""
-                              )}`,
-                              "_blank"
-                            )
-                          : goTo("/login")
-                      }
-                    >
-                      Comprar
-                    </Button>
+                    {detailedAnnouncement.typeSale === "sale" && (
+                      <Button
+                        width="100px"
+                        backgroundColor="--color-brand1"
+                        borderLength="1.5"
+                        borderColor="--color-brand1"
+                        color="--color-whiteFixed"
+                        className="productButton"
+                        logged={!Boolean(token)}
+                        onClick={() =>
+                          user
+                            ? window.open(
+                                `https://wa.me/+${detailedAnnouncement.User.phone.replace(
+                                  /[\D]/g,
+                                  ""
+                                )}`,
+                                "_blank"
+                              )
+                            : goTo("/login")
+                        }
+                      >
+                        Comprar
+                      </Button>
+                    )}
                   </div>
                 </div>
 
@@ -297,7 +299,9 @@ export const ProductDetail = () => {
                     color="--color-grey1"
                     className="productDescriptionTitle"
                   >
-                    Comentários
+                    {detailedAnnouncement.typeSale === "sale"
+                      ? "Comentários"
+                      : "Lances"}
                   </Heading>
 
                   {detailedAnnouncement.comments.length ? (
@@ -336,57 +340,69 @@ export const ProductDetail = () => {
                   )}
 
                   <div className="createCommentForm">
-                    <div className="createCommentContent">
-                      <textarea
-                        className="createCommentTextarea"
-                        placeholder="Digitar comentário"
-                        onChange={(e) => setCommentData(e.target.value)}
-                        value={commentData}
-                      />
+                    {detailedAnnouncement.typeSale === "sale" ? (
+                      <div className="createCommentContent">
+                        <textarea
+                          className="createCommentTextarea"
+                          placeholder="Digitar comentário"
+                          onChange={(e) => setCommentData(e.target.value)}
+                          value={commentData}
+                        />
 
-                      <Button
-                        className="createCommentButton"
-                        width="108px"
-                        borderColor="--color-brand1"
-                        borderLength="1.5px"
-                        color="--color-whiteFixed"
-                        backgroundColor="--color-brand1"
-                        disabled={!Boolean(token)}
-                        onClick={() => {
-                          createComment(
-                            { content: commentData },
-                            detailedAnnouncement.id
-                          );
-                          setCommentData("");
-                        }}
+                        <Button
+                          className="createCommentButton"
+                          width="108px"
+                          borderColor="--color-brand1"
+                          borderLength="1.5px"
+                          color="--color-whiteFixed"
+                          backgroundColor="--color-brand1"
+                          logged={!Boolean(token)}
+                          onClick={() => {
+                            if (Boolean(token)) {
+                              if (commentData !== "") {
+                                createComment(
+                                  { content: commentData },
+                                  detailedAnnouncement.id
+                                );
+                                setCommentData("");
+                              }
+                            } else {
+                              goTo("/login");
+                            }
+                          }}
+                        >
+                          Comentar
+                        </Button>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+
+                  {detailedAnnouncement.typeSale === "sale" && (
+                    <div className="createCommentsSuggestionsContainer">
+                      <button
+                        className="createCommentSuggestions"
+                        onClick={() => setCommentData("Gostei muito!")}
                       >
-                        Comentar
-                      </Button>
+                        Gostei muito!
+                      </button>
+                      <button
+                        className="createCommentSuggestions"
+                        onClick={() => setCommentData("Incrível")}
+                      >
+                        Incrível
+                      </button>
+                      <button
+                        className="createCommentSuggestions"
+                        onClick={() =>
+                          setCommentData("Recomendarei para meus amigos!")
+                        }
+                      >
+                        Recomendarei para meus amigos!
+                      </button>
                     </div>
-                  </div>
-
-                  <div className="createCommentsSuggestionsContainer">
-                    <button
-                      className="createCommentSuggestions"
-                      onClick={() => setCommentData("Gostei muito!")}
-                    >
-                      Gostei muito!
-                    </button>
-                    <button
-                      className="createCommentSuggestions"
-                      onClick={() => setCommentData("Incrível")}
-                    >
-                      Incrível
-                    </button>
-                    <button
-                      className="createCommentSuggestions"
-                      onClick={() =>
-                        setCommentData("Recomendarei para meus amigos!")
-                      }
-                    >
-                      Recomendarei para meus amigos!
-                    </button>
-                  </div>
+                  )}
                 </div>
               </section>
             </div>

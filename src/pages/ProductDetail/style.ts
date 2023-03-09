@@ -75,6 +75,7 @@ export const Container = styled.div`
       align-items: center;
       max-width: 752px;
       width: 100%;
+      height: fit-content;
 
       .coverImageContainer {
         background-color: var(--color-grey10);
@@ -106,7 +107,7 @@ export const Container = styled.div`
 
       .productInfoContainer {
         background-color: var(--color-grey10);
-        height: 326.91px;
+        max-height: 326.91px;
         width: 100%;
         border-radius: 4px;
         margin-top: 17px;
@@ -116,7 +117,7 @@ export const Container = styled.div`
 
         @media (min-width: 425px) {
           padding: 44px 46.5px 28px;
-          height: 239.39px;
+          max-height: 239.39px;
         }
 
         @media (min-width: 1262px) {
@@ -162,9 +163,7 @@ export const Container = styled.div`
           }
 
           .productButton {
-            .buttonLink {
-              color: var(--color-whiteFixed);
-            }
+            margin-top: 24px;
           }
         }
       }
@@ -302,9 +301,10 @@ export const Container = styled.div`
         }
 
         .noCommentsTitle {
+          width: fit-content;
           text-align: center;
-          width: 100%;
-          margin: 60px 0 20px;
+          margin: 30px 0 20px;
+          color: var(--color-alert1);
         }
       }
 

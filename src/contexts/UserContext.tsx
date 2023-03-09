@@ -85,20 +85,20 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
     toast.promise(promisseRegister, {
       loading: "Carregando...",
-      success: (response) => {
+      success: () => {
         navigate("/login");
         return "Registrado com sucesso, realize o login.";
       },
       error: (error) => `${error.response.data.message}`,
     });
-  }
+  };
 
   const editUser = (data: FieldValues) => {
     const promiseRegister = api.patch("/users", data);
 
     toast.promise(promiseRegister, {
       loading: "Carregando...",
-      success: (response) => {
+      success: () => {
         setIsEditUser(false);
         loadUser();
         return "Usuário atualizado com sucesso!";
@@ -112,7 +112,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
     toast.promise(promiseRegister, {
       loading: "Carregando...",
-      success: (response) => {
+      success: () => {
         setIsEditAddress(false);
         loadUser();
         return "Endereço atualizado com sucesso!";
@@ -126,7 +126,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
     toast.promise(promiseRegister, {
       loading: "Carregando...",
-      success: (response) => {
+      success: () => {
         setIsDeleteUser(false);
         navigate("/");
         return "Usuário deletado com sucesso!";
@@ -146,8 +146,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       .then((response) => response);
 
     toast.promise(promisseSendEmail, {
-      loading: "Enviando...",
-      success: (response) => {
+      loading: "Carregando...",
+      success: () => {
         setIsRecoverPassword(false);
         return "Verifique o seu email.";
       },
@@ -163,8 +163,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       .then((response) => response);
 
     toast.promise(promisseRecoverPassword, {
-      loading: "Alterando...",
-      success: (response) => {
+      loading: "Carregando...",
+      success: () => {
         navigate("/login");
         return "Senha alterada com sucesso!";
       },

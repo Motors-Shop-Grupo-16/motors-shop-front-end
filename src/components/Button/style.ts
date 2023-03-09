@@ -39,11 +39,10 @@ export const Container = styled.button<IButtonProps>`
           border: 1.5px solid var(--color-grey2);
         `}
 
-  ${({ disabled }) =>
-    disabled
-      ? css`
-          border-color: var(--color-grey5);
-          background-color: var(--color-grey5);
-        `
-      : ""}
+  ${({ logged }) =>
+    logged &&
+    css`
+      border-color: var(--color-grey5);
+      background-color: var(--color-grey5);
+    `}
 `;
