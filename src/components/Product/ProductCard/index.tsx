@@ -7,6 +7,7 @@ import { BodyText, Heading } from "../../../styles/typography";
 import { IAnnouncement } from "../../../contexts/AnnouncementContext.interfaces";
 import { Container } from "./style";
 import Button from "../../Button";
+import { splitName } from "../../../utils/createImage";
 
 const ProductCard = ({
   product,
@@ -85,7 +86,7 @@ const ProductCard = ({
             tag="p"
             weight="500"
           >
-            {product.User.name}
+            {splitName(product.User.name)}
           </BodyText>
         </div>
 

@@ -231,7 +231,6 @@ export const NavUl = styled.ul<divProps>`
     }
 
     .link_li {
-      /* width: 100%; */
       justify-content: flex-start;
       padding-left: 20px;
       font-family: var(--font-family2);

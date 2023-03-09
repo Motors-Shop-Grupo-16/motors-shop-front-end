@@ -36,7 +36,7 @@ const UserProfile = ({ name, description, viewButton }: IUserProfile) => {
         </div>
 
         <BodyText
-          className=""
+          className="userProfileContentDescription"
           tag="p"
           style="body-1"
           weight="400"

@@ -17,6 +17,7 @@ import {
   NavUl,
   UserUl,
 } from "./styles";
+import { splitName } from "../../utils/createImage";
 
 const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -40,7 +41,9 @@ const Navbar = () => {
   if (
     location.pathname !== "/login" &&
     location.pathname !== "/register" &&
-    location.pathname !== "/product"
+    location.pathname !== "/product" &&
+    location.pathname !== "/error404" &&
+    location.pathname !== "/reset-password/"
   ) {
     pathname = location.pathname;
   }
@@ -66,12 +69,16 @@ const Navbar = () => {
                 <HashLink
                   className="link_li"
                   to={`${pathname}${location.search}#motorcycle`}
+                  
                 >
                   Motos
                 </HashLink>
               </li>
               <li>
-                <HashLink className="link_li" to="/#auction">
+                <HashLink
+                  className="link_li"
+                  to={`${pathname}${location.search}#auction`}
+                >
                   Leilão
                 </HashLink>
               </li>
@@ -94,7 +101,7 @@ const Navbar = () => {
                       weight="600"
                       color="--color-grey0"
                     >
-                      {user.name}
+                      {splitName(user.name)}
                     </BodyText>
                   </div>
                 </li>
@@ -150,7 +157,10 @@ const Navbar = () => {
             ) : (
               <NavUl>
                 <li>
-                  <a className="medium link_li link_li_login" onClick={() => goTo("/login")}>
+                  <a
+                    className="medium link_li link_li_login"
+                    onClick={() => goTo("/login")}
+                  >
                     Fazer Login
                   </a>
                 </li>
