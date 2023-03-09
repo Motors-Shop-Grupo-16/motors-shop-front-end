@@ -103,12 +103,7 @@ export const AuctionCard = ({
         </div>
       </div>
 
-      <div
-        className="auction-nav"
-        onClick={() => {
-          goTo(`/product?announcement=${auction.id}`);
-        }}
-      >
+      <div className="auction-nav">
         {viewButtons ? (
           <div className="productButtonsContainer">
             <Button
@@ -143,7 +138,12 @@ export const AuctionCard = ({
             </Button>
           </div>
         ) : (
-          <>
+          <div
+            className="auction-nav-product"
+            onClick={() => {
+              goTo(`/product?announcement=${auction.id}`);
+            }}
+          >
             <BodyText
               className="auction-info-mileage"
               tag="p"
@@ -154,7 +154,7 @@ export const AuctionCard = ({
               Acessar página do leilão
             </BodyText>
             <BsArrowRight color="var(--color-whiteFixed)" size={24} />
-          </>
+          </div>
         )}
       </div>
     </Container>
