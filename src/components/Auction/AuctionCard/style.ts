@@ -120,10 +120,17 @@ const Container = styled.div<IAuctionCardProps>`
     border-radius: 0px 0px 4px 4px;
     background: var(--color-brand1);
     padding: 0px 36px;
-    cursor: pointer;
 
     @media (max-width: 755px) {
       padding: 0px 22px;
+    }
+
+    .auction-nav-product {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
     }
   }
 

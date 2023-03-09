@@ -18,6 +18,7 @@ import { IModalData } from "./interfaces";
 
 import { BodyText, Heading } from "../../styles/typography";
 import { Container } from "./style";
+import { currencyMask } from "../../masks";
 
 export const ProductDetail = () => {
   const {
@@ -35,9 +36,11 @@ export const ProductDetail = () => {
 
   const { token, user } = useContext(UserContext);
   const [commentData, setCommentData] = useState<string>("");
+  const [lanceData, setLanceData] = useState<string>("0,00");
   const [modalDataImage, setModalDataImage] = useState<IModalData | null>(null);
   const [modalData, setModalData] = useState<IComment | undefined>(undefined);
   const [commentUpdateData, setCommentUpdateData] = useState<string>("");
+  const [lanceUpdateData, setLanceUpdateData] = useState<string>("");
 
   function useQuery() {
     const { search } = useLocation();
@@ -49,6 +52,7 @@ export const ProductDetail = () => {
   useEffect(() => {
     listAnnouncementById(announcementId!);
   }, [commentModal, detailedAnnouncementModal]);
+
 
   return (
     <>
@@ -81,13 +85,26 @@ export const ProductDetail = () => {
                 closeModal={() => setCommentModal(false)}
               >
                 <div className="commentUpdateContainer">
-                  <textarea
-                    className="commentUpdateTextarea"
-                    value={commentUpdateData}
-                    placeholder={modalData!.content}
-                    onChange={(e) => setCommentUpdateData(e.target.value)}
-                  />
-
+                  {detailedAnnouncement.typeSale === "sale" ? (
+                    <textarea
+                      className="commentUpdateTextarea"
+                      value={commentUpdateData}
+                      placeholder={modalData!.content}
+                      onChange={(e) => setCommentUpdateData(e.target.value)}
+                    />
+                  ) : (
+                    <Input
+                      label="Lance"
+                      className="inputAuctionCreateComment"
+                      placeholder="Inserir valor do lance"
+                      type="text"
+                      min="1"
+                      value={currencyMask(lanceUpdateData)}
+                      onChange={(event) =>
+                        setLanceUpdateData(event.target.value)
+                      }
+                    />
+                  )}
                   <div className="modalButtonsContainer">
                     <Button
                       width="108px"
@@ -106,11 +123,15 @@ export const ProductDetail = () => {
                       borderColor="--color-brand1"
                       borderLength="1.5px"
                       color="--color-whiteFixed"
-                      onClick={() =>
-                        updateComment(modalData!.id, {
-                          content: commentUpdateData,
-                        })
-                      }
+                      onClick={() => {
+                        detailedAnnouncement.typeSale === "sale"
+                          ? updateComment(modalData!.id, {
+                              content: commentUpdateData,
+                            })
+                          : updateComment(modalData!.id, {
+                              content: lanceUpdateData,
+                            });
+                      }}
                     >
                       Editar
                     </Button>
@@ -313,6 +334,7 @@ export const ProductDetail = () => {
                     <CommentList
                       setModalData={setModalData}
                       setCommentUpdateData={setCommentUpdateData}
+                      setLanceUpdateData={setLanceUpdateData}
                     />
                   ) : (
                     <BodyText
@@ -394,10 +416,12 @@ export const ProductDetail = () => {
                               label="Lance"
                               className="inputAuctionCreateComment"
                               placeholder="Inserir valor do lance"
-                              type="number"
+                              type="text"
                               min="1"
-                              value={commentData}
-                              onChange={(e) => setCommentData(e.target.value)}
+                              value={currencyMask(lanceData)}
+                              onChange={(event) =>
+                                setLanceData(event.target.value)
+                              }
                             />
                           </div>
 
@@ -411,12 +435,12 @@ export const ProductDetail = () => {
                             logged={!Boolean(token)}
                             onClick={() => {
                               if (Boolean(token)) {
-                                if (commentData !== "") {
+                                if (lanceData !== "") {
                                   createComment(
-                                    { content: commentData },
+                                    { content: lanceData },
                                     detailedAnnouncement.id
                                   );
-                                  setCommentData("");
+                                  setLanceData("0");
                                 }
                               } else {
                                 goTo("/login");

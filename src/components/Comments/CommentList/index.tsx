@@ -8,7 +8,11 @@ import { ICommentProps } from "../CommentCard/interfaces";
 
 import { Container } from "./style";
 
-const CommentList = ({ setModalData, setCommentUpdateData }: ICommentProps) => {
+const CommentList = ({
+  setModalData,
+  setCommentUpdateData,
+  setLanceUpdateData,
+}: ICommentProps) => {
   const { detailedAnnouncement } = useContext(AnnouncementContext);
 
   return (
@@ -19,6 +23,7 @@ const CommentList = ({ setModalData, setCommentUpdateData }: ICommentProps) => {
           comment={comment}
           setModalData={setModalData}
           setCommentUpdateData={setCommentUpdateData}
+          setLanceUpdateData={setLanceUpdateData}
         ></CommentCard>
       ))}
     </Container>
