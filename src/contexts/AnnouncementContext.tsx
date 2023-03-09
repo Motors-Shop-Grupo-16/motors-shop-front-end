@@ -111,10 +111,10 @@ export const AnnouncementProvider = ({
     const promiseCreate = api.post(`/announcements/`, dataToSend);
 
     toast.promise(promiseCreate, {
-      loading: "Salvando...",
-      success: (response) => {
+      loading: "Carregando...",
+      success: () => {
         setIsCreateAnnouncement(false);
-        return "Criado com sucesso";
+        return "Anúncio criado com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });
@@ -157,11 +157,11 @@ export const AnnouncementProvider = ({
     const promiseUpdate = api.patch(`/announcements/${id}`, dataToSend);
 
     toast.promise(promiseUpdate, {
-      loading: "Atualizando...",
-      success: (response) => {
+      loading: "Carregando...",
+      success: () => {
         setIsUpdateAnnouncement(false);
 
-        return "Atualizado com sucesso";
+        return "Anúncio atualizado com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });
@@ -172,10 +172,10 @@ export const AnnouncementProvider = ({
     const promiseDelete = api.delete(`/announcements/${id}`);
 
     toast.promise(promiseDelete, {
-      loading: "Deletando...",
-      success: (response) => {
+      loading: "Carregando...",
+      success: () => {
         setIsDeleteAnnouncement(false);
-        return "Deletado com sucesso";
+        return "Anúncio excluido com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });
@@ -209,10 +209,10 @@ export const AnnouncementProvider = ({
       const promisePost = api.post(`/comments/${id}`, commentData);
 
       toast.promise(promisePost, {
-        loading: "Criando...",
+        loading: "Carregando...",
         success: () => {
           listAnnouncementById(id);
-          return "Criado com sucesso";
+          return "Comentário criado com sucesso";
         },
         error: (error) => `${error.response.data.message}`,
       });
@@ -229,19 +229,16 @@ export const AnnouncementProvider = ({
     }
   };
 
-  const updateComment = async (
-    id: string,
-    data: { content: string },
-  ) => {
+  const updateComment = async (id: string, data: { content: string }) => {
     api.defaults.headers.common.authorization = `Bearer ${token}`;
 
     const promisePatch = api.patch(`/comments/${id}`, data);
 
     toast.promise(promisePatch, {
-      loading: "Editando...",
+      loading: "Carregando...",
       success: () => {
         setCommentModal(false);
-        return "Editado com sucesso";
+        return "Comentário atualizado com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });
@@ -253,10 +250,10 @@ export const AnnouncementProvider = ({
     const promiseDelete = api.delete(`/comments/${id}`);
 
     toast.promise(promiseDelete, {
-      loading: "Deletando...",
+      loading: "Carregando...",
       success: () => {
         setCommentModal(false);
-        return "Deletado com sucesso";
+        return "Comentário excluido com sucesso";
       },
       error: (error) => `${error.response.data.message}`,
     });

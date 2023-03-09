@@ -5,6 +5,13 @@ export const Container = styled.li<{ isOwner: boolean }>`
   flex-direction: column;
   gap: 12px;
 
+  :hover {
+    .auctionSellButton {
+      opacity: 100;
+      transition: 0.5s;
+    }
+  }
+
   ${({ isOwner }) =>
     isOwner
       ? css`
@@ -39,10 +46,21 @@ export const Container = styled.li<{ isOwner: boolean }>`
       margin-left: 10px;
       color: var(--color-grey2);
 
-      @media (min-width: 1262px) {
+      @media (min-width: 1024px) {
         opacity: 0;
         transition: 0.5s;
       }
+    }
+  }
+
+  .auctionSellButton {
+    margin-top: 4px;
+  }
+
+  @media (min-width: 1024px) {
+    .auctionSellButton {
+      opacity: 0;
+      transition: 0.5s;
     }
   }
 `;
