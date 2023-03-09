@@ -126,6 +126,21 @@ export const AuctionCard = ({
             >
               Editar
             </Button>
+
+            <Button
+              type="button"
+              width="fit-content"
+              buttonText=""
+              backgroundColor="--color-grand1"
+              color="--color-grey10"
+              borderColor="--color-grey10"
+              borderLength="2px"
+              onClick={() => {
+                goTo(`/product?announcement=${auction.id}`);
+              }}
+            >
+              Ver como
+            </Button>
           </div>
         ) : (
           <>

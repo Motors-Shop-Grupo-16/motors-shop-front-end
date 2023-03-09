@@ -33,6 +33,7 @@ export interface IComment {
   User: {
     id: string;
     name: string;
+    phone: string;
   };
 }
 

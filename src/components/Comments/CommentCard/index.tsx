@@ -4,6 +4,7 @@ import { AnnouncementContext } from "../../../contexts/AnnouncementContext";
 import { UserContext } from "../../../contexts/UserContext";
 
 import UserImage from "../../UserImage/userImage";
+import Button from "../../Button";
 
 import { splitName } from "../../../utils/createImage";
 import dateFormatter from "../../../utils/dateFormatter";
@@ -23,18 +24,19 @@ const CommentCard = ({
 }: ICommentProps) => {
   const { user } = useContext(UserContext);
 
-  const { setCommentModal } = useContext(AnnouncementContext);
+  const { setCommentModal, detailedAnnouncement } =
+    useContext(AnnouncementContext);
 
   return (
     <Container
       onClick={() => {
-        if (user?.id === comment!.User?.id) {
+        if (user?.id === comment!.User!.id) {
           setCommentModal(true);
           setModalData(comment!);
           setCommentUpdateData(comment!.content);
         }
       }}
-      isOwner={user?.id === comment!.User?.id ? true : false}
+      isOwner={user?.id === comment!.User!.id ? true : false}
     >
       <div className="userContainer">
         <UserImage name={comment!.User.name} className="userImage" />
@@ -55,19 +57,41 @@ const CommentCard = ({
           {dateFormatter(comment!.updatedAt)}
         </span>
 
-        {user?.id === comment!.User?.id && (
+        {user?.id === comment!.User!.id && (
           <FiEdit className="userCommentButton" />
         )}
       </div>
 
       <BodyText
-        className="userName"
+        className="commentContent"
         style="body-2"
         tag="p"
         color="--color-grey2"
       >
-        {comment!.content}
+        {detailedAnnouncement!.typeSale === "auction"
+          ? `R$ ${comment!.content}`
+          : comment!.content}
       </BodyText>
+
+      {detailedAnnouncement!.typeSale === "auction" &&
+        user?.id === detailedAnnouncement!.User.id && (
+          <Button
+            width="64px"
+            backgroundColor="--color-brand4"
+            color="--color-brand1"
+            borderLength="0"
+            borderColor="--color-whiteFixed"
+            className="auctionSellButton"
+            onClick={() =>
+              window.open(
+                `https://wa.me/+${comment!.User.phone.replace(/[\D]/g, "")}`,
+                "_blank"
+              )
+            }
+          >
+            Vender
+          </Button>
+        )}
     </Container>
   );
 };

@@ -373,6 +373,34 @@ export const Container = styled.div`
               }
             }
           }
+
+          .inputAuctionContainer {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 32px;
+
+            @media (min-width: 540px) {
+              gap: 8px;
+            }
+
+            .inputAuctionContent {
+              .inputAuctionCreateComment {
+                width: 315px;
+                height: 40px;
+                -moz-appearance: textfield;
+                appearance: textfield;
+
+                ::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                }
+              }
+            }
+            .createAuctionCommentButton {
+              height: 40px;
+            }
+          }
         }
 
         .createCommentsSuggestionsContainer {
