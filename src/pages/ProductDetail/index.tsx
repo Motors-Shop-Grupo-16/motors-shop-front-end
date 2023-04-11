@@ -53,7 +53,6 @@ export const ProductDetail = () => {
     listAnnouncementById(announcementId!);
   }, [commentModal, detailedAnnouncementModal]);
 
-
   return (
     <>
       <Container>
@@ -196,30 +195,31 @@ export const ProductDetail = () => {
                         {`R$ ${detailedAnnouncement.price}`}
                       </Heading>
                     </div>
-                    {detailedAnnouncement.typeSale === "sale" && (
-                      <Button
-                        width="100px"
-                        backgroundColor="--color-brand1"
-                        borderLength="1.5"
-                        borderColor="--color-brand1"
-                        color="--color-whiteFixed"
-                        className="productButton"
-                        logged={!Boolean(token)}
-                        onClick={() =>
-                          user
-                            ? window.open(
-                                `https://wa.me/+${detailedAnnouncement.User.phone.replace(
-                                  /[\D]/g,
-                                  ""
-                                )}`,
-                                "_blank"
-                              )
-                            : goTo("/login")
-                        }
-                      >
-                        Comprar
-                      </Button>
-                    )}
+                    {user?.id !== detailedAnnouncement.User.id &&
+                      detailedAnnouncement.typeSale === "sale" && (
+                        <Button
+                          width="100px"
+                          backgroundColor="--color-brand1"
+                          borderLength="1.5"
+                          borderColor="--color-brand1"
+                          color="--color-whiteFixed"
+                          className="productButton"
+                          logged={!Boolean(token)}
+                          onClick={() =>
+                            user
+                              ? window.open(
+                                  `https://wa.me/+${detailedAnnouncement.User.phone.replace(
+                                    /[\D]/g,
+                                    ""
+                                  )}`,
+                                  "_blank"
+                                )
+                              : goTo("/login")
+                          }
+                        >
+                          Comprar
+                        </Button>
+                      )}
                   </div>
                 </div>
 
